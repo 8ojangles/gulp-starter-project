@@ -18,7 +18,8 @@ let src = {
 	jsBundleEntry: [ `${ srcDir }/js/entry.js` ],
 	js: [ `${ srcDir }/js/**/*.js` ],
 	scss: [ `${ srcDir }/scss/**/*.scss` ],
-	data: [ `${ srcDir }/data/**/*.json` ]
+	data: [ `${ srcDir }/data/**/*.json` ],
+	tests: [ `./tests/**/*.js` ]
 };
 
 
@@ -30,7 +31,8 @@ let dist = {
 	html: [ `${ distDir }/` ],
 	js: [ `${ distDir }js/` ],
 	css: [ `${ distDir }css/` ],
-	data: [ `${ distDir }data/` ]
+	data: [ `${ distDir }data/` ],
+	docs: [ `${ distDir }docs/` ]
 };
 
 
