@@ -4,7 +4,7 @@ const cssnano = require( 'cssnano' );
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
 const sourcemaps = require( 'gulp-sourcemaps' );
-const dirs = require( '../gulp/dirs' ).dirs;
+const dirs = require( '../gulp/dirs' );
 const plumbError = require( '../gulp/errorReporting' ).plumbError;
 
 // compile scss
@@ -24,4 +24,4 @@ function sass(){
 }
 
 // expose task to cli	
-exports.sass = sass;
+module.exports = sass;

@@ -1,6 +1,6 @@
 const gulp = require( 'gulp' );
 const docs = require('gulp-documentation');
-const dirs = require( './dirs' ).dirs;
+const dirs = require( './dirs' );
 
 // documentation
 function createDocs() {
@@ -14,4 +14,4 @@ function createDocs() {
     );
 }
 
-exports.createDocs = createDocs;
+module.exports = createDocs;

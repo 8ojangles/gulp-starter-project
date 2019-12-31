@@ -1,6 +1,6 @@
 const gulp = require( 'gulp' );
 const concat = require( 'gulp-concat' );
-const dirs = require( '../gulp/dirs' ).dirs;
+const dirs = require( '../gulp/dirs' );
 
 // concatenate vendor libraries
 function vendorJs(){
@@ -13,4 +13,4 @@ function vendorJs(){
 }
 
 // expose task to cli	
-exports.vendorJs = vendorJs;
+module.exports = vendorJs;

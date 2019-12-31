@@ -1,5 +1,5 @@
 const gulp = require( 'gulp' );
-const dirs = require( '../gulp/dirs' ).dirs;
+const dirs = require( '../gulp/dirs' );
 
 // move data
 function moveData(){
@@ -11,4 +11,4 @@ function moveData(){
 }
 
 // expose task to cli	
-exports.moveData = moveData;
+module.exports = moveData;

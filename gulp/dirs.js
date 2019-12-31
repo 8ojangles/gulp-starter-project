@@ -1,11 +1,14 @@
 // node modules
 let nodeModules = './node_modules';
 
+let gulpDir = './gulp';
+
 // vendor libraries
 let vendorLibs = [
 	`${nodeModules}/jquery/dist/jquery.min.js`,
 	`src/js/rafPolyfill.js`
 ];
+
 
 
 // SOURCE directory top level
@@ -44,9 +47,10 @@ let dirs = {
 	srcDir: srcDir,
 	src: src,
 	distDir: distDir,
-	dist: dist
+	dist: dist,
+	gulp: gulpDir
 }
 
 
 // export dirs
-module.exports.dirs = dirs;
+module.exports = dirs;

@@ -1,5 +1,5 @@
 const del = require( 'del' );
-const dirs = require( '../gulp/dirs' ).dirs;
+const dirs = require( '../gulp/dirs' );
 const notify = require('gulp-notify');
 
 // clean dist folders
@@ -11,4 +11,4 @@ function clean(){
 };
 
 // expose task to cli	
-exports.clean = clean;
+module.exports = clean;

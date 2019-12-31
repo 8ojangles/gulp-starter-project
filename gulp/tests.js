@@ -1,6 +1,6 @@
 const gulp = require( 'gulp' );
 const mocha = require('gulp-mocha');
-const dirs = require( './dirs' ).dirs;
+const dirs = require( './dirs' );
 
 // testing
 function tests() {
@@ -14,4 +14,4 @@ function tests() {
 }
 
 // expose task to cli
-exports.tests = tests;
+module.exports = tests;

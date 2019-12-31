@@ -1,6 +1,6 @@
 const gulp = require( 'gulp' );
 const log = require( 'fancy-log' );
-const dirs = require( '../gulp/dirs' ).dirs;
+const dirs = require( '../gulp/dirs' );
 
 // move html
 function moveHtml(){
@@ -13,4 +13,4 @@ function moveHtml(){
 };
 
 // expose task to cli	
-exports.moveHtml = moveHtml;
+module.exports = moveHtml;

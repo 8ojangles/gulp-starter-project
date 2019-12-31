@@ -1,7 +1,7 @@
 const gulp = require( 'gulp' );
 const nunjucksRender = require('gulp-nunjucks-render');
 const plumbError = require( '../gulp/errorReporting' ).plumbError;
-const dirs = require( '../gulp/dirs' ).dirs;
+const dirs = require( '../gulp/dirs' );
 
 // compile templates (nunjucks)
 function compileHtml(){
@@ -17,4 +17,4 @@ function compileHtml(){
 };
 
 // expose task to cli	
-exports.compileHtml = compileHtml;
+module.exports = compileHtml;

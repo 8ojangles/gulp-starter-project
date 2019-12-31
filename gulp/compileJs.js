@@ -4,7 +4,7 @@ const browserify = require( 'browserify' );
 const source = require( 'vinyl-source-stream' );
 const plumbError = require( '../gulp/errorReporting' ).plumbError;
 const notify = require('gulp-notify');
-const dirs = require( '../gulp/dirs' ).dirs;
+const dirs = require( '../gulp/dirs' );
 
 // browserify js
 
@@ -30,4 +30,4 @@ function compileJs(){
 };
 
 // expose task to cli	
-exports.compileJs = compileJs;
+module.exports = compileJs;

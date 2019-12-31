@@ -5,18 +5,18 @@ const browserSync = require( 'browser-sync' ).create();
 const bsOpts = require( './gulp/browsersyncOptions.js' );
 
 // Directories
-const dirs = require( './gulp/dirs' ).dirs;
-
+const dirs = require( './gulp/dirs' );
+const dirGulp = dirs.gulp;
 // Tasks
-const clean = require( './gulp/cleanDirs' ).clean;
-const compileJs = require( './gulp/compileJs' ).compileJs;
-const compileHtml = require( './gulp/compileHtml' ).compileHtml;
-const moveHtml = require( './gulp/moveHtml' ).moveHtml;
-const vendorJs = require( './gulp/vendorJs' ).vendorJs;
-const sass = require( './gulp/sass' ).sass;
-const moveData = require( './gulp/moveData' ).moveData;
-const createDocs = require( './gulp/createDocs' ).createDocs;
-const tests = require( './gulp/tests' ).tests;
+const clean = require( `${ dirGulp }/cleanDirs` );
+const compileJs = require( `${ dirGulp }/compileJs` );
+const compileHtml = require( `${ dirGulp }/compileHtml` );
+const moveHtml = require( `${ dirGulp }/moveHtml` );
+const vendorJs = require( `${ dirGulp }/vendorJs` );
+const sass = require( `${ dirGulp }/sass` );
+const moveData = require( `${ dirGulp }/moveData` );
+const createDocs = require( `${ dirGulp }/createDocs` );
+const tests = require( `${ dirGulp }/tests` );
 
 // browsersync reload function
 function reload( done ) {
@@ -35,7 +35,7 @@ function watch(){
 	browserSync.emitter.on(
     	'init',
     	function(){
-    		notify( {message: "Localhost started "} );
+    		notify( {message: "Localhost started" } );
     		console.log( "Localhost started" );
     	}
     );
