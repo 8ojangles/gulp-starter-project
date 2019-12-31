@@ -2,7 +2,6 @@
 const gulp = require( 'gulp' );
 const notify = require('gulp-notify');
 const browserSync = require( 'browser-sync' ).create();
-const mocha = require('gulp-mocha');
 const bsOpts = require( './gulp/browsersyncOptions.js' );
 
 // Directories
@@ -49,31 +48,18 @@ function watch(){
 // expose task to cli
 exports.watch = watch;
 
-
-
-// // testing
-// function tests() {
-// 	return (
-// 		gulp
-// 			.src( './test/tests.js', { read: false } )
-// 			.pipe( mocha( {reporter: 'nyan' } ) )
-// 	);
-// }
-
-// // expose task to cli
-// exports.tests = tests;
-
-
+// build task
 const build = gulp.series(
 	gulp.series( clean ), 
 	gulp.parallel( vendorJs, compileJs, compileHtml, moveHtml, moveData, sass ),
     gulp.series( tests, createDocs )
 );
 
-// build task
+// expose task to cli
 exports.build = build;
 
-// expose task to cli
+// test task
 exports.tests = tests;
 
+// default task
 gulp.task( 'default', gulp.series( build, watch ) );
