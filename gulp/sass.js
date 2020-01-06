@@ -7,7 +7,12 @@ const sourcemaps = require( 'gulp-sourcemaps' );
 const dirs = require( '../gulp/dirs' );
 const plumbError = require( '../gulp/errorReporting' ).plumbError;
 
-// compile scss
+// SASS compliation
+// - compile
+// - postCss
+// - - autoprefix
+// - - minifiy
+// - write sourcemaps
 function sass(){
 	return (
         gulp
@@ -15,9 +20,7 @@ function sass(){
 	        .pipe( plumbError() )
 	        .pipe( scss() )
 	        .on( "error", scss.logError )
-	        // Use postcss with autoprefixer and compress the compiled file using cssnano
             .pipe( postcss( [ autoprefixer(), cssnano() ] ) )
-            // Now add/write the sourcemaps
             .pipe( sourcemaps.write() )
 	        .pipe( gulp.dest( dirs.dist.css ) )
     );

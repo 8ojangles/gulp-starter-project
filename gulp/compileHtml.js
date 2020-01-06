@@ -9,9 +9,11 @@ function compileHtml(){
 		gulp
 			.src( dirs.src.templates )
 			.pipe( plumbError() )
-			.pipe( nunjucksRender( {
-	      		path: 'src/templates/'
-		    } ) )
+			.pipe(
+				nunjucksRender(
+				 { path: 'src/templates/' }
+				)
+			)
 		    .pipe( gulp.dest( dirs.dist.html ) )
 	);
 };
