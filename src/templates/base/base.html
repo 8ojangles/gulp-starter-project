@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    {% block pageTitle %}
+    <title>The default title</title>
+    {% endblock %}
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,7 +13,8 @@
     <link rel="apple-touch-icon" href="icon.png">
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="css/main.css">
-
+    {% block pageCSS %}
+    {% endblock %}
     <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -26,7 +29,7 @@
     </main>
 
     <script src="js/vendor.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/scripts.js"></script>
     
 </body>
 

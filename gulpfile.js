@@ -27,7 +27,8 @@ function reload( done ) {
 function watchFiles() {
 	gulp.watch( dirs.src.scss , sass );
     gulp.watch( dirs.src.js, gulp.series( compileJs, reload ) );
-    gulp.watch( dirs.src.templates, gulp.series( compileHtml, reload ) );
+    gulp.watch( dirs.src.templates, gulp.series( compileHtml, moveHtml, reload ) );
+    gulp.watch( dirs.src.data, gulp.series( compileHtml, moveHtml, reload ) );
 }
 
 // browsersync file watcher

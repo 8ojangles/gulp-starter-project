@@ -1,0 +1,28 @@
+{% extends "./base/base.html" %}
+
+{% from "./components/colorBlockGrid.html" import cardSwatch %}
+
+	{% block pageTitle %}
+	<title>Everything is here</title>
+	{% endblock %}
+	{% block pageCSS %}
+	<link rel="stylesheet" href="css/kitchensink.css">
+	{% endblock %}
+
+{% block pageContent %}
+    <!-- Page contents -->
+    {% for color in colors %}
+    <section class="padded">
+		<h4>{{ color.name }}</h4>
+		<hr />
+		<div class="color-swatches block-grid">
+			{% for member in color.members %}
+			{{ cardSwatch( member.colorName, member.colorValue, member.colorNotes ) }}
+			{% endfor %}
+		</div>
+
+		
+	</section>
+	{% endfor %}
+	<p>And now?</p>
+{% endblock %}

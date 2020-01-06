@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
+    "file-system": "^2.2.2",
     "jquery": "^3.4.1"
   }
 }

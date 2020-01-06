@@ -4,7 +4,8 @@
 let bsOpts = {
 	open: false,
     server: {
-        baseDir: "./dist/"
+        baseDir: "./dist/",
+        directory: true
     },
     port: 4000,
     ui: {

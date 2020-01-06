@@ -1,0 +1,10 @@
+{% macro cardSwatch( colorName, colorValue, colorNotes ) %}
+<div class="color-swatch-tile">
+
+	<div class="color-swatch" style="background-color: {{ colorValue }};">
+	</div>
+	<p class="color-name">{{ colorName }}</p>
+	<p class="color-notes">{{ colorNotes }}</p>
+
+</div>
+{% endmacro %}

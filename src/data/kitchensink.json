@@ -1,0 +1,97 @@
+{
+	"colors": [
+
+		{
+			"name": "Standard",
+			"members": [
+				{
+					"colorName": "$hex-white",
+					"colorValue": "#ffffff",
+					"colorNotes": "Solid white, only to be used in extreme circumstances"
+				},
+
+				{
+					"colorName": "$hex-black",
+					"colorValue": "#000000",
+					"colorNotes": "Solid black, only to be used in extreme circumstances"
+				}
+			]
+		},
+
+		{
+			"name": "Greys",
+			"members": [
+				{
+					"colorName": "$grey-lightest",
+					"colorValue": "#e1e1e1",
+					"colorNotes": "The lightest hint of grey"
+				},
+
+				{
+					"colorName": "$grey-light",
+					"colorValue": "#cccccc",
+					"colorNotes": "Our light grey"
+				},
+
+				{
+					"colorName": "$grey-medium",
+					"colorValue": "#888888",
+					"colorNotes": "The middle grey of all"
+				},
+
+				{
+					"colorName": "$grey-dark",
+					"colorValue": "#555555",
+					"colorNotes": "Moody grey, quite dark"
+				},
+
+				{
+					"colorName": "$grey-darkest",
+					"colorValue": "#222222",
+					"colorNotes": "The darkest of greys"
+				}
+			]
+		},
+
+		{
+			"name": "Reds",
+			"members": [
+				{
+					"colorName": "$red-light",
+					"colorValue": "#cc0000",
+					"colorNotes": "A touch of red, also used on errors"
+				},
+
+				{
+					"colorName": "$red-medium",
+					"colorValue": "#9a0000",
+					"colorNotes": "The most red of them all"
+				},
+
+				{
+					"colorName": "$red-dark",
+					"colorValue": "#660000",
+					"colorNotes": "Deep red for those situations"
+				},
+
+				{
+					"colorName": "$red-darkest",
+					"colorValue": "#330000",
+					"colorNotes": "Deep, dark, enveloping red"
+				}
+			]
+		},
+
+		{
+			"name": "Blues",
+			"members": [
+				{
+					"colorName": "$blue-medium",
+					"colorValue": "#0055ff",
+					"colorNotes": "A standard blue"
+				}
+			]
+		}
+
+	]
+}
