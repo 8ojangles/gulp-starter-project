@@ -1,18 +1,12 @@
 @import "colors";
-
-
+@import "spacing";
+@import "zLayers";
 
 ///////////////////////// page items
 $chair-color: $red-darkest;
 $chair-arms-color: $red-darkest;
 $seat-color: $grey-medium;
 $chair-hover-color-change: 40%;
-
-
-
-///////////////////////// page rhythm
-$standard-spacing: 1rem;
-$large-spacing: $standard-spacing * 2;
 
 
 
@@ -25,24 +19,6 @@ $br-std: 0.25rem;
 $ticket-scale-inactive: 0.8;
 $ticket-scale-active: 1;
 
-
-
-///////////////////////// layers ( z-index )
-$z-100: 100;
-$z-90: 90;
-$z-80: 80;
-$z-70: 70;
-$z-60: 60;
-$z-50: 50;
-$z-40: 40;
-$z-30: 30;
-$z-20: 20;
-$z-10: 10;
-$z-0: 0;
-
-$z-top: $z-100;
-$z-mid: $z-50;
-$z-bottom: $z-0;
 
 
 
