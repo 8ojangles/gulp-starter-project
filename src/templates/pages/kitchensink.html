@@ -11,18 +11,117 @@
 
 {% block pageContent %}
     <!-- Page contents -->
-    {% for color in colors %}
-    <section class="padded">
-		<h4>{{ color.name }}</h4>
-		<hr />
-		<div class="color-swatches block-grid">
-			{% for member in color.members %}
-			{{ cardSwatch( member.colorName, member.colorValue, member.colorNotes ) }}
-			{% endfor %}
-		</div>
 
-		
+    <section class="padded full feature-section">
+    	<hr />
+	    <h3>Typography</h3>
+	    <hr />
+	    <section class="padded">
+	    	
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">H1 ".super"</small>
+	    		<h1 class="super demo-item">Things have happened so take note</h1>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">H1 element</small>
+	    		<h1 class="demo-item">Things have happened so take note</h1>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">H2 element</small>
+	    		<h2 class="demo-item">Things have happened so take note</h2>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">H3 element</small>
+	    		<h3 class="demo-item">Things have happened so take note</h3>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography push-more">H4 element</small>
+	    		<h4 class="demo-item">Things have happened so take note</h4>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography push-more">H5 element</small>
+	    		<h5 class="demo-item">Things have happened so take note</h5>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography push-more">H6 element</small>
+	    		<h6 class="demo-item">Things have happened so take note</h6>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">P ".intro"</small>
+	    		<p class="intro demo-item">Paragraph "intro" - The oversized paragraph font. Used as a page introduction or information highlight, potentially a block quote. Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left.</p>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">P  element</small>
+	    		<p class="demo-item">Paragraph - The standard paragraph font. Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis. Vestibulum bibendum feugiat lacinia. Donec rutrum pretium lorem, a porta augue lobortis sit amet. Nam id eros massa. Sed in scelerisque justo. Ut nec tristique nibh. Maecenas ultricies suscipit nisi.</p>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">Small element</small>
+	    		<small class="demo-item">small - The small font for tiny things. Possibly an image label, maybe some important legal information that must be included.</small>
+	    	</div>
+
+	    	<div class="typography-item demo-blockquote">
+	    		<small class="ks-label label-typography">Blockquote</small>
+	    		<blockquote class="demo-item" cite="https://www.huxley.net/bnw/four.html">
+				    <p>Words can be like X-rays, if you use them properly - they’ll go through anything. You read and you’re pierced.</p>
+				    <footer><cite>Brave New World</cite><br>Aldous Huxley</footer>
+				</blockquote>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">Sub element</small>
+	    		<p class="demo-item">H<sub>2</sub>SO<sub>4</sub></p>
+	    	</div>
+
+	    	<div class="typography-item">
+	    		<small class="ks-label label-typography">Sup element</small>
+	    		<p class="demo-item">4<sup>th</sup></p>
+	    	</div>
+
+	    </section>
+
 	</section>
-	{% endfor %}
+    
+    <section class="padded full">
+    	<hr />
+	    <h4>Colour Palette</h4>
+	    <hr />
+	    {% for color in colors %}
+	    <section class="padded">
+			<h5>{{ color.name }}</h5>
+			<div class="swatch-section">
+				{% for member in color.members %}
+					{% if member.name === "400" %}
+					<div class="color-swatch-tile swatch-tile-large">
+						<div class="color-swatch" style="background-color: {{ member.val }};">
+							<div class="color-details {% if colorContrast === 'light' %} contrast-dark{% else %} contrast-light{% endif %}">
+								<p class="color-name">{{ member.name }}</p>
+								<p class="color-value">{{ member.val }}</p>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+				{% endfor %}
+
+				<div class="color-swatches block-grid">
+
+					{% for member in color.members %}
+					{{ cardSwatch( member.name, member.val, member.contrast, member.notes ) }}
+					{% endfor %}
+				</div>
+			</div>
+
+			<hr />
+		</section>
+		{% endfor %}
+	</section>
 	<p>And now?</p>
 {% endblock %}

@@ -1,11 +1,42 @@
 @import "main";
 
+// @media (min-width: 30rem) {
+//   :root {
+//     font-size: calc(1rem + ((1vw - 0.3rem) * 1.1111));
+//     /* Where: * 1.1111 = 100 * font_Size_Difference / viewport_Width_Difference */
+//   }
+// }
+// /* Prevent font scaling beyond this breakpoint */
+// @media (min-width: 120rem) {
+//   :root {
+//     font-size: 2rem;
+//   }
+// }
+
+main > section {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: $large-spacing;
+
+	&.full {
+		max-width: initial;
+
+		> section {
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+	}
+}
+
 .block-grid {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: stretch;
 	justify-content: flex-start;
-	margin-top: $large-spacing;
+	// margin-top: $large-spacing;
 	margin-bottom: $large-spacing;
 
 	> div {
@@ -15,14 +46,29 @@
 }
 
 
+.contrast-light {
+	color: #222222;
+}
+
+.contrast-dark {
+	color: #fefefe;
+}
+
 .padded {
 	padding-left: $standard-spacing;
 	padding-right: $standard-spacing;
 }
 
+.swatch-section {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
 .color-swatch-tile {
 	width: 100%;
-	margin-bottom: $standard-spacing;
+	// margin-right: $standard-spacing;
 	background-color: #f0f0f0;
 	// font-size: 0.8rem;
 	// min-height: 150px;
@@ -33,14 +79,66 @@
 	}
 }
 
+
+.swatch-tile-large {
+	width: 40%;
+	padding-bottom: 40%;
+	position: relative;
+
+	.color-swatch {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
 .color-swatch {
 	width: 100%;
-	height: 100px;
+	height: 150px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding: $standard-spacing;
+
+	.color-value {
+		margin: 0;
+		text-align: right;
+	}
 	// margin-bottom: $standard-spacing / 4;
 
 }
 
 .color-name {
 	margin-bottom: $standard-spacing / 4;
-	font-weight: bold;
+	// font-weight: bold;
+	text-align: right;
+}
+
+.typography-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	.ks-label {
+		width: 10%;
+		// margin-right: 1rem;
+		// border-right: 1px solid #333;
+	}
+
+	.demo-item {
+		margin-left: 1rem;
+		width: 90%;
+	}
+}
+
+// .ks-label {
+// 	width: 100%;
+// 	max-width: initial;
+// }
+
+.demo-blockquote {
+	justify-content: flex-start;
 }

@@ -1,97 +1,250 @@
 {
-	"colors": [
+    "colors": [
 
-		{
-			"name": "Standard",
-			"members": [
-				{
-					"colorName": "$hex-white",
-					"colorValue": "#ffffff",
-					"colorNotes": "Solid white, only to be used in extreme circumstances"
-				},
+        {
+            "name": "Standard",
+            "members": [
+                {
+                    "name": "$hex-white",
+                    "val": "#ffffff",
+                    "contrast": "dark",
+                    "notes": "Solid white, only to be used in extreme circumstances"
+                },
 
-				{
-					"colorName": "$hex-black",
-					"colorValue": "#000000",
-					"colorNotes": "Solid black, only to be used in extreme circumstances"
-				}
-			]
-		},
+                {
+                    "name": "$hex-black",
+                    "val": "#000000",
+                    "contrast": "light",
+                    "notes": "Solid black, only to be used in extreme circumstances"
+                }
+            ]
+        },
 
-		{
-			"name": "Greys",
-			"members": [
-				{
-					"colorName": "$grey-lightest",
-					"colorValue": "#e1e1e1",
-					"colorNotes": "The lightest hint of grey"
-				},
+        {
+            "name": "grey",
+            "members": [
+                {
+                    "name": "50",
+                    "val": "#e7e7e7",
+                    "contrast": "dark",
+                    "notes": "The lightest hint of grey"
+                },
 
-				{
-					"colorName": "$grey-light",
-					"colorValue": "#cccccc",
-					"colorNotes": "Our light grey"
-				},
+                {
+                    "name": "100",
+                    "val": "#c4c4c4",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
 
-				{
-					"colorName": "$grey-medium",
-					"colorValue": "#888888",
-					"colorNotes": "The middle grey of all"
-				},
+                {
+                    "name": "200",
+                    "val": "#a0a0a0",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
 
-				{
-					"colorName": "$grey-dark",
-					"colorValue": "#555555",
-					"colorNotes": "Moody grey, quite dark"
-				},
+                {
+                    "name": "300",
+                    "val": "#888888",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
 
-				{
-					"colorName": "$grey-darkest",
-					"colorValue": "#222222",
-					"colorNotes": "The darkest of greys"
-				}
-			]
-		},
+                {
+                    "name": "400",
+                    "val": "#6d6d6d",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
 
-		{
-			"name": "Reds",
-			"members": [
-				{
-					"colorName": "$red-light",
-					"colorValue": "#cc0000",
-					"colorNotes": "A touch of red, also used on errors"
-				},
+                {
+                    "name": "500",
+                    "val": "#525252",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
 
-				{
-					"colorName": "$red-medium",
-					"colorValue": "#9a0000",
-					"colorNotes": "The most red of them all"
-				},
+                {
+                    "name": "600",
+                    "val": "#363636",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
 
-				{
-					"colorName": "$red-dark",
-					"colorValue": "#660000",
-					"colorNotes": "Deep red for those situations"
-				},
+                {
+                    "name": "700",
+                    "val": "#292929",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
 
-				{
-					"colorName": "$red-darkest",
-					"colorValue": "#330000",
-					"colorNotes": "Deep, dark, enveloping red"
-				}
-			]
-		},
+                {
+                    "name": "800",
+                    "val": "#1b1b1b",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
 
-		{
-			"name": "Blues",
-			"members": [
-				{
-					"colorName": "$blue-medium",
-					"colorValue": "#0055ff",
-					"colorNotes": "A standard blue"
-				}
-			]
-		}
+                {
+                    "name": "900",
+                    "val": "#0e0e0e",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                }
 
-	]
+            ]
+        },
+
+        {
+            "name": "red",
+            "members": [
+                {
+                    "name": "50",
+                    "val": "#f0b3b3",
+                    "contrast": "dark",
+                    "notes": "The lightest hint of grey"
+                },
+
+                {
+                    "name": "100",
+                    "val": "#e68080",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "200",
+                    "val": "#db4d4d",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "300",
+                    "val": "#d63333",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "400",
+                    "val": "#cc0000",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "500",
+                    "val": "#b80000",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "600",
+                    "val": "#8f0000",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "700",
+                    "val": "#7a0000",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "800",
+                    "val": "#520000",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "900",
+                    "val": "#290000",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                }
+            ]
+        },
+
+        {
+            "name": "blue",
+            "members": [
+                {
+                    "name": "50",
+                    "val": "#ccddff",
+                    "contrast": "dark",
+                    "notes": "The lightest hint of grey"
+                },
+
+                {
+                    "name": "100",
+                    "val": "#99bbff",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "200",
+                    "val": "#6699ff",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "300",
+                    "val": "#3377ff",
+                    "contrast": "dark",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "400",
+                    "val": "#0055ff",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "500",
+                    "val": "#004de6",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "600",
+                    "val": "#0044cc",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "700",
+                    "val": "#003399",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "800",
+                    "val": "#002b80",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                },
+
+                {
+                    "name": "900",
+                    "val": "#00194c",
+                    "contrast": "light",
+                    "notes": "Our light grey"
+                }
+            ]
+        }
+
+    ]
 }

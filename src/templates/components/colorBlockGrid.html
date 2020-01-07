@@ -1,10 +1,13 @@
-{% macro cardSwatch( colorName, colorValue, colorNotes ) %}
+{% macro cardSwatch( colorName, colorValue, colorContrast, colorNotes ) %}
 <div class="color-swatch-tile">
 
 	<div class="color-swatch" style="background-color: {{ colorValue }};">
+		<div class="color-details {% if colorContrast === 'light' %} contrast-dark{% else %} contrast-light{% endif %}">
+			<p class="color-name">{{ colorName }}</p>
+			<p class="color-value">{{ colorValue }}</p>
+		</div>
 	</div>
-	<p class="color-name">{{ colorName }}</p>
-	<p class="color-notes">{{ colorNotes }}</p>
+	<!-- <p class="color-notes">{{ colorNotes }}</p> -->
 
 </div>
 {% endmacro %}

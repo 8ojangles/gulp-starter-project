@@ -1,0 +1,101 @@
+@import './node_modules/modularscale-sass/stylesheets/modularscale';
+
+$modularscale: (
+  base: 1rem,
+  ratio: $minor-third
+);
+
+.super  {
+    font-size: ms( 8 ); 
+    font-weight: normal;
+}
+
+h1      { font-size: ms( 7 ); }
+h2      { font-size: ms( 6 ); }
+h3      { font-size: ms( 5 ); font-weight: normal; }
+h4      { font-size: ms( 4 ); }
+h5      { font-size: ms( 3 ); font-weight: normal; }
+h6      { font-size: ms( 2 ); }
+
+.intro  { font-size: ms( 3 ); }
+p       { font-size: ms( 1 ); }
+
+small, sup, sub   { font-size: ms( -1 ); }
+
+p {
+    // width: 80%;
+    // max-width: 60rem;
+    // margin-left: auto;
+    // margin-right: auto;
+}
+
+small {
+    // display: block;
+    // width: 80%;
+    // max-width: 60rem;
+    // margin-left: auto;
+    // margin-right: auto;
+}
+
+blockquote {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+    // padding-left: 3rem;
+    // padding-right: 3rem;
+    max-width: 30rem;
+
+    p {
+        position: relative;
+        text-align: center;
+        padding-bottom: $standard-spacing / 4;
+        // padding-left: 2rem;
+        // padding-right: 2rem;
+        margin-bottom: $standard-spacing / 2;
+        // border-bottom: 1px solid #000;
+
+        &:before {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content:  "\201C";
+            color: #eaeaea;
+            font-size: 25rem;
+            line-height: 17rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        // &:before {
+        //     display: block;
+        //     content:  "\201C";
+        //     left: 0;
+        //     top: 0;
+        // }
+
+        // &:after {
+        //     display: block;
+        //     content: "\201D";
+        //     right: 0;
+        //     bottom: 0;
+        // }
+
+    }
+
+    footer {
+        text-align: center;
+
+        cite {
+            display: inline-block;
+            padding-left: $large-spacing;
+            padding-right: $large-spacing;
+            padding-top: $standard-spacing / 2;
+            margin-bottom: $standard-spacing / 4;
+            border-top: 1px solid #d0d0d0;
+        }
+    }
+}
+
