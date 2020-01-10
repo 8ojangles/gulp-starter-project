@@ -14,9 +14,14 @@ const compileHtml = require( `${ dirGulp }/compileHtml` );
 const moveHtml = require( `${ dirGulp }/moveHtml` );
 const vendorJs = require( `${ dirGulp }/vendorJs` );
 const sass = require( `${ dirGulp }/sass` );
+const createScssVars = require( `${ dirGulp }/compileScssFromTokens` ).createScssVars;
+const createColorScssMap = require( `${ dirGulp }/compileScssFromTokens` ).createColorScssMap;
 const moveData = require( `${ dirGulp }/moveData` );
 const createDocs = require( `${ dirGulp }/createDocs` );
 const tests = require( `${ dirGulp }/tests` );
+
+exports.createColorScssMap = createColorScssMap;
+exports.createScssVars = createScssVars;
 
 // browsersync reload function
 function reload( done ) {

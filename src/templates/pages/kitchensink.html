@@ -90,38 +90,42 @@
 
 	</section>
     
-    <section class="padded full">
-    	<hr />
-	    <h4>Colour Palette</h4>
-	    <hr />
-	    {% for color in colors %}
-	    <section class="padded">
-			<h5>{{ color.name }}</h5>
-			<div class="swatch-section">
-				{% for member in color.members %}
-					{% if member.name === "400" %}
-					<div class="color-swatch-tile swatch-tile-large">
-						<div class="color-swatch" style="background-color: {{ member.val }};">
-							<div class="color-details {% if colorContrast === 'light' %} contrast-dark{% else %} contrast-light{% endif %}">
-								<p class="color-name">{{ member.name }}</p>
-								<p class="color-value">{{ member.val }}</p>
+    <section class="padded full section-palette">
+    	<div class="section-title">
+    		<hr />
+	    	<h4>Colour Palette</h4>
+	    	<hr />
+    	</div>
+    	<div class="section-content">
+		    {% for color in colors %}
+		    <section class="padded section-palette--item">
+				<h5>{{ color.name }}</h5>
+				<div class="swatch-section">
+					{% for member in color.members %}
+						{% if member.name === "400" %}
+						<div class="color-swatch-tile swatch-tile-large">
+							<div class="color-swatch" style="background-color: {{ member.val }};">
+								<div class="color-details {% if member.contrast === 'light' %} contrast-dark{% else %} contrast-light{% endif %}">
+									<p class="color-name">{{ member.name }}</p>
+									<p class="color-value">{{ member.val }}</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					{% endif %}
-				{% endfor %}
-
-				<div class="color-swatches block-grid">
-
-					{% for member in color.members %}
-					{{ cardSwatch( member.name, member.val, member.contrast, member.notes ) }}
+						{% endif %}
 					{% endfor %}
-				</div>
-			</div>
 
-			<hr />
-		</section>
-		{% endfor %}
+					<div class="color-swatches block-grid grid-list">
+
+						{% for member in color.members %}
+						{{ cardSwatch( member.name, member.val, member.contrast, member.notes ) }}
+						{% endfor %}
+					</div>
+				</div>
+
+				<hr />
+			</section>
+			{% endfor %}
+		</div>
 	</section>
 	<p>And now?</p>
 {% endblock %}

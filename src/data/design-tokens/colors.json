@@ -1,0 +1,159 @@
+{
+  "imports": [
+    "./aliases.json"
+  ],
+  "props": {
+  	"blue-50": {
+      "value": "{!blue-50}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-100": {
+      "value": "{!blue-100}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-200": {
+      "value": "{!blue-200}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-300": {
+      "value": "{!blue-300}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-400": {
+      "value": "{!blue-400}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-500": {
+      "value": "{!blue-500}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-600": {
+      "value": "{!blue-600}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-700": {
+      "value": "{!blue-700}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-800": {
+      "value": "{!blue-800}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "blue-900": {
+      "value": "{!blue-900}",
+      "type": "color",
+      "category": "background-color"
+    },
+
+    "red-50": {
+      "value": "{!red-50}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-100": {
+      "value": "{!red-100}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-200": {
+      "value": "{!red-200}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-300": {
+      "value": "{!red-300}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-400": {
+      "value": "{!red-400}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-500": {
+      "value": "{!red-500}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-600": {
+      "value": "{!red-600}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-700": {
+      "value": "{!red-700}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-800": {
+      "value": "{!red-800}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "red-900": {
+      "value": "{!red-900}",
+      "type": "color",
+      "category": "background-color"
+    },
+
+    "grey-50": {
+      "value": "{!grey-50}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-100": {
+      "value": "{!grey-100}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-200": {
+      "value": "{!grey-200}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-300": {
+      "value": "{!grey-300}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-400": {
+      "value": "{!grey-400}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-500": {
+      "value": "{!grey-500}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-600": {
+      "value": "{!grey-600}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-700": {
+      "value": "{!grey-700}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-800": {
+      "value": "{!grey-800}",
+      "type": "color",
+      "category": "background-color"
+    },
+    "grey-900": {
+      "value": "{!grey-900}",
+      "type": "color",
+      "category": "background-color"
+    }
+  }
+}

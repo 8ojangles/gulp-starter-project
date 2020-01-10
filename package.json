@@ -39,7 +39,9 @@
   "dependencies": {
     "@babel/core": "^7.4.5",
     "file-system": "^2.2.2",
+    "gulp-theo": "^2.0.0",
     "jquery": "^3.4.1",
-    "modularscale-sass": "^3.0.10"
+    "modularscale-sass": "^3.0.10",
+    "theo": "^8.1.4"
   }
 }
