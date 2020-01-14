@@ -1,12 +1,47 @@
 {% extends "./base/base.html" %}
-
 {% from "./components/colorBlockGrid.html" import cardSwatch %}
+
+{% set minorColumnClasses = "col-md-1 col-md-offset-1 col-lg-1 col-lg-offset-1 flex-parent" %}
+{% set majorColumnClasses = "col-md-8 col-md-offset-1 col-lg-7 col-lg-offset-1" %}
+
+{% set demoHeaderTxt = "Things have happened so take note" %}
+
+{% set introParagraphDetails = "This is the Intro version of a paragraph with a large font size to make it stand out." %}
+
+{% set demoParagraphTxtLong = "Paragraph - The standard paragraph font. Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis. Vestibulum bibendum feugiat lacinia. Donec rutrum pretium lorem, a porta augue lobortis sit amet. Nam id eros massa. Sed in scelerisque justo. Ut nec tristique nibh. Maecenas ultricies suscipit nisi." %}
+
+{% set demoParagraphTxtShort = "Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis." %}
+
+{% set headerItems = [ 
+	{ tag: "h1", addClass: "super", label: "H1 .super", content: demoHeaderTxt },
+	{ tag: "h1", addClass: "", label: "H1", content: demoHeaderTxt },
+	{ tag: "h2", addClass: "", label: "H2", content: demoHeaderTxt },
+	{ tag: "h3", addClass: "", label: "H3", content: demoHeaderTxt },
+	{ tag: "h4", addClass: "", label: "H4", content: demoHeaderTxt },
+	{ tag: "h5", addClass: "", label: "H5", content: demoHeaderTxt },
+	{ tag: "h6", addClass: "", label: "H6", content: demoHeaderTxt }
+	]
+%}
+
+{% set typeItems = [ 
+	{ tag: "p", addClass: "intro", label: "Paragraph .intro", content: introParagraphDetails + " " + demoParagraphTxtShort },
+	{ tag: "p", addClass: "", label: "Paragraph", content: demoParagraphTxtLong }
+	]
+%}
+
+{% set addTypeItems = [ 
+	{ tag: "sub", addClass: "", label: "Sub element", content: "<p>H<sub>2</sub>SO<sub>4</sub></p>" },
+	{ tag: "sup", addClass: "", label: "Sup element", content: "<p>4<sup>th</sup></p>" }
+	]
+%}
 
 	{% block pageTitle %}
 	<title>Everything is here</title>
 	{% endblock %}
 	{% block pageCSS %}
+	<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/kitchensink.css">
+
 	{% endblock %}
 
 {% block pageContent %}
@@ -18,72 +53,79 @@
 	    <hr />
 	    <section class="padded">
 	    	
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">H1 ".super"</small>
-	    		<h1 class="super demo-item">Things have happened so take note</h1>
-	    	</div>
+	    	<div class="container">
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">H1 element</small>
-	    		<h1 class="demo-item">Things have happened so take note</h1>
-	    	</div>
+	    		{% for item in headerItems %}
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">H2 element</small>
-	    		<h2 class="demo-item">Things have happened so take note</h2>
-	    	</div>
+    			<div class="row">
+	    			<div class="{{ minorColumnClasses }}">
+	    				<small class="ks-label label-typography">{{ item.label }}</small>
+	    			</div>
+	    			<div class="{{ majorColumnClasses }}">
+	    				<div class="typography-item">
+	    					<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content }}</{{ item.tag }}>
+	    				</div>			
+	    			</div>
+	    		</div>
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">H3 element</small>
-	    		<h3 class="demo-item">Things have happened so take note</h3>
-	    	</div>
+	    		{% endfor %}
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography push-more">H4 element</small>
-	    		<h4 class="demo-item">Things have happened so take note</h4>
-	    	</div>
+	    		<hr class="demo-seperator-line">
+	    		{% for item in typeItems %}
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography push-more">H5 element</small>
-	    		<h5 class="demo-item">Things have happened so take note</h5>
-	    	</div>
+    			<div class="row">
+	    			<div class="{{ minorColumnClasses }}">
+	    				<small class="ks-label label-typography">{{ item.label }}</small>
+	    			</div>
+	    			<div class="{{ majorColumnClasses }}">
+	    				<div class="typography-item">
+	    					<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content }}</{{ item.tag }}>
+	    				</div>			
+	    			</div>
+	    		</div>
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography push-more">H6 element</small>
-	    		<h6 class="demo-item">Things have happened so take note</h6>
-	    	</div>
+	    		{% if loop.last === false %}
+	    		<hr class="demo-seperator-line">
+	    		{% endif %}
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">P ".intro"</small>
-	    		<p class="intro demo-item">Paragraph "intro" - The oversized paragraph font. Used as a page introduction or information highlight, potentially a block quote. Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left.</p>
-	    	</div>
+	    		{% endfor %}
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">P  element</small>
-	    		<p class="demo-item">Paragraph - The standard paragraph font. Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis. Vestibulum bibendum feugiat lacinia. Donec rutrum pretium lorem, a porta augue lobortis sit amet. Nam id eros massa. Sed in scelerisque justo. Ut nec tristique nibh. Maecenas ultricies suscipit nisi.</p>
-	    	</div>
+	    		<hr class="demo-seperator-line">
+	    		{% for item in addTypeItems %}
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">Small element</small>
-	    		<small class="demo-item">small - The small font for tiny things. Possibly an image label, maybe some important legal information that must be included.</small>
-	    	</div>
+    			<div class="row">
+	    			<div class="{{ minorColumnClasses }}">
+	    				<small class="ks-label label-typography">{{ item.label }}</small>
+	    			</div>
+	    			<div class="{{ majorColumnClasses }}">
+	    				<div class="typography-item">
+	    					<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content | safe }}</{{ item.tag }}>
+	    				</div>			
+	    			</div>
+	    		</div>
 
-	    	<div class="typography-item demo-blockquote">
-	    		<small class="ks-label label-typography">Blockquote</small>
-	    		<blockquote class="demo-item" cite="https://www.huxley.net/bnw/four.html">
-				    <p>Words can be like X-rays, if you use them properly - they’ll go through anything. You read and you’re pierced.</p>
-				    <footer><cite>Brave New World</cite><br>Aldous Huxley</footer>
-				</blockquote>
-	    	</div>
+	    		{% if loop.last === false %}
+	    		<hr class="demo-seperator-line">
+	    		{% endif %}
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">Sub element</small>
-	    		<p class="demo-item">H<sub>2</sub>SO<sub>4</sub></p>
-	    	</div>
+	    		{% endfor %}
 
-	    	<div class="typography-item">
-	    		<small class="ks-label label-typography">Sup element</small>
-	    		<p class="demo-item">4<sup>th</sup></p>
+
+	    		<hr class="demo-seperator-line">
+
+    			<div class="row">
+	    			<div class="{{ minorColumnClasses }}">
+	    				<small class="ks-label label-typography">Blockquote</small>
+	    			</div>
+					<div class="{{ majorColumnClasses }}">
+    					<blockquote class="demo-item" cite="https://www.huxley.net/bnw/four.html">
+						    <p>Words can be like <span>X-rays</span>, if you use them <span>properly</span> - they’ll go through <span>anything</span>. You read and you’re <span>pierced</span>.</p>
+						    <footer><cite>Brave New World</cite><br>Aldous Huxley</footer>
+						</blockquote>
+					</div>			
+    			</div>
+
+
 	    	</div>
 
 	    </section>
