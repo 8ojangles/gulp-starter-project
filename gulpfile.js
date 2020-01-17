@@ -7,6 +7,7 @@ const bsOpts = require( './gulp/browsersyncOptions.js' );
 // Directories
 const dirs = require( './gulp/dirs' );
 const dirGulp = dirs.gulp;
+
 // Tasks
 const clean = require( `${ dirGulp }/cleanDirs` );
 const compileJs = require( `${ dirGulp }/compileJs` );
@@ -30,7 +31,13 @@ function reload( done ) {
 }
 
 function watchFiles() {
+
 	gulp.watch( dirs.src.scss , sass );
+    gulp.watch( dirs.dist.css ).on('change', function ( e ) {
+        return gulp.src( dirs.dist.css )
+            .pipe( browserSync.stream() );
+    });
+    
     gulp.watch( dirs.src.js, gulp.series( compileJs, reload ) );
     gulp.watch( dirs.src.templates, gulp.series( compileHtml, moveHtml, reload ) );
     gulp.watch( dirs.src.data, gulp.series( compileHtml, moveHtml, reload ) );

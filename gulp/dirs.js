@@ -20,6 +20,7 @@ let src = {
 	templates: [ `${ srcDir }/templates/pages/*.njk`, `${ srcDir }/templates/pages/*.html` ],
 	jsBundleEntry: [ `${ srcDir }/js/entry.js` ],
 	js: [ `${ srcDir }/js/**/*.js` ],
+	scssEntry: [ `${ srcDir }/scss/main.scss` ],
 	scss: [ `${ srcDir }/scss/**/*.scss` ],
 	data: [ `${ srcDir }/data/**/*.json` ],
 	tests: [ `./tests/**/*.js` ]

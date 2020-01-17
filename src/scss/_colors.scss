@@ -1,7 +1,9 @@
 ///////////////////////// colors
+@use "sass:map";
 
 // black - white
 $hex-white: #ffffff;
+$hex-off-white: #efefef;
 $hex-black: #000000;
 
 // greys
@@ -22,3 +24,127 @@ $blue-medium: #0055ff;
 
 // errors
 $error-red: $red-light;
+
+// color lists
+$grey-50: #e7e7e7;
+$grey-100: #c4c4c4;
+$grey-200: #a0a0a0;
+$grey-300: #888888;
+$grey-400: #6d6d6d;
+$grey-500: #525252;
+$grey-600: #363636;
+$grey-700: #292929;
+$grey-800: #1b1b1b;
+$grey-900: #0e0e0e;
+
+$red-50: #f0b3b3;
+$red-100: #e68080;
+$red-200: #db4d4d;
+$red-300: #d63333;
+$red-400: #cc0000;
+$red-500: #b80000;
+$red-600: #8f0000;
+$red-700: #7a0000;
+$red-800: #520000;
+$red-900: #290000;
+
+$blue-50: #ccddff;
+$blue-100: #99bbff;
+$blue-200: #6699ff;
+$blue-300: #3377ff;
+$blue-400: #0055ff;
+$blue-500: #004de6;
+$blue-600: #0044cc;
+$blue-700: #003399;
+$blue-800: #002b80;
+$blue-900: #00194c;
+
+
+$colors: (
+	hex-white: #ffffff,
+	hex-white-contrast: $grey-darkest,
+	hex-off-white: #efefef,
+	hex-off-white-contrast: $grey-darkest,
+	hex-black: #000000,
+	hex-black-contrast: $hex-off-white,
+	grey-50: $grey-50,
+	grey-50-contrast: $grey-darkest,
+	grey-100: $grey-100,
+	grey-100-contrast: $grey-darkest,
+	grey-200: $grey-200,
+	grey-200-contrast: $grey-darkest,
+	grey-300: $grey-300,
+	grey-300-contrast: $grey-darkest,
+	grey-400: $grey-400,
+	grey-400-contrast: $hex-off-white,
+	grey-500: $grey-500,
+	grey-500-contrast: $hex-off-white,
+	grey-600: $grey-600,
+	grey-600-contrast: $hex-off-white,
+	grey-700: $grey-700,
+	grey-700-contrast: $hex-off-white,
+	grey-800: $grey-800,
+	grey-800-contrast: $hex-off-white,
+	grey-900: $grey-900,
+	grey-900-contrast: $hex-off-white,
+
+	red-50: $red-50,
+	red-50-contrast: $grey-darkest,
+	red-100: $red-100,
+	red-100-contrast: $grey-darkest,
+	red-200: $red-200,
+	red-200-contrast: $grey-darkest,
+	red-300: $red-300,
+	red-300-contrast: $grey-darkest,
+	red-400: $red-400,
+	red-400-contrast: $hex-off-white,
+	red-500: $red-500,
+	red-500-contrast: $hex-off-white,
+	red-600: $red-600,
+	red-600-contrast: $hex-off-white,
+	red-700: $red-700,
+	red-700-contrast: $hex-off-white,
+	red-800: $red-800,
+	red-800-contrast: $hex-off-white,
+	red-900: $red-900,
+	red-900-contrast: $hex-off-white,
+
+	blue-50: $blue-50,
+	blue-50-contrast: $grey-darkest,
+	blue-100: $blue-100,
+	blue-100-contrast: $grey-darkest,
+	blue-200: $blue-200,
+	blue-200-contrast: $grey-darkest,
+	blue-300: $blue-300,
+	blue-300-contrast: $grey-darkest,
+	blue-400: $blue-400,
+	blue-400-contrast: $hex-off-white,
+	blue-500: $blue-500,
+	blue-500-contrast: $hex-off-white,
+	blue-600: $blue-600,
+	blue-600-contrast: $hex-off-white,
+	blue-700: $blue-700,
+	blue-700-contrast: $hex-off-white,
+	blue-800: $blue-800,
+	blue-800-contrast: $hex-off-white,
+	blue-900: $blue-900,
+	blue-900-contrast: $hex-off-white
+);
+
+
+
+
+
+/* For each key in the map, created an own class */
+@each $name, $value in $colors {
+
+	.text-#{$name} {
+		color: $value;
+	}
+
+	.bg-#{$name} {
+		background-color: $value;
+		color: map.get( $colors, #{$name}+"-contrast" );
+	}
+
+}

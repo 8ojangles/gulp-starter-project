@@ -1,6 +1,10 @@
 {% extends "./base/base.html" %}
 {% from "./components/colorBlockGrid.html" import cardSwatch %}
 
+{% set titleColumnClasses = "col-sm-12 col-md-10 col-md-offset-1 flex-parent" %}
+
+{% set fullWidthParagrahClass = "col-sm-10 col-md-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" %}
+
 {% set minorColumnClasses = "col-md-1 col-md-offset-1 col-lg-1 col-lg-offset-1 flex-parent" %}
 {% set majorColumnClasses = "col-md-8 col-md-offset-1 col-lg-7 col-lg-offset-1" %}
 
@@ -46,11 +50,29 @@
 
 {% block pageContent %}
     <!-- Page contents -->
+    <div class="row">
+		<div class="{{ titleColumnClasses }}">
+	    	<div class="section-title">
+		    	<h1 class="super">Kitchensink</h1>
+	    	</div>
+	    </div>
+	</div>
 
     <section class="padded full feature-section">
     	<hr />
-	    <h3>Typography</h3>
-	    <hr />
+    	<div class="row">
+			<div class="{{ titleColumnClasses }}">
+		    	<div class="section-title">
+			    	<h4>Typography</h4>
+		    	</div>
+		    </div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="{{ fullWidthParagrahClass }}">
+				<p>HTML textual elements are listed here for reference. Use the HTML tag and the base styles will be applied automatically, no need to add classes.</p>
+			</div>
+		</div>
 	    <section class="padded">
 	    	
 	    	<div class="container">
@@ -120,7 +142,7 @@
 					<div class="{{ majorColumnClasses }}">
     					<blockquote class="demo-item" cite="https://www.huxley.net/bnw/four.html">
 						    <p>Words can be like <span>X-rays</span>, if you use them <span>properly</span> - they’ll go through <span>anything</span>. You read and you’re <span>pierced</span>.</p>
-						    <footer><cite>Brave New World</cite><br>Aldous Huxley</footer>
+						    <footer><cite>Brave New World</cite> - Aldous Huxley</footer>
 						</blockquote>
 					</div>			
     			</div>
@@ -133,41 +155,51 @@
 	</section>
     
     <section class="padded full section-palette">
-    	<div class="section-title">
-    		<hr />
-	    	<h4>Colour Palette</h4>
-	    	<hr />
-    	</div>
+    	<hr />
+    	<div class="row">
+			<div class="{{ titleColumnClasses }}">
+		    	<div class="section-title">
+			    	<h4>Colour Palette</h4>
+		    	</div>
+		    </div>
+		</div>
+		<hr />
+
+		<div class="row">
+			<div class="{{ fullWidthParagrahClass }}">
+				<p>The full list of site colors are set in a JSON file and compiled into a SCSS/SASS map. This is then run through a function to create al lthe color utility classes for background color and text color. in the case of the background color, an additional color attribute is set for contrasting text color to make accessible contrasts automatically applied to child elelements. The median color (level 400) should be regarded as the base (brand) value for each color, above and below shades should be provided for situations where variations are required.</p>
+			</div>
+		</div>
+
     	<div class="section-content">
+
 		    {% for color in colors %}
 		    <section class="padded section-palette--item">
-				<h5>{{ color.name }}</h5>
-				<div class="swatch-section">
-					{% for member in color.members %}
+
+		    	<div class="row">
+		    		<div class="col-sm-12 col-md-offset-1 col-md-10">
+		    			<h5>{{ color.name | capitalize }}</h5>		
+		    		</div>
+		    	</div>
+
+				<div class="row">
+	    			<div class="{{ minorColumnClasses }}">
+	    				{% for member in color.members %}
 						{% if member.name === "400" %}
-						<div class="color-swatch-tile swatch-tile-large">
-							<div class="color-swatch" style="background-color: {{ member.val }};">
-								<div class="color-details {% if member.contrast === 'light' %} contrast-dark{% else %} contrast-light{% endif %}">
-									<p class="color-name">{{ member.name }}</p>
-									<p class="color-value">{{ member.val }}</p>
-								</div>
-							</div>
-						</div>
-						{% endif %}
-					{% endfor %}
-
-					<div class="color-swatches block-grid grid-list">
-
-						{% for member in color.members %}
-						{{ cardSwatch( member.name, member.val, member.contrast, member.notes ) }}
+	    				{{ cardSwatch( member.name, "bg-"+color.name+"-"+member.name, member.val, member.notes ) }}
+	    				{% endif %}
 						{% endfor %}
-					</div>
-				</div>
-
-				<hr />
+	    			</div>
+	    			<div class="{{ majorColumnClasses }} flex-parent hList">
+	    				{% for member in color.members %}
+						{{ cardSwatch( member.name, "bg-"+color.name+"-"+member.name, member.val, member.notes ) }}
+						{% endfor %}			
+	    			</div>
+	    		</div>
 			</section>
 			{% endfor %}
 		</div>
 	</section>
+
 	<p>And now?</p>
 {% endblock %}

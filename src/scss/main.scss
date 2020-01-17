@@ -5,6 +5,11 @@
 @import 'base';
 @import 'typography';
 @import 'colorMap';
+@import 'kitchensink';
+
+body {
+	background-color: transparent;
+}
 // @import 'buttons';
 // @import 'page';
 // @import 'block-grid';

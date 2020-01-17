@@ -1,0 +1,25 @@
+.color-swatch-tile {
+	position: relative;
+	flex-basis: 100%;
+	flex-grow: 1;
+
+	width: 10%;
+	padding-bottom: 10%;
+
+	.color-swatch {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+
+
+
+	.color-details {
+		p {
+			font-size: 90%;
+		}
+	}
+}

@@ -16,7 +16,7 @@ const plumbError = require( '../gulp/errorReporting' ).plumbError;
 function sass(){
 	return (
         gulp
-	        .src( dirs.src.scss )
+	        .src( dirs.src.scssEntry )
 	        .pipe( plumbError() )
 	        .pipe( scss() )
 	        .on( "error", scss.logError )
