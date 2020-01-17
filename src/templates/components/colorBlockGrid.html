@@ -1,5 +1,5 @@
-{% macro cardSwatch( colorName, colorClassName, colorValue, colorNotes ) %}
-<div class="color-swatch-tile">
+{% macro cardSwatch( colorName, colorClassName, colorValue, colorNotes, isBase ) %}
+<div class="color-swatch-tile{% if isBase === true %} base-color{% endif %}">
 
 	<div class="color-swatch {{ colorClassName }}">
 		<div class="color-details">

@@ -6,6 +6,13 @@
 	width: 10%;
 	padding-bottom: 10%;
 
+	&.base-color {
+		width: initial;
+		padding-bottom: 100%;
+	}
+
+
+
 	.color-swatch {
 		position: absolute;
 		width: 100%;
