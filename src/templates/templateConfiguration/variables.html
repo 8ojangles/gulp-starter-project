@@ -1,0 +1,89 @@
+{% set titleColumnClasses = "col-sm-12 col-md-10 col-md-offset-1 flex-parent" %}
+
+{% set fullWidthParagrahClass = "col-sm-10 col-md-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" %}
+
+{% set minorColumnClasses = "col-md-1 col-md-offset-1 col-lg-1 col-lg-offset-1 flex-parent" %}
+
+{% set majorColumnClasses = "col-md-8 col-md-offset-1 col-lg-7 col-lg-offset-1" %}
+{% set demoHeaderTxt = "Things have happened so take note" %}
+
+{% set introParagraphDetails = "This is the Intro version of a paragraph with a large font size to make it stand out." %}
+
+{% set demoParagraphTxtLong = "Paragraph - The standard paragraph font. Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis. Vestibulum bibendum feugiat lacinia. Donec rutrum pretium lorem, a porta augue lobortis sit amet. Nam id eros massa. Sed in scelerisque justo. Ut nec tristique nibh. Maecenas ultricies suscipit nisi." %}
+
+{% set demoParagraphTxtShort = "Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis." %}
+
+{% set headerItems = [ 
+	{ tag: "h1", addClass: "super", label: "H1 .super", content: demoHeaderTxt },
+	{ tag: "h1", addClass: "", label: "H1", content: demoHeaderTxt },
+	{ tag: "h2", addClass: "", label: "H2", content: demoHeaderTxt },
+	{ tag: "h3", addClass: "", label: "H3", content: demoHeaderTxt },
+	{ tag: "h4", addClass: "", label: "H4", content: demoHeaderTxt },
+	{ tag: "h5", addClass: "", label: "H5", content: demoHeaderTxt },
+	{ tag: "h6", addClass: "", label: "H6", content: demoHeaderTxt }
+	]
+%}
+
+{% set typeItems = [ 
+	{ tag: "p", addClass: "intro", label: "Paragraph .intro", content: introParagraphDetails + " " + demoParagraphTxtShort },
+	{ tag: "p", addClass: "", label: "Paragraph", content: demoParagraphTxtLong }
+	]
+%}
+
+{% set ulListContent = "
+<li>This is the first list item.</li>
+<li>The next item in  the list.</li>
+<li>Nesting a list... 
+	<ul>
+		<li>...is a thing somethimes</li>
+	</ul>
+</li>
+<li>
+	In exceptional cases
+	<ul>
+		<li> People nest.....
+			<ul>
+				<li>...Inside a nest</li>
+				<li>So is that nest squared? Or cubed?</li>
+			</ul>
+		</li>
+	</ul>
+</li>" %}
+
+{% set olListContent = "
+<li>This is the first list item</li>
+<li>Ordered lists are numbered at the top level</li>
+<li>Nesting a list... 
+	<ol>
+		<li>...is a thing somethimes</li>
+		<li>The second level are prefixed by a lower alpha character</li>
+	</ol>
+</li>
+<li>
+	In exceptional cases
+	<ol>
+		<li> People nest.....
+			<ol>
+				<li>...Inside a nest</li>
+				<li>So is that nest squared? Or cubed?</li>
+				<li>Getting this deeply nested the item is prefixed by roman numerals...</li>
+				<li>...to maintain the differentiation.</li>
+			</ol>
+		</li>
+	</ol>
+</li>" %}
+
+
+
+{% set addTypeItems = [
+	{ tag: "p", addClass: "", label: "Inline anchor element", content: "The basis of the modern internet is the <a href='https://en.wikipedia.org/wiki/Hyperlink'>hyperlink</a> pointing different pages to each other." },
+	{ tag: "p", addClass: "", label: "Strong element", content: "Some body text with a specific <strong>word</strong> requiring attention." },
+	{ tag: "p", addClass: "", label: "Emphasis element", content: "More body text containing a specific <em>word</em> with emphasis." },
+	{ tag: "p", addClass: "", label: "Subscript element", content: "H<sub>2</sub>SO<sub>4</sub>" },
+	{ tag: "p", addClass: "", label: "Superscript element", content: "4<sup>th</sup>, 23<sup>rd</sup>, 37.6<sup>&#176;</sup>C" },
+	{ tag: "ul", addClass: "", label: "Unordered list", content: ulListContent },
+	{ tag: "ol", addClass: "", label: "Ordered list", content: olListContent },
+	{ tag: "p", addClass: "", label: "Inline code", content: "Sometimes you need to make the highlight specific, like when <code>explaining a code example</code>, or perhaps fixing a problem. Have you tried <code>turning it off and on again?</code>" },
+	{ tag: "p", addClass: "", label: "Keyboard input", content: 'There are times when a user will need to enter something on a keyboard or their preferred input method. "Need to lock your computer? press <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd></kbd> then <kbd>Enter</kbd> to lock".<br>Remember, this is different from the <code>&lt;code&gt;</code> element, perhaps not visually, but definitely semantically.'  }
+	]
+%}

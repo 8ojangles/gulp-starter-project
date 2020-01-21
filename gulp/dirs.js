@@ -17,7 +17,7 @@ let srcDir = 'src';
 // src files
 let src = {
 	html: [ './*.html' ],
-	templates: [ `${ srcDir }/templates/pages/*.njk`, `${ srcDir }/templates/pages/*.html` ],
+	templates: [ `${ srcDir }/templates/pages/*.njk`, `${ srcDir }/templates/pages/*.html`, `${ srcDir }/templates/templateConfiguration/*.html`, `${ srcDir }/templates/templateConfiguration/*.njk` ],
 	jsBundleEntry: [ `${ srcDir }/js/entry.js` ],
 	js: [ `${ srcDir }/js/**/*.js` ],
 	scssEntry: [ `${ srcDir }/scss/main.scss` ],
