@@ -1,18 +1,20 @@
+{# Layout classes #}
 {% set titleColumnClasses = "col-sm-12 col-md-10 col-md-offset-1 flex-parent" %}
-
 {% set fullWidthParagrahClass = "col-sm-10 col-md-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" %}
-
 {% set minorColumnClasses = "col-md-1 col-md-offset-1 col-lg-1 col-lg-offset-1 flex-parent" %}
-
 {% set majorColumnClasses = "col-md-8 col-md-offset-1 col-lg-7 col-lg-offset-1" %}
+
+{# Demo lorum text #}
+{% set lorumSentence = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis." %}
+{% set lorumParagraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis. Vestibulum bibendum feugiat lacinia. Donec rutrum pretium lorem, a porta augue lobortis sit amet. Nam id eros massa. Sed in scelerisque justo. Ut nec tristique nibh. Maecenas ultricies suscipit nisi." %}
+
+{# Paragraph text #}
 {% set demoHeaderTxt = "Things have happened so take note" %}
+{% set introParagraphDetails = "This is the Intro version of a paragraph with a large font size for impact. This is about 1.44rem, or 23(ish) pixels. It should be used sparingly (once per page) as hero component messaging for example, and content limited to a few sentences." %}
+{% set demoParagraphTxtShort = "Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large screen sizes. Centered as a block, text-aligned left." %}
+{% set demoParagraphTxtLong = "Paragraph - The standard paragraph font. Set at a base size of 1rem, or 16 pixels usually. Keep paragraphs limited to 2 or 3 sentences, maybe 4 at most to avoid wall-of-text issues. "+demoParagraphTxtShort %}
 
-{% set introParagraphDetails = "This is the Intro version of a paragraph with a large font size to make it stand out." %}
-
-{% set demoParagraphTxtLong = "Paragraph - The standard paragraph font. Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis. Vestibulum bibendum feugiat lacinia. Donec rutrum pretium lorem, a porta augue lobortis sit amet. Nam id eros massa. Sed in scelerisque justo. Ut nec tristique nibh. Maecenas ultricies suscipit nisi." %}
-
-{% set demoParagraphTxtShort = "Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large sizes. Centered as a block, text-aligned left. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis." %}
-
+{# header tag list #}
 {% set headerItems = [ 
 	{ tag: "h1", addClass: "super", label: "H1 .super", content: demoHeaderTxt },
 	{ tag: "h1", addClass: "", label: "H1", content: demoHeaderTxt },
@@ -25,17 +27,17 @@
 %}
 
 {% set typeItems = [ 
-	{ tag: "p", addClass: "intro", label: "Paragraph .intro", content: introParagraphDetails + " " + demoParagraphTxtShort },
+	{ tag: "p", addClass: "intro", label: "Paragraph .intro", content: introParagraphDetails },
 	{ tag: "p", addClass: "", label: "Paragraph", content: demoParagraphTxtLong }
 	]
 %}
 
 {% set ulListContent = "
 <li>This is the first list item.</li>
-<li>The next item in  the list.</li>
+<li>The next item in the list.</li>
 <li>Nesting a list... 
 	<ul>
-		<li>...is a thing somethimes</li>
+		<li>...is a useful thing, sometimes.</li>
 	</ul>
 </li>
 <li>
@@ -52,21 +54,18 @@
 
 {% set olListContent = "
 <li>This is the first list item</li>
-<li>Ordered lists are numbered at the top level</li>
-<li>Nesting a list... 
+<li>Ordered lists are <strong>numbered</strong> at the <strong>top level</strong></li>
+<li>When nesting a list inside a list... 
 	<ol>
-		<li>...is a thing somethimes</li>
-		<li>The second level are prefixed by a lower alpha character</li>
+		<li>...the <strong>second level</strong> is prefixed by a <strong>lower alpha character</strong></li>
 	</ol>
 </li>
 <li>
-	In exceptional cases
+	In exceptional cases...
 	<ol>
-		<li> People nest.....
+		<li>...deeply nested lists, like three (3) levels deep...
 			<ol>
-				<li>...Inside a nest</li>
-				<li>So is that nest squared? Or cubed?</li>
-				<li>Getting this deeply nested the item is prefixed by roman numerals...</li>
+				<li>...the item is prefixed by <strong>roman numerals</strong></strong>...</li>
 				<li>...to maintain the differentiation.</li>
 			</ol>
 		</li>
@@ -79,11 +78,11 @@
 	{ tag: "p", addClass: "", label: "Inline anchor element", content: "The basis of the modern internet is the <a href='https://en.wikipedia.org/wiki/Hyperlink'>hyperlink</a> pointing different pages to each other." },
 	{ tag: "p", addClass: "", label: "Strong element", content: "Some body text with a specific <strong>word</strong> requiring attention." },
 	{ tag: "p", addClass: "", label: "Emphasis element", content: "More body text containing a specific <em>word</em> with emphasis." },
-	{ tag: "p", addClass: "", label: "Subscript element", content: "H<sub>2</sub>SO<sub>4</sub>" },
-	{ tag: "p", addClass: "", label: "Superscript element", content: "4<sup>th</sup>, 23<sup>rd</sup>, 37.6<sup>&#176;</sup>C" },
+	{ tag: "p", addClass: "", label: "Subscript element", content: "The chemical symbol for sulphuric acid is H<sub>2</sub>SO<sub>4</sub>" },
+	{ tag: "p", addClass: "", label: "Superscript element", content: 'It will be a hot day on July 23<sup>rd.</sup><br>Note that there are instances ( "celcius", for example, or degrees ) which have their own <em>HTML</em> character, and should be used instead of the "&lt;sup&gt;" tag:<br>Temperatures can reach 37.6&#176;C so please be prepared.' },
 	{ tag: "ul", addClass: "", label: "Unordered list", content: ulListContent },
 	{ tag: "ol", addClass: "", label: "Ordered list", content: olListContent },
 	{ tag: "p", addClass: "", label: "Inline code", content: "Sometimes you need to make the highlight specific, like when <code>explaining a code example</code>, or perhaps fixing a problem. Have you tried <code>turning it off and on again?</code>" },
-	{ tag: "p", addClass: "", label: "Keyboard input", content: 'There are times when a user will need to enter something on a keyboard or their preferred input method. "Need to lock your computer? press <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd></kbd> then <kbd>Enter</kbd> to lock".<br>Remember, this is different from the <code>&lt;code&gt;</code> element, perhaps not visually, but definitely semantically.'  }
+	{ tag: "p", addClass: "", label: "Keyboard input", content: 'There are times when a user will need to enter something on a keyboard or their preferred input method, e.g:<br><br>"Need to lock your computer? Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>, then <kbd>Enter</kbd> to lock".<br><br>Remember, this is different from the <code>&lt;code&gt;</code> element, perhaps not visually, but definitely semantically.'  }
 	]
 %}
