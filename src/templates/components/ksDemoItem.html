@@ -1,0 +1,12 @@
+{% macro ksDemoItem( item, layoutMinorColClass, layoutMajorColClass ) %}
+<div class="row">
+	<div class="{{ layoutMinorColClass }}">
+		<small class="ks-label label-typography">{{ item.label }}</small>
+	</div>
+	<div class="{{ layoutMajorColClass }}">
+		<div class="typography-item">
+			<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content | safe }}</{{ item.tag }}>
+		</div>			
+	</div>
+</div>
+{% endmacro %}

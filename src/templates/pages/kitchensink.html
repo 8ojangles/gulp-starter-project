@@ -1,7 +1,9 @@
 {% extends "./base/base.html" %}
 {% from "./components/colorBlockGrid.html" import cardSwatch %}
+{% from "./components/ksDemoItem.html" import ksDemoItem %}
 {% import  "./templateConfiguration/variables.html" as site %}
 
+{% set elList = [ site.headerItems, site.typeItems, site.addTypeItems ] %}
 
 {% block pageTitle %}
 <title>Everything is here</title>
@@ -48,63 +50,25 @@
 
 	<div class="container">
 
-		{% for item in site.headerItems %}
+		{% for itemSet in elList %}
 
-		<div class="row">
-			<div class="{{ site.minorColumnClasses }}">
-				<small class="ks-label label-typography">{{ item.label }}</small>
-			</div>
-			<div class="{{ site.majorColumnClasses }}">
-				<div class="typography-item">
-					<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content }}</{{ item.tag }}>
-				</div>			
-			</div>
-		</div>
+			{% if loop.index0 === 0 %}
+				{% set itemSet0 = true %}
+			{% else %}
+				{% set itemSet0 = false %}
+			{% endif %}
 
+			{% for item in itemSet %}
+			{{ ksDemoItem( item, site.minorColumnClasses, site.majorColumnClasses ) }}
+			{% if itemSet0 === false %}
+				{% if loop.last === false %}
+			<hr class="demo-seperator-line">
+				{% endif %}
+			{% endif %}
+
+			{% endfor %}
+			<hr class="demo-seperator-line">
 		{% endfor %}
-
-		<hr class="demo-seperator-line">
-		{% for item in site.typeItems %}
-
-		<div class="row">
-			<div class="{{ site.minorColumnClasses }}">
-				<small class="ks-label label-typography">{{ item.label }}</small>
-			</div>
-			<div class="{{ site.majorColumnClasses }}">
-				<div class="typography-item">
-					<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content }}</{{ item.tag }}>
-				</div>			
-			</div>
-		</div>
-
-		{% if loop.last === false %}
-		<hr class="demo-seperator-line">
-		{% endif %}
-
-		{% endfor %}
-
-		<hr class="demo-seperator-line">
-		{% for item in site.addTypeItems %}
-
-		<div class="row">
-			<div class="{{ site.minorColumnClasses }}">
-				<small class="ks-label label-typography">{{ item.label }}</small>
-			</div>
-			<div class="{{ site.majorColumnClasses }}">
-				<div class="typography-item">
-					<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content | safe }}</{{ item.tag }}>
-				</div>			
-			</div>
-		</div>
-
-		{% if loop.last === false %}
-		<hr class="demo-seperator-line">
-		{% endif %}
-
-		{% endfor %}
-
-
-		<hr class="demo-seperator-line">
 
 		<div class="row">
 			<div class="{{ site.minorColumnClasses }}">

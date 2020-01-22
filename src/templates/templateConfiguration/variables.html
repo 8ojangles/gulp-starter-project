@@ -32,12 +32,14 @@
 	]
 %}
 
-{% set ulListContent = "
+{% set ulListContent = '
 <li>This is the first list item.</li>
-<li>The next item in the list.</li>
+<li>Each list item is prefeixed denoted by a line icon (the "list-style-type" parameter in CSS).</li>
+<li>At the <strong>top level</strong> a <strong>small, filled disc</strong>.</li>
 <li>Nesting a list... 
 	<ul>
 		<li>...is a useful thing, sometimes.</li>
+		<li>The <strong>second level</strong> line icon is a <strong>stroked disc</strong>.</li>
 	</ul>
 </li>
 <li>
@@ -47,10 +49,11 @@
 			<ul>
 				<li>...Inside a nest</li>
 				<li>So is that nest squared? Or cubed?</li>
+				<li>The <strong>third level</strong> is denoted by a <strong>filled square</strong>. No-one has ever ventured deeper.</li>
 			</ul>
 		</li>
 	</ul>
-</li>" %}
+</li>' %}
 
 {% set olListContent = "
 <li>This is the first list item</li>
