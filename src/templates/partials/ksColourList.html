@@ -1,0 +1,25 @@
+{% from "../components/colorBlockGrid.html" import cardSwatch %}
+
+{% for color in colors %}
+<section class="padded section-palette--item">
+
+	<div class="row">
+		<div class="col-lg-1">
+			<h5>{{ color.name | capitalize }}</h5>		
+		</div>
+
+		<div class="col-lg-1 no-hpad">
+			{% for member in color.members %}
+			{% if member.name === "400" %}
+			{{ cardSwatch( member.name, "bg-"+color.name+"-"+member.name, member.val, member.notes, true ) }}
+			{% endif %}
+			{% endfor %}
+		</div>
+		<div class="col-lg-10 flex-parent hList">
+			{% for member in color.members %}
+			{{ cardSwatch( member.name, "bg-"+color.name+"-"+member.name, member.val, member.notes, false ) }}
+			{% endfor %}			
+		</div>
+	</div>
+</section>
+{% endfor %}

@@ -1,12 +1,16 @@
-{% macro ksDemoItem( item, layoutMinorColClass, layoutMajorColClass ) %}
+{%- macro ksDemoItem( item, layoutMinorColClass, layoutMajorColClass ) -%}
 <div class="row">
 	<div class="{{ layoutMinorColClass }}">
 		<small class="ks-label label-typography">{{ item.label }}</small>
 	</div>
 	<div class="{{ layoutMajorColClass }}">
 		<div class="typography-item">
+			{%- if item.tag != "" -%}
 			<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content | safe }}</{{ item.tag }}>
+			{%- else -%}
+			{{ item.content | safe }}
+			{%- endif -%}
 		</div>			
 	</div>
 </div>
-{% endmacro %}
+{%- endmacro -%}

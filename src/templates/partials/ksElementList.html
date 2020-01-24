@@ -1,0 +1,20 @@
+{% from "../components/ksDemoItem.html" import ksDemoItem %}
+{% import  "../templateConfiguration/variables.html" as site %}
+{% set elList = [ site.headerItems, site.typeItems, site.addTypeItems ] %}
+
+{%- for itemSet in elList -%}
+	{%- if loop.index0 === 0 -%}
+		{%- set itemSet0 = true -%}
+	{%- else -%}
+		{%- set itemSet0 = false -%}
+	{%- endif -%}
+	{%- for item in itemSet -%}
+	{{ ksDemoItem( item, site.minorColumnClasses, site.majorColumnClasses ) }}
+	{%- if itemSet0 === false -%}
+		{%- if loop.last === false -%}
+	<hr class="demo-seperator-line">
+		{%- endif -%}
+	{%- endif -%}
+	{%- endfor -%}
+	<hr class="demo-seperator-line">
+{%- endfor -%}

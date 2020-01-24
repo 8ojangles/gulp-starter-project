@@ -16,117 +16,19 @@
 
 {% block pageContent %}
 <!-- Page contents -->
-<div class="container">
-	<div class="row">
-		<div class="{{ site.titleColumnClasses }}">
-			<div class="section-title">
-				<h1 class="super">Kitchensink</h1>
-			</div>
-		</div>
-	</div>
-</div>
+{% include "partials/ksHeader.html" %}
 
-<section class="padded full feature-section">
-	<hr />
-	<div class="container">
-		<div class="row">
-			<div class="{{ site.fullWidthParagrahClass }}">
-				<div class="section-title">
-					<h4>Typography</h4>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="{{ site.fullWidthParagrahClass }}">
-				<p>HTML textual elements are listed here for reference. Use the HTML tag and the base styles will be applied automatically, no need to add classes.</p>
-			</div>
-		</div>
-	</div>
-	<hr />
-</section>
-
+{% include "partials/ksTypographyIntroSection.html" %}
 <section class="padded">
-
 	<div class="container">
-
-		{%- for itemSet in elList -%}
-			{%- if loop.index0 === 0 -%}
-				{%- set itemSet0 = true -%}
-			{%- else -%}
-				{%- set itemSet0 = false -%}
-			{%- endif -%}
-			{%- for item in itemSet -%}
-			{{ ksDemoItem( item, site.minorColumnClasses, site.majorColumnClasses ) }}
-			{%- if itemSet0 === false -%}
-				{%- if loop.last === false -%}
-			<hr class="demo-seperator-line">
-				{%- endif -%}
-			{%- endif -%}
-			{%- endfor -%}
-			<hr class="demo-seperator-line">
-		{%- endfor -%}
-
-		<div class="row">
-			<div class="{{ site.minorColumnClasses }}">
-				<small class="ks-label label-typography">Blockquote</small>
-			</div>
-			<div class="{{ site.majorColumnClasses }}">
-				<blockquote class="demo-item" cite="https://www.huxley.net/bnw/four.html">
-					<p>Words can be like <span>X-rays</span>, if you use them <span>properly</span> - they’ll go through <span>anything</span>. You read and you’re <span>pierced</span>.</p>
-					<footer><cite>Brave New World</cite> - Aldous Huxley</footer>
-				</blockquote>
-			</div>			
-		</div>
-
-
+	{% include "partials/ksElementList.html" %}
 	</div>
 </section>
 
+{% include "partials/ksColourIntroSection.html" %}
 <section class="padded full section-palette">
-	<hr />
-	<div class="row">
-		<div class="{{ site.titleColumnClasses }}">
-			<div class="section-title">
-				<h4>Colour Palette</h4>
-			</div>
-		</div>
-	</div>
-	<hr />
-
-	<div class="row">
-		<div class="{{ site.fullWidthParagrahClass }}">
-			<p>The full list of site colors are set in a JSON file and compiled into a SCSS/SASS map. This is then run through a function to create al lthe color utility classes for background color and text color. in the case of the background color, an additional color attribute is set for contrasting text color to make accessible contrasts automatically applied to child elelements. The median color (level 400) should be regarded as the base (brand) value for each color, above and below shades should be provided for situations where variations are required.</p>
-		</div>
-	</div>
-
 	<div class="section-content">
-
-		{% for color in colors %}
-		<section class="padded section-palette--item">
-
-			<div class="row">
-				<div class="col-lg-1">
-					<h5>{{ color.name | capitalize }}</h5>		
-				</div>
-
-				<div class="col-lg-1 no-hpad">
-					{% for member in color.members %}
-					{% if member.name === "400" %}
-					{{ cardSwatch( member.name, "bg-"+color.name+"-"+member.name, member.val, member.notes, true ) }}
-					{% endif %}
-					{% endfor %}
-				</div>
-				<div class="col-lg-10 flex-parent hList">
-					{% for member in color.members %}
-					{{ cardSwatch( member.name, "bg-"+color.name+"-"+member.name, member.val, member.notes, false ) }}
-					{% endfor %}			
-				</div>
-			</div>
-		</section>
-		{% endfor %}
+		{% include "partials/ksColourList.html" %}
 	</div>
 </section>
-
-<p>And now?</p>
 {% endblock %}
