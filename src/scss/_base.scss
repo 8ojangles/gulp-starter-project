@@ -1,4 +1,3 @@
-/* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;
 }
@@ -10,6 +9,4 @@ body {
 	font-family: tahoma;
 	padding: 0;
 	margin: 0;
-	// height: 100vh;
-	// overflow: hidden;
 }
