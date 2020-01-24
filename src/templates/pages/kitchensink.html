@@ -50,25 +50,22 @@
 
 	<div class="container">
 
-		{% for itemSet in elList %}
-
-			{% if loop.index0 === 0 %}
-				{% set itemSet0 = true %}
-			{% else %}
-				{% set itemSet0 = false %}
-			{% endif %}
-
-			{% for item in itemSet %}
+		{%- for itemSet in elList -%}
+			{%- if loop.index0 === 0 -%}
+				{%- set itemSet0 = true -%}
+			{%- else -%}
+				{%- set itemSet0 = false -%}
+			{%- endif -%}
+			{%- for item in itemSet -%}
 			{{ ksDemoItem( item, site.minorColumnClasses, site.majorColumnClasses ) }}
-			{% if itemSet0 === false %}
-				{% if loop.last === false %}
+			{%- if itemSet0 === false -%}
+				{%- if loop.last === false -%}
 			<hr class="demo-seperator-line">
-				{% endif %}
-			{% endif %}
-
-			{% endfor %}
+				{%- endif -%}
+			{%- endif -%}
+			{%- endfor -%}
 			<hr class="demo-seperator-line">
-		{% endfor %}
+		{%- endfor -%}
 
 		<div class="row">
 			<div class="{{ site.minorColumnClasses }}">

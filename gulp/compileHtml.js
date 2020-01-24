@@ -3,6 +3,7 @@ const fs = require( 'file-system' );
 const data = require( 'gulp-data' );
 const nunjucksRender = require('gulp-nunjucks-render');
 const plumbError = require( '../gulp/errorReporting' ).plumbError;
+const beautify = require('gulp-jsbeautifier');
 const dirs = require( '../gulp/dirs' );
 
 // compile templates (nunjucks)
@@ -20,6 +21,13 @@ function compileHtml(){
 					 	path: 'src/templates/'
 	    			}
 				)
+			)
+			.pipe( 
+				beautify( {
+					html: {
+						max_preserve_newlines: 1
+					}
+				} )
 			)
 		    .pipe( gulp.dest( dirs.dist.html ) )
 	);
