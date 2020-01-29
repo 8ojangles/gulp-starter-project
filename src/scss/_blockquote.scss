@@ -1,0 +1,75 @@
+$shadow-height: 2rem;
+$shadow-color: rgba( 0, 0, 0, 0.3 );
+
+blockquote {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    max-width: 35rem;
+    border: none;
+    background-color: white;
+    overflow: hidden;
+
+    &:before {
+        position: absolute;
+        top: 2rem;
+        left: 0;
+        font-family: sans-serif;
+        font-size: 6rem;
+        line-height: 5rem;
+        font-weight: 700;
+        content: "“";
+        color: var(--blockquote-color);
+        z-index: 0;
+    }
+
+    p {
+        font-size: ms( 2 );
+        padding-bottom: $standard-spacing / 4;
+        // padding-left: $standard-spacing * 4;
+        margin-top: 0;
+        margin-left: 1.5rem;
+        margin-bottom: $standard-spacing / 2;
+        text-align: left;
+
+        &:first-letter {
+            font-family: 'Lobster', cursive;
+            font-weight: 400;
+            font-size: ms( 7 );
+            line-height: 1;
+        }
+
+        span {
+            font-weight: 500;
+            color: var(--blockquote-color);
+        }
+    }
+
+    hr {
+        width: 75%;
+        position: relative;
+        left: 12.5%;
+    }
+    footer {
+        text-align: right;
+        align-self: flex-end;
+        font-weight: 400;
+        cite {
+            font-weight: 500;
+            display: inline-block;
+            padding-left: $large-spacing;
+            padding-top: $standard-spacing / 2;
+            margin-bottom: $standard-spacing / 4;
+        }
+    }
+
+    &[cite]:after{
+        display: inline-block;
+        position: relative;
+        float: right;
+        font-weight: 400;
+        content: "\a  " attr(cite);
+        white-space: normal;
+    }
+}

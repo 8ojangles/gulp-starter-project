@@ -1,1 +1,35 @@
 @import "color-swatch";
+
+.ks-item-label-col {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.btn-show-code {
+	background-color: transparent;
+	margin-top: 0.5rem;
+	border: none;
+	border-radius: 50%;
+	outline: none;
+
+	@include flex-centered-children();
+
+	width: 2rem;
+	height: 2rem;
+	background-color: #ddd;
+
+	> {
+		padding: 0;
+		margin: 0;
+		height: 1rem;
+		line-height: 0.8rem;
+	}
+
+	&:hover {
+		cursor: pointer;
+		background-color: #444;
+		color: #ccc;
+	}
+}

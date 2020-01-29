@@ -1,8 +1,9 @@
+@import "./node_modules/mini.css/src/mini/core";
+@import "./node_modules/mini.css/src/mini/layout";
+@import 'fonts';
 @import 'base';
 @import 'variables';
 @import 'utils';
-@import "./node_modules/mini.css/src/mini/core";
-@import "./node_modules/mini.css/src/mini/layout";
 @import 'typography';
 @import 'colorMap';
 @import 'kitchensink';

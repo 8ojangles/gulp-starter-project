@@ -13,15 +13,24 @@ let vendorLibs = [
 
 // SOURCE directory top level
 let srcDir = 'src';
+let templatDir = `${ srcDir }/templates/`;
+
 
 // src files
 let src = {
 	html: [ './*.html' ],
-	templates: [ `${ srcDir }/templates/pages/*.njk`, `${ srcDir }/templates/pages/*.html`, `${ srcDir }/templates/templateConfiguration/*.html`, `${ srcDir }/templates/templateConfiguration/*.njk` ],
+	templates: [ 
+		`${ templatDir }pages/*.njk`,
+		`${ templatDir }pages/*.html`,
+		`${ templatDir }templateConfiguration/*.html`,
+		`${ templatDir }templateConfiguration/*.njk`
+	],
 	jsBundleEntry: [ `${ srcDir }/js/entry.js` ],
 	js: [ `${ srcDir }/js/**/*.js` ],
 	scssEntry: [ `${ srcDir }/scss/main.scss` ],
 	scss: [ `${ srcDir }/scss/**/*.scss` ],
+	fonts: [ `${ srcDir }/fonts/**/*` ],
+	images: [ `${ srcDir }/images/**/*` ],
 	data: [ `${ srcDir }/data/**/*.json` ],
 	tests: [ `./tests/**/*.js` ]
 };
@@ -35,6 +44,8 @@ let dist = {
 	html: [ `${ distDir }/` ],
 	js: [ `${ distDir }js/` ],
 	css: [ `${ distDir }css/` ],
+	fonts: [ `${ distDir }fonts/` ],
+	images: [ `${ distDir }images/` ],
 	data: [ `${ distDir }data/` ],
 	docs: [ `${ distDir }docs/` ]
 };

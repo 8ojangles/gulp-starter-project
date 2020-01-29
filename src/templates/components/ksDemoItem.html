@@ -1,7 +1,8 @@
 {%- macro ksDemoItem( item, layoutMinorColClass, layoutMajorColClass ) -%}
-<div class="row">
-	<div class="{{ layoutMinorColClass }}">
+<div class="row ks-item">
+	<div class="{{ layoutMinorColClass }} ks-item-label-col">
 		<small class="ks-label label-typography">{{ item.label }}</small>
+		<button class="js-show-code btn btn-show-code" title="show code example"><small>&lt;/&gt;</small></button>
 	</div>
 	<div class="{{ layoutMajorColClass }}">
 		<div class="typography-item">
@@ -11,6 +12,13 @@
 			{{ item.content | safe }}
 			{%- endif -%}
 		</div>			
+	</div>
+</div>
+<div class="row ks-item-code">
+	<div class="{{ layoutMajorColClass }}">
+		<div class="ks-item-code">
+			<pre><code>{{ item.content }}</code></pre>
+		</div>
 	</div>
 </div>
 {%- endmacro -%}

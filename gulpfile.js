@@ -15,6 +15,8 @@ const compileHtml = require( `${ dirGulp }/compileHtml` );
 const moveHtml = require( `${ dirGulp }/moveHtml` );
 const vendorJs = require( `${ dirGulp }/vendorJs` );
 const sass = require( `${ dirGulp }/sass` );
+const moveFonts = require( `${ dirGulp }/moveFonts` );
+const moveImages = require( `${ dirGulp }/moveImages` );
 const createScssVars = require( `${ dirGulp }/compileScssFromTokens` ).createScssVars;
 const createColorScssMap = require( `${ dirGulp }/compileScssFromTokens` ).createColorScssMap;
 const moveData = require( `${ dirGulp }/moveData` );
@@ -38,6 +40,7 @@ function watchFiles() {
             .pipe( browserSync.stream() );
     });
     
+    gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
     gulp.watch( dirs.src.js, gulp.series( compileJs, reload ) );
     gulp.watch( dirs.src.templates, gulp.series( compileHtml, moveHtml, reload ) );
     gulp.watch( dirs.src.data, gulp.series( compileHtml, moveHtml, reload ) );
@@ -64,7 +67,7 @@ exports.watch = watch;
 // build task
 const build = gulp.series(
 	gulp.series( clean ), 
-	gulp.parallel( vendorJs, compileJs, compileHtml, moveHtml, moveData, sass ),
+	gulp.parallel( vendorJs, compileJs, gulp.series( compileHtml, moveHtml ), moveFonts, moveImages, moveData, sass ),
     gulp.series( tests, createDocs )
 );
 
