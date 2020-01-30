@@ -21,14 +21,17 @@
 <body>
 
     <main>
-    {% block pageContent %}
+    {% block layoutTemplateContent %}
     <!-- Page contents -->
     {% endblock %}
     </main>
 
     <script src="js/vendor.js"></script>
+    {%- block pageVendorJs -%}
+    {%- endblock -%}
     <script src="js/scripts.js"></script>
-    
+    {%- block pageScriptsJs -%}
+    {%- endblock -%}
 </body>
 
 </html>

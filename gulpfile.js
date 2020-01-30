@@ -23,6 +23,11 @@ const moveData = require( `${ dirGulp }/moveData` );
 const createDocs = require( `${ dirGulp }/createDocs` );
 const tests = require( `${ dirGulp }/tests` );
 
+// Kitchensink specific
+const ksVendorJs = require( `${ dirGulp }/ksVendorJs` );
+const ksVendorCss = require( `${ dirGulp }/ksVendorCss` );
+const moveCodeExamples = require( `${ dirGulp }/moveCodeExamples` );
+
 exports.createColorScssMap = createColorScssMap;
 exports.createScssVars = createScssVars;
 
@@ -39,7 +44,8 @@ function watchFiles() {
         return gulp.src( dirs.dist.css )
             .pipe( browserSync.stream() );
     });
-    
+    gulp.watch( dirs.src.ks.codeExamples, gulp.series( compileHtml, moveCodeExamples, reload ) );
+    gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
     gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
     gulp.watch( dirs.src.js, gulp.series( compileJs, reload ) );
     gulp.watch( dirs.src.templates, gulp.series( compileHtml, moveHtml, reload ) );
@@ -64,10 +70,24 @@ function watch(){
 // expose task to cli
 exports.watch = watch;
 
+// kitchenSink
+const ksVendor = gulp.parallel( ksVendorCss, ksVendorJs );
+exports.ksVendor = ksVendor;
+
 // build task
 const build = gulp.series(
 	gulp.series( clean ), 
-	gulp.parallel( vendorJs, compileJs, gulp.series( compileHtml, moveHtml ), moveFonts, moveImages, moveData, sass ),
+	gulp.parallel(
+        ksVendor,
+        moveCodeExamples,
+        vendorJs,
+        compileJs,
+        gulp.series( compileHtml, moveHtml ),
+        moveFonts,
+        moveImages,
+        moveData,
+        sass
+    ),
     gulp.series( tests, createDocs )
 );
 

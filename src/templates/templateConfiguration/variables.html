@@ -3,6 +3,7 @@
 {% set fullWidthParagrahClass = "col-sm-10 col-md-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" %}
 {% set minorColumnClasses = "col-md-1 col-md-offset-1 col-lg-1 col-lg-offset-1 flex-parent" %}
 {% set majorColumnClasses = "col-md-8 col-md-offset-1 col-lg-7 col-lg-offset-1" %}
+{% set ksCodeLayoutClasses = "col-md-7 col-md-offset-3 col-lg-7 col-lg-offset-3" %}
 
 {# Demo lorum text #}
 {% set lorumSentence = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum malesuada iaculis." %}
@@ -14,7 +15,6 @@
 {% set demoParagraphTxtShort = "Paragraphs are limited to 60rem width, maximum, to alieviate reading fatigue at large screen sizes. Centered as a block, text-aligned left." %}
 {% set demoParagraphTxtLong = "Paragraph - The standard paragraph font. Set at a base size of 1rem, or 16 pixels usually. Keep paragraphs limited to 2 or 3 sentences, maybe 4 at most to avoid wall-of-text issues. "+demoParagraphTxtShort %}
 
-{# header tag list #}
 {% set headerItems = [ 
 	{ tag: "h1", addClass: "super", label: "H1 .super", content: demoHeaderTxt },
 	{ tag: "h1", addClass: "", label: "H1", content: demoHeaderTxt },
@@ -88,4 +88,12 @@
 	{ tag: "p", addClass: "", label: "Inline code", content: "Sometimes you need to make the highlight specific, like when <code>explaining a code example</code>, or perhaps fixing a problem. Have you tried <code>turning it off and on again?</code>" },
 	{ tag: "", addClass: "", label: "Blockquote", content: '<blockquote class="demo-item" cite="https://www.huxley.net/bnw/four.html"><p>Words can be like <span>X-rays</span>, if you use them <span>properly</span> - they’ll go through <span>anything</span>. You read and you’re <span>pierced</span>.</p><footer><cite>Brave New World</cite> - Aldous Huxley</footer></blockquote>'  }
 	]
+%}
+
+{% set pageConfig = {
+	kitchensink: {
+		prism: true
+	}
+}
+
 %}

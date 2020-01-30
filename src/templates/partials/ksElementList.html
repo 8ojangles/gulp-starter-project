@@ -1,19 +1,33 @@
-{% from "../components/ksDemoItem.html" import ksDemoItem %}
-{% import  "../templateConfiguration/variables.html" as site %}
-{% set elList = [ site.headerItems, site.typeItems, site.addTypeItems ] %}
+{% from "components/ksDemoItem.html" import ksDemoItem %}
+{% import  "templateConfiguration/variables.html" as site %}
+{% import  "ksElementConfig.html" as ks %}
+{% set elementList = ks.elLists %}
 
-{%- for itemSet in elList -%}
+{% for itemSet in elementList.els %}
 	{%- if loop.index0 === 0 -%}
 		{%- set itemSet0 = true -%}
 	{%- else -%}
 		{%- set itemSet0 = false -%}
 	{%- endif -%}
-	{%- for item in itemSet -%}
-	{{ ksDemoItem( item, site.minorColumnClasses, site.majorColumnClasses ) }}
+	<div class="row">
+		<div class="{{ site.titleColumnClasses }}">
+			<h3>{{ itemSet.title }}</h3>
+		</div>
+	</div>
+	{%- for item in itemSet.members -%}
+	{{ ksDemoItem(
+		item,
+		site.minorColumnClasses,
+		site.majorColumnClasses,
+		site.ksCodeLayoutClasses,
+		elementList.srcElListPath,
+		elementList.distElListPath
+		)
+	}}
 	{%- if itemSet0 === false -%}
-		{%- if loop.last === false -%}
+		<!-- {%- if loop.last === false -%}
 	<hr class="demo-seperator-line">
-		{%- endif -%}
+		{%- endif -%} -->
 	{%- endif -%}
 	{%- endfor -%}
 	<hr class="demo-seperator-line">

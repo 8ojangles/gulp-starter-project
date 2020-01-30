@@ -26,11 +26,33 @@ $dark-gradient-init-opacity: 0.4;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 }
 
+@mixin shadow-radial-gradient() {
+	background: rgb(0,0,0);
+	background: -moz-radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+	background: -webkit-radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+	background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+}
+
+@mixin highlight-radial-gradient() {
+	background: rgb(0,0,0);
+	background: -moz-radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+	background: -webkit-radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+	background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FFFFFF",endColorstr="#FFFFFF",GradientType=1);
+}
+
 @mixin flex-centered-children() {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
+
+.flexed {
+	display: flex;
+}
+
+
 
 
 @mixin margin-centered() {

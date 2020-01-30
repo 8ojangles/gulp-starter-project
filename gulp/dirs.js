@@ -9,21 +9,49 @@ let vendorLibs = [
 	`src/js/rafPolyfill.js`
 ];
 
+let ks = {
+	vendorJsLibs: [
+		'./vendor/prism/**/*.js'
+	],
+	vendorCssLibs: [
+		'./vendor/prism/**/*.css'
+	],
+	codeExamples: [
+		'./srcKitchensink/codeExamples/*.html'
+	]
+}
 
 
 // SOURCE directory top level
 let srcDir = 'src';
-let templatDir = `${ srcDir }/templates/`;
+let templateDir = `${ srcDir }/templates/`;
+let ksDir = 'srcKitchensink';
 
 
 // src files
 let src = {
 	html: [ './*.html' ],
+	// templates: [ 
+	// 	`${ templatDir }pages/*.njk`,
+	// 	`${ templatDir }pages/*.html`,
+	// 	`${ templatDir }layouts/*.njk`,
+	// 	`${ templatDir }layouts/*.html`,
+	// 	`${ templatDir }partials/*.njk`,
+	// 	`${ templatDir }partials/*.html`,
+	// 	`${ templatDir }components/*.njk`,
+	// 	`${ templatDir }components/*.html`,
+	// 	`${ templatDir }templateConfiguration/*.html`,
+	// 	`${ templatDir }templateConfiguration/*.njk`
+	// ],
 	templates: [ 
-		`${ templatDir }pages/*.njk`,
-		`${ templatDir }pages/*.html`,
-		`${ templatDir }templateConfiguration/*.html`,
-		`${ templatDir }templateConfiguration/*.njk`
+		`${ templateDir }**/*.njk`,
+		`${ templateDir }**/*.html`,
+		`${ ksDir }**/*.njk`,
+		`${ ksDir }**/*.html`
+	],
+	pages: [
+		`${ templateDir }pages/*.njk`,
+		`${ templateDir }pages/*.html`
 	],
 	jsBundleEntry: [ `${ srcDir }/js/entry.js` ],
 	js: [ `${ srcDir }/js/**/*.js` ],
@@ -32,7 +60,8 @@ let src = {
 	fonts: [ `${ srcDir }/fonts/**/*` ],
 	images: [ `${ srcDir }/images/**/*` ],
 	data: [ `${ srcDir }/data/**/*.json` ],
-	tests: [ `./tests/**/*.js` ]
+	tests: [ `./tests/**/*.js` ],
+	ks: ks
 };
 
 

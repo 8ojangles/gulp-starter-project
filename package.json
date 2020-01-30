@@ -4,6 +4,7 @@
   "description": "Starter project - gulp - sass/scss - babel",
   "main": "index.js",
   "scripts": {
+    "start": "gulp",
     "test": "mocha"
   },
   "keywords": [],
@@ -38,9 +39,12 @@
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
+    "event-stream": "^4.0.1",
     "file-system": "^2.2.2",
+    "gulp-debug": "^4.0.0",
     "gulp-jsbeautifier": "^3.0.1",
     "gulp-theo": "^2.0.0",
+    "gulp-using": "^0.1.1",
     "jquery": "^3.4.1",
     "mini.css": "^3.0.1",
     "modularscale-sass": "^3.0.10",

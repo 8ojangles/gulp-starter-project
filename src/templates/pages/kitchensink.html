@@ -1,4 +1,4 @@
-{% extends "./base/base.html" %}
+{% extends "layouts/fixedHeaderPage.html" %}
 {% from "./components/colorBlockGrid.html" import cardSwatch %}
 {% from "./components/ksDemoItem.html" import ksDemoItem %}
 {% import  "./templateConfiguration/variables.html" as site %}
@@ -9,15 +9,22 @@
 <title>Everything is here</title>
 {% endblock %}
 {% block pageCSS %}
-{# <link rel="stylesheet" href="css/kitchensink.css"> #}
+<link rel="stylesheet" href="css/ksVendor.css">
 {% endblock %}
 
-{% block pageContent %}
-<!-- Page contents -->
+{% block fixedMastHead %}
+<!-- fixed header: page template -->
 {% include "partials/ksHeader.html" %}
+{% endblock %}
 
-{% include "partials/ksTypographyIntroSection.html" %}
+{% block pageTemplateContents %}
+<!-- Page Template contents -->
+
+
 <section class="padded">
+	<div class="container">
+	{% include "partials/ksTypographyIntroSection.html" %}
+	</div>
 	<div class="container">
 	{% include "partials/ksElementList.html" %}
 	</div>
@@ -29,4 +36,13 @@
 		{% include "partials/ksColourList.html" %}
 	</div>
 </section>
+{% endblock %} <!-- Close Page Template contents -->
+
+{% block fixedFooter %}
+<!-- fixed footer: layout template -->
+{% include "partials/ksFooter.html" %}
 {% endblock %}
+
+{%- block pageVendorJs -%}
+<script src="js/ksVendor.js"></script>
+{%- endblock -%}

@@ -1,0 +1,36 @@
+{# kitchensink element/code example lists #}
+{% set elLists = {
+	title: "The Element Lists",
+	srcElListPath : "../../../srcKitchensink/codeExamples/",
+	distElListPath : "./codeExamples/",
+	els: [
+		{
+			title: "Headings Elements",
+			members: [
+				{ name: "headings", label: "Headings", lang: "html" }
+			]
+		},
+		{
+			title: "Textual Elements",
+			members: [
+				{ name: "pIntro", label: "p .intro", lang: "html"  },
+				{ name: "p", label: "p", lang: "html"  },
+				{ name: "small", label: "small", lang: "html"  },
+				{ name: "strong", label: "strong", lang: "html"  },
+				{ name: "em", label: "Emphasis", lang: "html"  },
+				{ name: "i", label: "italic", lang: "html"  },
+				{ name: "sup", label: "Superscript", lang: "html"  },
+				{ name: "sub", label: "Subscript", lang: "html"  },
+				{ name: "blockquote", label: "blockquote", lang: "html" }
+			]
+		},
+		{
+			title: "List Elements",
+			members: [
+				{ name: "ul", label: "Unordered List", lang: "html"  },
+				{ name: "ol", label: "Ordered List", lang: "html" }
+			]
+		}
+	]
+}
+%}

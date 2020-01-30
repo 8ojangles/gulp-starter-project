@@ -1,23 +1,23 @@
-{%- macro ksDemoItem( item, layoutMinorColClass, layoutMajorColClass ) -%}
+{%- macro ksDemoItem( item, layoutMinorColClass, layoutMajorColClass, offsetLayoutClass, srcCodePath, distCodePath ) -%}
 <div class="row ks-item">
 	<div class="{{ layoutMinorColClass }} ks-item-label-col">
-		<small class="ks-label label-typography">{{ item.label }}</small>
-		<button class="js-show-code btn btn-show-code" title="show code example"><small>&lt;/&gt;</small></button>
+		<div>
+			<p class="ks-label label-typography">{{ item.label }}</p>
+			<button data-code-example="example-{{ item.name }}" class="js-show-code btn btn-show-code" title="show code example"><span class="open">?</span><span class="close">&times;</span></button>
+		</div>
 	</div>
 	<div class="{{ layoutMajorColClass }}">
 		<div class="typography-item">
-			{%- if item.tag != "" -%}
-			<{{ item.tag }} class="demo-item {{ item.addClass }}">{{ item.content | safe }}</{{ item.tag }}>
-			{%- else -%}
-			{{ item.content | safe }}
-			{%- endif -%}
+			{%- include srcCodePath+item.name+"."+item.lang -%}
 		</div>			
 	</div>
 </div>
 <div class="row ks-item-code">
-	<div class="{{ layoutMajorColClass }}">
-		<div class="ks-item-code">
-			<pre><code>{{ item.content }}</code></pre>
+	<div class="{{ offsetLayoutClass }}">
+		<div data-code-example="example-{{ item.name }}" class="js-ks-item-code ks-item-code">
+			{# {% set thisItemExampleSrc = distCodePath+item.name+"."+item.lang %} #}
+			{# <pre data-src="{{ thisItemExampleSrc }}"></pre> #}
+			<pre class="language-html"><code>{% filter escape %}{%- include srcCodePath+item.name+"."+item.lang -%}{% endfilter %}</code></pre>
 		</div>
 	</div>
 </div>

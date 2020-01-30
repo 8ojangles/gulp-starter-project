@@ -1,35 +1,74 @@
+$page-background-color: #0cf;
+
 @import "color-swatch";
+@import "ks-page-header";
+
+body {
+	background-color: $page-background-color !important;
+}
 
 .ks-item-label-col {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	justify-content: center;
+	align-items: center;
+	justify-content: flex-end;
+
+	> div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 }
 
 .btn-show-code {
 	background-color: transparent;
-	margin-top: 0.5rem;
+	display: block;
+	padding: 0;
 	border: none;
-	border-radius: 50%;
+	border-radius: 15px;
 	outline: none;
+	width: 30px;
+	height: 30px;
+	background-color: #ddd;
 
 	@include flex-centered-children();
 
-	width: 2rem;
-	height: 2rem;
-	background-color: #ddd;
-
-	> {
-		padding: 0;
-		margin: 0;
-		height: 1rem;
-		line-height: 0.8rem;
+	span {
+		font-size: 1.5rem;
 	}
 
-	&:hover {
+	.open {
+		position: relative;
+		opacity: 1;
+	}
+	.close {
+		position: absolute;
+		top: -2px;
+		opacity: 0;
+	}
+
+	&.is-active {
+		.open {
+			position: absolute;
+			opacity: 0;
+		}
+		.close {
+			position: relative;
+			opacity: 1;
+		}
+	}
+	&:hover, &.is-active {
 		cursor: pointer;
 		background-color: #444;
 		color: #ccc;
 	}
+}
+
+.ks-item-code {
+	overflow-y: hidden;
+	margin-bottom: 2rem;
+}
+
+.transioner {
+	transition: all 0.3s ease;
 }
