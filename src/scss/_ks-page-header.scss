@@ -1,13 +1,47 @@
-$shadow-width: 90%;
+$shadow-width: 80%;
 $shadow-layout-offset-x: ( 100% - $shadow-width ) / 2;
-$shadow-height: 2.5rem;
+$shadow-height: 15rem;
 
 $shadow-drop-y: 1rem;
 $shadow-fade-distance: 1rem;
+$shadow-spread: 2rem;
+$shadow-alpha: 0.4;
 
-$hilite-width: 70%;
+$shadow-lip-width: 80%;
+$shadow-lip-layout-offset-x: ( 100% - $shadow-width ) / 2;
+
+$lower-shadow-width: 20%;
+$lower-shadow-layout-offset-x: ( 100% - $lower-shadow-width ) / 2;
+$lower-shadow-height: 7rem;
+$lower-shadow-spread: 1rem;
+$lower-shadow-alpha: 0.3;
+
+$hr-gradient-width: 70%;
+$hr-gradient-layout-offset-x: ( 100% - $hr-gradient-width ) / 2;
+
+$hilite-width: 30%;
 $hilite-layout-offset-x: ( 100% - $hilite-width ) / 2;
 $hilite-height: 2.5rem;
+
+hr {
+	position: relative;
+	width: $hr-gradient-width;
+	left: $hr-gradient-layout-offset-x;
+	opacity: 0.2;
+	@include shadow-radial-gradient();
+
+	&:after {
+		content: " ";
+		display: block;
+		position: absolute;
+		width: 70%;
+		height: 2px;
+		bottom: 10px;
+		left: 15%;
+		opacity: 0.6;
+		@include highlight-radial-gradient();
+	}
+}
 
 .page-header {
 	position: fixed;
@@ -35,48 +69,16 @@ $hilite-height: 2.5rem;
 		left: $shadow-layout-offset-x;
 		bottom: 0;
 		border-radius: 50%;
-		box-shadow: 0 $shadow-drop-y $shadow-fade-distance rgba( 0, 0, 0, 0.1 );
+		box-shadow: 0 $shadow-drop-y $shadow-fade-distance $lower-shadow-spread rgba( 0, 0, 0, $shadow-alpha );
 	}
 
 	&:after {
-		width: 100%;
+		width: $shadow-lip-width;
 		height: 2px;
 		bottom: 0;
-		left: 0;
-		opacity: 0.6;
+		left: $shadow-lip-layout-offset-x;
+		opacity: 0.4;
 		@include shadow-radial-gradient();
-	}
-
-	h1 {
-		position: relative;
-		letter-spacing: 20px;
-		color: darken( $page-background-color, 5% );
-		// text-shadow: 1px 1px 1px rgba( 255, 255, 255, 0.4), -1px -1px 2px rgba( 0, 0, 0, 0.2);
-		// text-shadow:
-		// 	0 1px 0 #cccccc,
-		// 	0 2px 0 #c9c9c9,
-		// 	0 3px 0 #bbbbbb,
-		// 	0 4px 0 #b9b9b9,
-		// 	0 5px 0 #aaaaaa,
-		// 	0 6px 1px rgba(0, 0, 0, 0.1),
-		// 	0 0 5px rgba(0, 0, 0, 0.1),
-		// 	0 1px 3px rgba(0, 0, 0, 0.3),
-		// 	0 3px 5px rgba(0, 0, 0, 0.2),
-		// 	0 5px 10px rgba(0, 0, 0, 0.25),
-		// 	0 10px 10px rgba(0, 0, 0, 0.2),
-		// 	0 20px 20px rgba(0, 0, 0, 0.15);
-
-		// &:after {
-		// 	color: darken( $page-background-color, 2% );
-		// 	display: block;
-		// 	position: absolute;
-		// 	content: ' ';
-		// 	background-image: url('../images/big-sink-svgrepo-com.svg');
-		// 	background-size: 28px 28px;
-		// 	height: 28px;
-		// 	width: 28px;
-		// }
-
 	}
 }
 
@@ -85,10 +87,14 @@ $hilite-height: 2.5rem;
 	width: 100%;
 	bottom: 0;
 	z-index: $z-top;
+	padding-top: $standard-spacing;
+	padding-bottom: $standard-spacing;
+	background-color: $page-background-color;
+	transform-style: preserve-3d;
 	// box-shadow: 0 0 2px 2px rgba( 0, 0, 0, 0.2 );
 
 	.container {
-		background-color: $page-background-color;
+		// background-color: $page-background-color;
 		// border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
 	}
 
@@ -101,20 +107,21 @@ $hilite-height: 2.5rem;
 
 	&:before {
 		z-index: -1;
-		width: $hilite-width;
+		width: $lower-shadow-width;
 		height: $hilite-height;
-		left: $hilite-layout-offset-x;
+		left: $lower-shadow-layout-offset-x;
 		top: 0;
 		border-radius: 50%;
-		box-shadow: 0 -1rem $shadow-fade-distance rgba( 0, 0, 0, 0.1 );
+		box-shadow: 0 -1rem $shadow-fade-distance $lower-shadow-spread rgba( 0, 0, 0, $lower-shadow-alpha );
+		transform: translateZ(-1px);
 	}
 
 	&:after {
-		width: 70%;
+		width: $hilite-width;
 		height: 2px;
+		left: $hilite-layout-offset-x;
 		top: 0;
-		left: 15%;
-		opacity: 0.6;
+		opacity: 0.4;
 		@include highlight-radial-gradient();
 	}
 }
@@ -157,6 +164,7 @@ $hilite-height: 2.5rem;
 	margin-top: 7rem;
 	margin-bottom: 7rem;
 }
+
 
 @media screen and ( max-width: 1400px ) {
 	.page-header h1 {

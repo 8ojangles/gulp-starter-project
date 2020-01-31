@@ -20,6 +20,15 @@ function compileHtml(){
 			    		return JSON.parse( fs.readFileSync( './src/data/kitchensink.json' ) );
 			 		}
 			 	)
+			 	.pipe(
+			 		data(
+			 			function() {
+			        		return {
+			        			currentYear: new Date().getFullYear()
+			        		}
+			   			}
+			   		)
+			   	)
 			 )
 			.pipe( debug() )
 			.pipe( using( { color: 'cyan' } ) )
@@ -28,7 +37,8 @@ function compileHtml(){
 					{ 
 					 	path: [
 					 		'src/templates/',
-					 		'srcKitchensink'
+					 		'srcKitchensink',
+					 		'src/images/'
 					 	]
 	    			}
 				)

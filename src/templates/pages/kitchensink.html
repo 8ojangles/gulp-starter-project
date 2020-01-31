@@ -20,22 +20,25 @@
 {% block pageTemplateContents %}
 <!-- Page Template contents -->
 
+<div class="page-fixed-head-foot page-kitchensink page-contents page-content-wrapper">
+	<div class="page-fixed-head-foot page-kitchensink page-contents page-content-inner">
+		<section class="padded">
+			<div class="container">
+			{% include "partials/ksTypographyIntroSection.html" %}
+			</div>
+			<div class="container">
+			{% include "partials/ksElementList.html" %}
+			</div>
+		</section>
 
-<section class="padded">
-	<div class="container">
-	{% include "partials/ksTypographyIntroSection.html" %}
+		{% include "partials/ksColourIntroSection.html" %}
+		<section class="padded full section-palette">
+			<div class="section-content">
+				{% include "partials/ksColourList.html" %}
+			</div>
+		</section>
 	</div>
-	<div class="container">
-	{% include "partials/ksElementList.html" %}
-	</div>
-</section>
-
-{% include "partials/ksColourIntroSection.html" %}
-<section class="padded full section-palette">
-	<div class="section-content">
-		{% include "partials/ksColourList.html" %}
-	</div>
-</section>
+</div>
 {% endblock %} <!-- Close Page Template contents -->
 
 {% block fixedFooter %}

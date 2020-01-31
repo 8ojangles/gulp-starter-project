@@ -48,6 +48,12 @@ $dark-gradient-init-opacity: 0.4;
 	justify-content: center;
 }
 
+.flex-centered-children {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .flexed {
 	display: flex;
 }
