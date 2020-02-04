@@ -3,19 +3,21 @@
 {% from "./components/ksDemoItem.html" import ksDemoItem %}
 {% import  "./templateConfiguration/variables.html" as site %}
 
-{% set elList = [ site.headerItems, site.typeItems, site.addTypeItems ] %}
+{# {% set elList = [ site.headerItems, site.typeItems, site.addTypeItems ] %} #}
 
 {% block pageTitle %}
 <title>Everything is here</title>
 {% endblock %}
+
 {% block pageCSS %}
 <link rel="stylesheet" href="css/ksVendor.css">
 {% endblock %}
 
-{% block fixedMastHead %}
 <!-- fixed header: page template -->
+{% block fixedMastHead %}
 {% include "partials/ksHeader.html" %}
 {% endblock %}
+
 {% include "partials/ksTypographyIntroSection.html" %}
 {% block pageTemplateContents %}
 <!-- Page Template contents -->
@@ -42,8 +44,8 @@
 </div>
 {% endblock %} <!-- Close Page Template contents -->
 
-{% block fixedFooter %}
 <!-- fixed footer: layout template -->
+{% block fixedFooter %}
 {% include "partials/ksFooter.html" %}
 {% endblock %}
 
