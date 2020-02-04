@@ -1,6 +1,11 @@
 $page-background-color: #700;
-$page-title-color: rgba( 255, 255, 255, 0.6);
-$text-color-std: rgba( 255, 255, 255, 0.8);
+
+$page-title-color: choose-contrast-color( hex( $page-background-color, 0.7 ) );
+$text-color-std: choose-contrast-color( hex( $page-background-color, 0.8 ) );
+
+$page-title-color: rgba( #ffffff, 0.6 );
+$text-color-std: rgba( #ffffff, 0.8 );;
+
 
 h1, h2, h3, h4, h5, h6, p, b, i, sup, sub, blockquote, li, a {
 	color: $text-color-std;
@@ -9,8 +14,19 @@ h1, h2, h3, h4, h5, h6, p, b, i, sup, sub, blockquote, li, a {
 @import "color-swatch";
 @import "ks-page-header";
 
+
 body {
 	background-color: $page-background-color !important;
+}
+
+.page-header .section-title span {
+	// height: inherit;
+ //    background: inherit;
+ //    -webkit-background-clip: text;
+	// background-clip: text;
+ //    // color: white;
+ //    text-align: center;
+ //    filter: grayscale(1) contrast(9);
 }
 
 // remember, svgs are all fill/stroke, not color/backgrounds

@@ -16,7 +16,7 @@
 <!-- fixed header: page template -->
 {% include "partials/ksHeader.html" %}
 {% endblock %}
-
+{% include "partials/ksTypographyIntroSection.html" %}
 {% block pageTemplateContents %}
 <!-- Page Template contents -->
 
@@ -24,7 +24,7 @@
 	<div class="page-fixed-head-foot page-kitchensink page-contents page-content-inner">
 		<section class="padded">
 			<div class="container">
-			{% include "partials/ksTypographyIntroSection.html" %}
+			
 			</div>
 			<div class="container">
 			{% include "partials/ksElementList.html" %}
@@ -34,6 +34,7 @@
 		{% include "partials/ksColourIntroSection.html" %}
 		<section class="padded full section-palette">
 			<div class="section-content">
+				
 				{% include "partials/ksColourList.html" %}
 			</div>
 		</section>
