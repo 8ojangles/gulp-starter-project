@@ -38,3 +38,30 @@ $spinner-size: 75px;
 $spinner-border-width: 1rem;
 $spinner-color: $blue-medium;
 $spinner-duration: 0.5s;
+
+
+// kitchensink
+$shadow-width: 80%;
+$shadow-layout-offset-x: ( 100% - $shadow-width ) / 2;
+$shadow-height: 15rem;
+
+$shadow-drop-y: 1rem;
+$shadow-fade-distance: 1rem;
+$shadow-spread: 2rem;
+$shadow-alpha: 0.4;
+
+$shadow-lip-width: 80%;
+$shadow-lip-layout-offset-x: ( 100% - $shadow-width ) / 2;
+
+$lower-shadow-width: 20%;
+$lower-shadow-layout-offset-x: ( 100% - $lower-shadow-width ) / 2;
+$lower-shadow-height: 7rem;
+$lower-shadow-spread: 1rem;
+$lower-shadow-alpha: 0.3;
+
+$hr-gradient-width: 70%;
+$hr-gradient-layout-offset-x: ( 100% - $hr-gradient-width ) / 2;
+
+$hilite-width: 30%;
+$hilite-layout-offset-x: ( 100% - $hilite-width ) / 2;
+$hilite-height: 2.5rem;

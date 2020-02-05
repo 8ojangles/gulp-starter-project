@@ -1,0 +1,43 @@
+.fixed-header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: $z-top;
+	// box-shadow: 0 0 2px 2px rgba( 0, 0, 0, 0.2 );
+
+	.container {
+		background-color: $page-background-color;
+		// border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
+	}
+
+	&:before,
+	&:after {
+		content: " ";
+		display: block;
+		position: absolute;
+	}
+
+	&:before {
+		z-index: -1;
+		width: $shadow-width;
+		height: $shadow-height;
+		left: $shadow-layout-offset-x;
+		bottom: 0;
+		border-radius: 50%;
+		box-shadow: 0 $shadow-drop-y $shadow-fade-distance $lower-shadow-spread rgba( 0, 0, 0, $shadow-alpha );
+	}
+
+	&:after {
+		width: $shadow-lip-width;
+		height: 2px;
+		bottom: 0;
+		left: $shadow-lip-layout-offset-x;
+		opacity: 0.4;
+		@include shadow-radial-gradient();
+	}
+}
+
+.clear-fixed-elements {
+	margin-top: 7rem;
+	margin-bottom: 7rem;
+}

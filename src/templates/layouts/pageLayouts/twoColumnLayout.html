@@ -1,0 +1,20 @@
+{% extends "../../base/base.html" %}
+
+{% block pageHeader %}
+{% endblock %}
+{% block pageMainContent %}
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-md-4">
+			{% block pageSubContent %}
+			{% endblock %}
+		</div>
+		<div class="col-sm-12 col-md-8">
+			{% block pageMainContent %}
+			{% endblock %}
+		</div>
+	</div>	
+</div>
+{% endblock %}
+{% block pageFooter %}
+{% endblock %}

@@ -42,7 +42,7 @@ $dark-gradient-init-opacity: 0.4;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FFFFFF",endColorstr="#FFFFFF",GradientType=1);
 }
 
-@mixin flex-centered-children() {
+@mixin flex-centered-children {
 	display: flex;
 	align-items: center;
 	justify-content: center;

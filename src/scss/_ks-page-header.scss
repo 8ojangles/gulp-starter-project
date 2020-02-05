@@ -1,128 +1,15 @@
-$shadow-width: 80%;
-$shadow-layout-offset-x: ( 100% - $shadow-width ) / 2;
-$shadow-height: 15rem;
+.ks-page-header {
+	padding-top: $large-spacing;
+	padding-bottom: $large-spacing;
 
-$shadow-drop-y: 1rem;
-$shadow-fade-distance: 1rem;
-$shadow-spread: 2rem;
-$shadow-alpha: 0.4;
+	.section-title {
+		span {
+			color: $page-title-color;
 
-$shadow-lip-width: 80%;
-$shadow-lip-layout-offset-x: ( 100% - $shadow-width ) / 2;
-
-$lower-shadow-width: 20%;
-$lower-shadow-layout-offset-x: ( 100% - $lower-shadow-width ) / 2;
-$lower-shadow-height: 7rem;
-$lower-shadow-spread: 1rem;
-$lower-shadow-alpha: 0.3;
-
-$hr-gradient-width: 70%;
-$hr-gradient-layout-offset-x: ( 100% - $hr-gradient-width ) / 2;
-
-$hilite-width: 30%;
-$hilite-layout-offset-x: ( 100% - $hilite-width ) / 2;
-$hilite-height: 2.5rem;
-
-hr {
-	position: relative;
-	width: $hr-gradient-width;
-	left: $hr-gradient-layout-offset-x;
-	opacity: 0.2;
-	@include shadow-radial-gradient();
-
-	&:after {
-		content: " ";
-		display: block;
-		position: absolute;
-		width: 70%;
-		height: 2px;
-		bottom: 10px;
-		left: 15%;
-		opacity: 0.6;
-		@include highlight-radial-gradient();
-	}
-}
-
-.page-header {
-	position: fixed;
-	width: 100%;
-	top: 0;
-	z-index: $z-top;
-	// box-shadow: 0 0 2px 2px rgba( 0, 0, 0, 0.2 );
-
-	.container {
-		background-color: $page-background-color;
-		// border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
-	}
-
-	&:before,
-	&:after {
-		content: " ";
-		display: block;
-		position: absolute;
-	}
-
-	&:before {
-		z-index: -1;
-		width: $shadow-width;
-		height: $shadow-height;
-		left: $shadow-layout-offset-x;
-		bottom: 0;
-		border-radius: 50%;
-		box-shadow: 0 $shadow-drop-y $shadow-fade-distance $lower-shadow-spread rgba( 0, 0, 0, $shadow-alpha );
-	}
-
-	&:after {
-		width: $shadow-lip-width;
-		height: 2px;
-		bottom: 0;
-		left: $shadow-lip-layout-offset-x;
-		opacity: 0.4;
-		@include shadow-radial-gradient();
-	}
-}
-
-.page-footer {
-	position: fixed;
-	width: 100%;
-	bottom: 0;
-	z-index: $z-top;
-	padding-top: $standard-spacing;
-	padding-bottom: $standard-spacing;
-	background-color: $page-background-color;
-	transform-style: preserve-3d;
-	// box-shadow: 0 0 2px 2px rgba( 0, 0, 0, 0.2 );
-
-	.container {
-		// background-color: $page-background-color;
-		// border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
-	}
-
-	&:before,
-	&:after {
-		content: " ";
-		display: block;
-		position: absolute;
-	}
-
-	&:before {
-		z-index: -1;
-		width: $lower-shadow-width;
-		height: $hilite-height;
-		left: $lower-shadow-layout-offset-x;
-		top: 0;
-		border-radius: 50%;
-		box-shadow: 0 -1rem $shadow-fade-distance $lower-shadow-spread rgba( 0, 0, 0, $lower-shadow-alpha );
-		transform: translateZ(-1px);
-	}
-
-	&:after {
-		width: $hilite-width;
-		height: 2px;
-		left: $hilite-layout-offset-x;
-		top: 0;
-		opacity: 0.4;
-		@include highlight-radial-gradient();
+			&:first-of-type {
+				margin-right: $standard-spacing;
+			}
+		}
 	}
 }
 

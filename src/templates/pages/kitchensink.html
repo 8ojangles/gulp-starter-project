@@ -1,4 +1,4 @@
-{% extends "layouts/fixedHeaderPage.html" %}
+{% extends "layouts/pageLayouts/singleColumnLayout.html" %}
 {% from "./components/colorBlockGrid.html" import cardSwatch %}
 {% from "./components/ksDemoItem.html" import ksDemoItem %}
 {% import  "./templateConfiguration/variables.html" as site %}
@@ -13,39 +13,24 @@
 <link rel="stylesheet" href="css/ksVendor.css">
 {% endblock %}
 
-<!-- fixed header: page template -->
-{% block fixedMastHead %}
+{% block pageHeader %}
 {% include "partials/ksHeader.html" %}
 {% endblock %}
 
+{% block pageMainContent %}
+<!-- Page Template contents ( singleColumnLayout ) -->
 {% include "partials/ksTypographyIntroSection.html" %}
-{% block pageTemplateContents %}
-<!-- Page Template contents -->
 
-<div class="page-fixed-head-foot page-kitchensink page-contents page-content-wrapper">
-	<div class="page-fixed-head-foot page-kitchensink page-contents page-content-inner">
-		<section class="padded">
-			<div class="container">
-			
-			</div>
-			<div class="container">
-			{% include "partials/ksElementList.html" %}
-			</div>
-		</section>
-
-		{% include "partials/ksColourIntroSection.html" %}
-		<section class="padded full section-palette">
-			<div class="section-content">
-				
-				{% include "partials/ksColourList.html" %}
-			</div>
-		</section>
-	</div>
+<div class="container">
+{% include "partials/ksElementList.html" %}
 </div>
-{% endblock %} <!-- Close Page Template contents -->
+<div class="container">
+{% include "partials/ksColourList.html" %}
+</div>
 
-<!-- fixed footer: layout template -->
-{% block fixedFooter %}
+{% endblock %} <!-- CLOSE Page Template contents ( singleColumnLayout ) -->
+
+{% block pageFooter %}
 {% include "partials/ksFooter.html" %}
 {% endblock %}
 

@@ -1,6 +1,6 @@
 {% from "components/ksDemoItem.html" import ksDemoItem %}
-{% import  "templateConfiguration/variables.html" as site %}
-{% import  "ksElementConfig.html" as ks %}
+{% import "templateConfiguration/variables.html" as site %}
+{% import "ksElementConfig.html" as ks %}
 {% set elementList = ks.elLists %}
 
 {% for itemSet in elementList.els %}
@@ -9,11 +9,14 @@
 	{%- else -%}
 		{%- set itemSet0 = false -%}
 	{%- endif -%}
-	<div class="row">
-		<div class="{{ site.titleColumnClasses }}">
-			<h3>{{ itemSet.title }}</h3>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 col-md-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+				<h5>{{ itemSet.title }}</h5>
+			</div>
 		</div>
 	</div>
+	<div class="container">
 	{%- for item in itemSet.members -%}
 	{{ ksDemoItem(
 		item,
@@ -30,5 +33,6 @@
 		{%- endif -%} -->
 	{%- endif -%}
 	{%- endfor -%}
+	</div>
 	<hr class="demo-seperator-line">
 {%- endfor -%}

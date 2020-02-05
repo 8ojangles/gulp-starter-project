@@ -1,32 +1,19 @@
 $page-background-color: #700;
-
 $page-title-color: choose-contrast-color( hex( $page-background-color, 0.7 ) );
 $text-color-std: choose-contrast-color( hex( $page-background-color, 0.8 ) );
-
 $page-title-color: rgba( #ffffff, 0.6 );
 $text-color-std: rgba( #ffffff, 0.8 );;
 
-
-h1, h2, h3, h4, h5, h6, p, b, i, sup, sub, blockquote, li, a {
+h1, h2, h3, h4, h5, h6, p, b, i, sup, sub, small, blockquote, li, a {
 	color: $text-color-std;
 }
 
 @import "color-swatch";
 @import "ks-page-header";
-
+@import "ks-page-footer";
 
 body {
 	background-color: $page-background-color !important;
-}
-
-.page-header .section-title span {
-	// height: inherit;
- //    background: inherit;
- //    -webkit-background-clip: text;
-	// background-clip: text;
- //    // color: white;
- //    text-align: center;
- //    filter: grayscale(1) contrast(9);
 }
 
 // remember, svgs are all fill/stroke, not color/backgrounds
@@ -54,9 +41,7 @@ body {
 	justify-content: flex-end;
 
 	> div {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@include flex-centered-children;
 	}
 
 }
@@ -71,8 +56,7 @@ body {
 	width: 30px;
 	height: 30px;
 	background-color: #ddd;
-
-	@include flex-centered-children();
+	@include flex-centered-children;
 
 	span {
 		font-size: 1.5rem;
@@ -112,4 +96,24 @@ body {
 
 .transioner {
 	transition: all 0.3s ease;
+}
+
+hr {
+	position: relative;
+	width: $hr-gradient-width;
+	left: $hr-gradient-layout-offset-x;
+	opacity: 0.2;
+	@include shadow-radial-gradient();
+
+	&:after {
+		content: " ";
+		display: block;
+		position: absolute;
+		width: 70%;
+		height: 2px;
+		bottom: 10px;
+		left: 15%;
+		opacity: 0.6;
+		@include highlight-radial-gradient();
+	}
 }
