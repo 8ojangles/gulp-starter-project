@@ -1,23 +1,28 @@
+{%- set centeredLayoutClasses = "col-sm-10 col-md-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" -%}
+
 {%- macro ksDemoItem( item, layoutMinorColClass, layoutMajorColClass, offsetLayoutClass, srcCodePath, distCodePath ) -%}
-<div class="row ks-item">
-	<div class="{{ layoutMinorColClass }} ks-item-label-col">
-		<div>
+<div class="container">
+	<div class="row ks-item">
+		<div class="{{ centeredLayoutClasses }} ks-item-label-col">
 			<p class="ks-label label-typography">{{ item.label }}</p>
-			<button data-code-example="example-{{ item.name }}" class="js-show-code btn btn-show-code" title="show code example"><span class="open">?</span><span class="close">&times;</span></button>
+			<button data-code-example="example-{{ item.name }}" class="js-show-code btn btn-show-code" title="show code example">
+			</button>
 		</div>
 	</div>
-	<div class="{{ layoutMajorColClass }}">
-		<div class="typography-item">
-			{%- include srcCodePath+item.name+"."+item.lang -%}
-		</div>			
+
+	<div class="row ks-item-code">
+		<div class="{{ centeredLayoutClasses }}">
+			<div data-code-example="example-{{ item.name }}" class="js-ks-item-code ks-item-code">
+				<pre class="language-html line-numbers"><code>{% filter escape %}{%- include srcCodePath+item.name+"."+item.lang -%}{% endfilter %}</code></pre>
+			</div>
+		</div>
 	</div>
-</div>
-<div class="row ks-item-code">
-	<div class="{{ offsetLayoutClass }}">
-		<div data-code-example="example-{{ item.name }}" class="js-ks-item-code ks-item-code">
-			{# {% set thisItemExampleSrc = distCodePath+item.name+"."+item.lang %} #}
-			{# <pre data-src="{{ thisItemExampleSrc }}"></pre> #}
-			<pre class="language-html"><code>{% filter escape %}{%- include srcCodePath+item.name+"."+item.lang -%}{% endfilter %}</code></pre>
+	<hr class="item-split-line">
+	<div class="row">
+		<div class="{{ centeredLayoutClasses }}">
+			<div class="demo-item-example">
+				{%- include srcCodePath+item.name+"."+item.lang -%}
+			</div>			
 		</div>
 	</div>
 </div>

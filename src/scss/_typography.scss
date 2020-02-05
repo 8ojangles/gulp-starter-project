@@ -32,7 +32,6 @@ $modularscale: (
 .label-typography {
     width: 100%;
     align-self: center;
-    text-align: right;
 }
 
 .super  { font-size: ms( 8 ); font-weight: normal; }
@@ -69,10 +68,6 @@ ol li ol, ol li ol li ol {
 
 ol li ol li ol {
   list-style-type: upper-roman;
-}
-
-code {
-    background-color: #e0e0e0;
 }
 
 

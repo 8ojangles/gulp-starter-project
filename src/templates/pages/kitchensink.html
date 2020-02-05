@@ -1,6 +1,9 @@
+<!-- Page Layout template -->
 {% extends "layouts/pageLayouts/singleColumnLayout.html" %}
+<!-- Component includes -->
 {% from "./components/colorBlockGrid.html" import cardSwatch %}
 {% from "./components/ksDemoItem.html" import ksDemoItem %}
+<!-- Page content/data -->
 {% import  "./templateConfiguration/variables.html" as site %}
 
 {# {% set elList = [ site.headerItems, site.typeItems, site.addTypeItems ] %} #}
@@ -9,7 +12,7 @@
 <title>Everything is here</title>
 {% endblock %}
 
-{% block pageCSS %}
+{% block pageVendorCSS %}
 <link rel="stylesheet" href="css/ksVendor.css">
 {% endblock %}
 

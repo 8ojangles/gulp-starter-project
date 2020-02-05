@@ -1,0 +1,98 @@
+$code-border-size: 3px;
+$code-bg: #111;
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background: $code-bg;
+}
+
+pre[class*="language-"] {
+    padding-top: $large-spacing + 1rem;
+
+    & + .toolbar {
+        width: 100%;
+        padding: $code-border-size;
+        right: 0;
+        top: 0;
+        display: flex;
+        justify-content: flex-start;
+        opacity: initial;
+        span, button {
+            position: relative;
+            top: 0;
+            border-radius: 3px;
+            padding: 0.25rem 0.5rem;
+            background-color: $page-background-color;
+            box-shadow: initial;
+            margin-right: $code-border-size;
+            color: $text-color-std;
+            
+            &:hover {
+                color: $text-color-std;
+            }
+        }
+        span {
+            pointer-events: none;
+        }
+        button:hover {
+            cursor: pointer;
+            background-color: lighten( $page-background-color, 10% );
+            color: #ffffff;
+        }
+
+
+    }
+}
+
+pre[data-file]::before {
+  content: attr(data-file);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+code {
+    background-color: #e0e0e0;
+}
+.line-numbers .line-numbers-rows {
+    border-right: 1px solid #444;
+}   
+.line-numbers .line-numbers-rows > span:before {
+    color: #444;
+}
+
+.line-numbers .line-numbers-rows:hover > span:before {
+    color: #777;
+
+}
+
+.ks-item-code {
+    border-radius: 5px 10px 5px 10px;
+    pre {
+        border: none;
+        border-radius: 5px 10px 5px 10px;
+    }
+}
+
+
+.ks-item-code pre::-webkit-scrollbar {
+  width: 9px;
+}
+.ks-item-code pre {
+  scrollbar-width: thin;
+  scrollbar-color: lighten( $page-background-color, 5% );
+}
+.ks-item-code pre::-webkit-scrollbar-track {
+  background: $code-bg;
+}
+.ks-item-code pre::-webkit-scrollbar-thumb {
+  background-color: lighten( $page-background-color, 5% );
+  border-radius: 6px;
+  border: $code-border-size solid $code-bg;
+  transition: all 0.5s ease;
+}
+
+.ks-item-code pre:hover::-webkit-scrollbar-thumb {
+  background-color: lighten( $page-background-color, 10% );
+  transition: all 0.5s ease;
+}
