@@ -8,6 +8,10 @@
 @import 'colorMap';
 @import 'kitchensink';
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	background-color: transparent;
 }

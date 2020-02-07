@@ -1,0 +1,113 @@
+
+// .ks-nav {
+// 	position: fixed;
+// 	top: 8rem;
+// 	left: 8rem;
+// 	width: auto;
+
+// 	h6 {
+// 		font-weight: 500;
+// 	}
+
+// 	ul {
+// 		list-style-type: none;
+// 		border-right: 1px solid rgba( 255, 255, 255, 0.6 );
+
+// 		a {
+// 			cursor: pointer;
+// 		}
+// 	}
+// }
+
+$menuWidth: 14em;
+$menuPaddingLeft: 3em;
+
+.toc {
+	position: fixed;
+	left: $menuPaddingLeft;
+	top: 5rem;
+	padding: 1rem 0 0 1.5rem;
+	width: $menuWidth;
+	line-height: 2;
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	ul ul {
+		padding-left: 2em;
+	}
+
+	li a {
+		display: inline-block;
+		color: rgba( 255, 255, 255, 0.5 );
+		text-decoration: none;
+		padding-top: 0.25rem;
+		padding-bottom: 0.25rem;
+		// transition: all 0.3s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+		transition: all 0.15s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+
+		&:hover {
+			color: rgba( 255, 255, 255, 1 );
+		}
+	}
+
+
+	li.visible > a {
+		color: rgba( 255, 255, 255, 1 );
+	}
+}
+
+.toc-marker {
+	position: absolute;
+	top: 0;
+	left: -5px;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+
+	path {
+		stroke: #ffffff;
+		transition: all 0.3s ease;
+	}
+}
+
+// .contents {
+// 	padding: 1em;
+// 	max-width: 800px;
+// 	font-size: 1.2em;
+// 	font-family: 'Frank Ruhl Libre', sans-serif;
+
+// 	img {
+// 		max-width: 100%;
+// 	}
+
+// 	.code-block {
+// 		white-space: pre;
+// 		overflow: auto;
+// 		max-width: 100%;
+
+// 		code {
+// 			display: block;
+// 			background-color: #f9f9f9;
+// 			padding: 10px;
+// 		}
+// 	}
+
+// 	.code-inline {
+// 		background-color: #f9f9f9;
+// 		padding: 4px;
+// 	}
+
+// 	h2
+// 	h3 {
+// 		padding-top: 1em;
+// 	}
+
+
+// 	h2 {
+// 		margin-top: 1.2em;
+// 	}
+// }

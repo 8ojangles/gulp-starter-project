@@ -1,10 +1,24 @@
-<div class="section-nav flexed">
-	<nav>
+{% import "ksElementConfig.html" as ks %}
+{% set elementList = ks.elLists %}
+
+<div class="section-nav fixed-nav ks-nav flexed">
+	<nav class="toc">
 		<ul>
-			<li><a>Elements</a></li>
-			<li><a>Components</a></li>
-			<li><a>Palette</a></li>
+		{%- for itemSet in elementList.els -%}
+			<li>
+				<a href='#{{ itemSet.title | replace( " ", "" ) | replace( ".", "" ) }}'>{{ itemSet.title }}</a>
+				<ul>
+						{%- for item in itemSet.members -%}
+					<li><a href='#{{ item.label | replace( " ", "" ) | replace( ".", "" ) }}'>{{ item.label }}</a></li>
+						{%- endfor -%}
+				</ul>
+			</li>
+		{%- endfor -%}
 		</ul>
+		<svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+			<path stroke-width="3" fill="transparent" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.8, -0.5)" />
+		</svg>
 	</nav>
+	
 </div>
 

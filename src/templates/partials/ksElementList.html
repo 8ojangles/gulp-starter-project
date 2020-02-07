@@ -4,6 +4,7 @@
 {% set elementList = ks.elLists %}
 
 {% for itemSet in elementList.els %}
+	<div id='{{ itemSet.title | replace( " ", "" ) | replace( ".", "" ) }}' class="hidden"></div>
 	{%- if loop.index0 === 0 -%}
 		{%- set itemSet0 = true -%}
 	{%- else -%}

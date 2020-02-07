@@ -1,20 +1,24 @@
 {% extends "../../base/base.html" %}
 
+{% block layoutTemplateContent %}
+
 {% block pageHeader %}
 {% endblock %}
 {% block pageMainContent %}
 <div class="container">
 	<div class="row">
-		<div class="col-sm-12 col-md-4">
-			{% block pageSubContent %}
+		<div class="col-sm-12 col-md-3">
+			{% block subContent %}
 			{% endblock %}
 		</div>
-		<div class="col-sm-12 col-md-8">
-			{% block pageMainContent %}
+		<div class="col-sm-12 col-md-9">
+			{% block mainContent %}
 			{% endblock %}
 		</div>
 	</div>	
 </div>
 {% endblock %}
 {% block pageFooter %}
+{% endblock %}
+
 {% endblock %}

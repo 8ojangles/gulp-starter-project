@@ -57,6 +57,10 @@ code {
 }
 .line-numbers .line-numbers-rows {
     border-right: 1px solid #444;
+
+    span {
+        line-height: 1.6;
+    }
 }   
 .line-numbers .line-numbers-rows > span:before {
     color: #444;

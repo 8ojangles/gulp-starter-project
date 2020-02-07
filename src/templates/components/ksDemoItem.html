@@ -1,7 +1,7 @@
 {%- set centeredLayoutClasses = "col-sm-10 col-md-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" -%}
 
 {%- macro ksDemoItem( item, srcCodePath ) -%}
-<div class="container">
+<div class="container" id='{{ item.label | replace( " ", "" ) | replace( ".", "" ) }}'>
 	<div class="row ks-item">
 		<div class="{{ centeredLayoutClasses }} ks-item-label-col">
 			<p class="ks-label label-typography">{{ item.label }}</p>
