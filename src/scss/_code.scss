@@ -8,6 +8,7 @@ pre[class*="language-"] {
 
 pre[class*="language-"] {
     padding-top: $large-spacing + 1rem;
+    padding-bottom: $large-spacing;
 
     & + .toolbar {
         width: 100%;
@@ -67,10 +68,10 @@ code {
 }
 
 .ks-item-code {
-    border-radius: 5px 10px 5px 10px;
+    border-radius: 5px;
     pre {
         border: none;
-        border-radius: 5px 10px 5px 10px;
+        border-radius: 5px;
     }
 }
 

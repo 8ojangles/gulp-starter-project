@@ -1,30 +1,52 @@
+let detectTransitionEnd = require( './detectTransitionEndEventCompat.js'); 
+let transEndEvent = detectTransitionEnd();
+
 let thisVar = 200;
 function measureEls( arr ) {
 	arrLen = arr.length;
 	for( let i = arrLen - 1; i >= 0; i-- ) {
 		let currEl = $( arr[ i ] );
+		let currElContent = currEl.find( '[ data-reveal-content ]' );
 		let thisHeight = currEl.innerHeight();
-		console.log( i+": height: "+ thisHeight );
+
 		currEl
 			.attr( 'data-open-height', thisHeight )
-			.css( 'height', "0" )
-			.addClass( 'transioner' );
+			.css( {
+				'height':  thisHeight,
+			} )
+			.addClass( 'scaledY-zero transitioner' );
+		currElContent.addClass( 'scaledY-dble' );
 	}
 }
 
 $( document ).ready( ()=> {
 
-let $codeExamples = $( '.js-ks-item-code' );
-measureEls( $codeExamples );
+let $revealEls = $( '[ data-reveal-target ]' );
+measureEls( $revealEls );
 
-$( '.js-show-code' ).click( function( e ){
+$( '[ data-reveal-trigger ]' ).click( function( e ){
 	$this = $( this );
-	$linkedEl = $( '.js-ks-item-code[ data-code-example="'+$this.attr( 'data-code-example' )+'" ]' );
-	$linkedEl.hasClass( 'is-active' ) ?
-		( $linkedEl.css( 'height', 0 ).removeClass( 'is-active' ),
-		$this.removeClass( 'is-active' ) ) :
-		( $linkedEl.css( 'height', $linkedEl.attr( 'data-open-height' )+'px' ).addClass( 'is-active' ),
-			$this.addClass( 'is-active' ) );
+	$linkedEl = $( `[ data-reveal-target="${$this.attr( 'data-reveal-trigger' )}" ]` );
+	let openHeight = $linkedEl.attr( 'data-open-height' )+'px';
+	$linkedElContent = $linkedEl.find( '[ data-reveal-content ]' );
+
+	if ( $linkedEl.hasClass( 'is-active' ) ) {
+		$linkedEl.removeClass( 'is-active scaledY-init' ).addClass( 'scaledY-zero' );
+		$linkedElContent.removeClass( 'scaledY-init' ).addClass( 'scaledY-dble' );
+		$this.removeClass( 'is-active' );
+	} else {
+
+		// $linkedEl.removeClass( 'transitioner' );
+		$linkedEl
+			.removeClass( 'scaledY-zero' )
+			.addClass( 'is-active scaledY-init transitioner' );
+		$linkedElContent
+			.removeClass( 'scaledY-dble' )
+			.addClass( 'transitioner scaledY-init' );
+
+		$this.addClass( 'is-active' );
+	}
+ 
 } );
 
 });

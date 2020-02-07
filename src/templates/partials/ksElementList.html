@@ -19,17 +19,13 @@
 	{%- for item in itemSet.members -%}
 	{{ ksDemoItem(
 		item,
-		site.minorColumnClasses,
-		site.majorColumnClasses,
-		site.ksCodeLayoutClasses,
-		elementList.srcElListPath,
-		elementList.distElListPath
+		elementList.srcElListPath
 		)
 	}}
 	{%- if itemSet0 === false -%}
-		<!-- {%- if loop.last === false -%}
-	<hr class="demo-seperator-line">
-		{%- endif -%} -->
+		{%- if loop.last === false -%}
+	<hr class="item-split-line">
+		{%- endif -%}
 	{%- endif -%}
 	{%- endfor -%}
 	<hr class="item-split-line">

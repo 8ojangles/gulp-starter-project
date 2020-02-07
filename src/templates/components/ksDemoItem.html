@@ -1,23 +1,25 @@
 {%- set centeredLayoutClasses = "col-sm-10 col-md-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" -%}
 
-{%- macro ksDemoItem( item, layoutMinorColClass, layoutMajorColClass, offsetLayoutClass, srcCodePath, distCodePath ) -%}
+{%- macro ksDemoItem( item, srcCodePath ) -%}
 <div class="container">
 	<div class="row ks-item">
 		<div class="{{ centeredLayoutClasses }} ks-item-label-col">
 			<p class="ks-label label-typography">{{ item.label }}</p>
-			<button data-code-example="example-{{ item.name }}" class="js-show-code btn btn-show-code" title="show code example">
+			<button data-reveal-trigger="example-{{ item.name }}" class="js-reveal-trigger btn btn-show-code" title="show code example">
 			</button>
 		</div>
 	</div>
-
-	<div class="row ks-item-code">
+</div>
+<div class="container js-reveal-target reveal-target reveal-full-width" data-reveal-target="example-{{ item.name }}">
+	<div class="row ks-item-code" data-reveal-content>
 		<div class="{{ centeredLayoutClasses }}">
-			<div data-code-example="example-{{ item.name }}" class="js-ks-item-code ks-item-code">
+			<div class="ks-item-code">
 				<pre class="language-html line-numbers"><code>{% filter escape %}{%- include srcCodePath+item.name+"."+item.lang -%}{% endfilter %}</code></pre>
 			</div>
 		</div>
 	</div>
-	<hr class="item-split-line">
+</div>
+<div class="container">
 	<div class="row">
 		<div class="{{ centeredLayoutClasses }}">
 			<div class="demo-item-example">
