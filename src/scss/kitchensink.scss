@@ -18,6 +18,10 @@ body {
 	background-color: $page-background-color !important;
 }
 
+#canvas {
+	background-color: #000;
+}
+
 // remember, svgs are all fill/stroke, not color/backgrounds
 #svg-kitchensink-icon {
 	width: 5rem;
