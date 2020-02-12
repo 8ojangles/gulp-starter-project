@@ -78,10 +78,7 @@ function canvasLightning( c, cw, ch ){
             y: y,
             xRange: rndInt( lSegmentXBoundsL, lSegmentXBoundsH ),
             yRange: rndInt( lSegmentYBoundsL, lSegmentYBoundsH ),
-            path: [{
-                x: x,
-                y: y    
-            }],
+            path: [{ x: x, y: y }],
             pathLimit: rndInt( lSegmentCountL, lSegmentCountH ),
             canSpawn: canSpawn,
             hasFired: false
@@ -95,14 +92,15 @@ function canvasLightning( c, cw, ch ){
         var i = this.lightning.length;
         while( i-- ){
             let light = this.lightning[ i ];
-            let lPath = light.path;
-            let prevLPath = lPath[ lPath.length - 1 ];                      
+            let { path, xRange, yRange, pathLimit } = light;
+            let pathLen = path.length;
+            let prevLPath = path[ pathLen - 1 ];                      
             light.path.push({
-                x: prevLPath.x + ( rndInt( 0, light.xRange )-( light.xRange / 2 ) ),
-                y: prevLPath.y + ( rndInt( 0, light.yRange ) )
+                x: prevLPath.x + ( rndInt( 0, xRange )-( xRange / 2 ) ),
+                y: prevLPath.y + ( rndInt( 0, yRange ) )
             });
 
-            if( lPath.length > light.pathLimit ){
+            if( pathLen > pathLimit ){
                 this.lightning.splice( i, 1 )
             }
             light.hasFired = true;
@@ -113,27 +111,38 @@ function canvasLightning( c, cw, ch ){
     this.renderL = function(){
         let i = this.lightning.length;
         let c = this.ctx;
-        while( i-- ){
-            var light = this.lightning[ i ];
-            c.strokeStyle = 'hsla( 0, 100%, 100%, ' + rndInt( 10, 100 ) / 100 + ')';
-            
-            c.lineWidth = lWidthFn( 0, 150 );
-            c.beginPath();
 
+        while( i-- ){
+
+            let light = this.lightning[ i ];
             let pathCount = light.path.length;
+            let alpha;
+            if ( pathCount ===light.pathLimit ) {
+                c.lineWidth = 5;
+                alpha = 1;
+            } else {
+                c.lineWidth = rndInt( 1, 3 );
+                alpha = rndInt( 10, 50 ) / 100;
+            }
+
+            c.strokeStyle = `hsla( 0, 100%, 100%, ${alpha} )`;
+            // c.lineWidth = lWidthFn( 0, 150 );
+
+            c.beginPath();
             c.moveTo( light.x, light.y );
 
-            for( var pc = 0; pc < pathCount; pc++ ){    
-                let pSegment = light.path[ pc ];
-                c.lineTo( pSegment.x, pSegment.y );
+            for( let i = 0; i < pathCount; i++ ){    
+                let pSeg = light.path[ i ];
+                c.lineTo( pSeg.x, pSeg.y );
 
                 if( light.canSpawn ){
                     if( rndInt(0, 100 ) == 50 ){
                         light.canSpawn = false;
-                        this.createL( pSegment.x, pSegment.y, false );
+                        this.createL( pSeg.x, pSeg.y, true );
                     } 
                 }
             }
+            c.stroke();
 
             if( !light.hasFired ){
                 c.fillStyle = 'rgba( 255, 255, 255, ' + rndInt( 4, 12 ) / 100 + ')';
@@ -143,9 +152,8 @@ function canvasLightning( c, cw, ch ){
             if( rndInt( 0, 30 ) === 0 ){
                 c.fillStyle = 'rgba( 255, 255, 255, ' + rndInt( 1, 3 ) / 100 + ')';
                 c.fillRect( 0, 0, this.cw, this.ch );  
-            } 
+            }
 
-            c.stroke();
         };
     };
     
