@@ -230,3 +230,21 @@ $reveal-target-transition-duration: 0.3s;
 .transitioner {
 	transition: all $reveal-target-transition-duration ease;
 }
+
+.demo-item-example {
+	.grid-demo {
+		.row {
+			margin-bottom: 0.5rem;
+		}
+	}
+}
+
+.grid-demo-block {
+	width: 100%;
+	height: 50px;
+	background-color: rgba( 0, 0, 0, 0.6 );
+	color: #eee;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

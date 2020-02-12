@@ -14,7 +14,7 @@ let lightningSegmentRangeXHigh = 60;
 let lightningSegmentRangeYLow = 25;
 let lightningSegmentRangeYHigh = 55;
 
-var canvasLightning = function( c, cw, ch ){
+function canvasLightning( c, cw, ch ){
   
     this.init = function(){
         this.loop();
@@ -156,12 +156,17 @@ var canvasLightning = function( c, cw, ch ){
         this.ctx.globalCompositeOperation = 'source-over';
     };
     
+
+    this.resizeCanvasHandler = function() {
+        _this.cw = _this.c.width = _this.c.parentNode.clientWidth;
+    }
+
 // Resize on Canvas on Window Resize
     $(window).on( 'resize', function() {
-        _this.cw = _this.c.width;
-        _this.ch = _this.c.height;
+        console.log( 'resizing' );
+        _this.resizeCanvasHandler();
     });
-      
+    
 // Animation Loop
     this.loop = function(){
         var loopIt = function(){

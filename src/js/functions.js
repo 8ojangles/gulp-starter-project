@@ -63,11 +63,10 @@ window.onload = function() {
 	contentSVGHighlight();
 
 	if(isCanvasSupported){
-		var c = document.getElementById('canvas');
+		var c = document.getElementById( 'canvas' );
 		var cw = c.width = c.parentNode.clientWidth;
 		var ch = c.height = 300; 
 		var cl = new canvasLightning( c, cw, ch );
-		// setupRAF();
 		cl.init();
 	}
 
