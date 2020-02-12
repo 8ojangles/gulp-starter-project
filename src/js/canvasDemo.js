@@ -1,18 +1,51 @@
 // Canvas Lightning v1
+const mathUtils = require( './mathUtils.js' );
+let rndInt = mathUtils.randomInteger;
 
 // Lightning trigger range
 let lightningFrequencyLow = 30;
 let lightningFrequencyHigh = 100;
 
 // Lightning segment count
-let lightningSegmentsLow = 10;
-let lightningSegmentsHigh = 35;
+let lSegmentCountL = 10;
+let lSegmentCountH = 35;
 
 // Distance ranges between lightning path segments
-let lightningSegmentRangeXLow = 15;
-let lightningSegmentRangeXHigh = 60;
-let lightningSegmentRangeYLow = 25;
-let lightningSegmentRangeYHigh = 55;
+let lSegmentXBoundsL = 15;
+let lSegmentXBoundsH = 60;
+let lSegmentYBoundsL = 25;
+let lSegmentYBoundsH = 55;
+
+function lWidthFn( lowBounds, highBounds ) {
+    let rndInt = mathUtils.randomInteger( lowBounds, highBounds );
+
+    // range: 0 - 20 - 40 - 130 - 145 - 150
+    if ( rndInt > 130 ) {
+        // number is between 120 - 150;
+        if ( rndInt < 145 ) {
+            // number is between 120 - 140;
+            return 4;
+        } else {
+            // number is between 140 - 150;
+            return 5;
+        }
+    } else {
+        // number is between 0 - 120;
+        if ( rndInt < 40 ) {
+            // number is between 0 - 40;
+            if ( rndInt < 20 ) {
+                // number is between 0 - 20;
+                return 3;
+            } else {
+                // number is between 20 - 40;
+                return 2;
+            }
+        } else {
+            // number is between 40 - 120;
+            return 1;
+        }
+    }
+}
 
 function canvasLightning( c, cw, ch ){
   
@@ -33,42 +66,44 @@ function canvasLightning( c, cw, ch ){
     this.lightTimeTotal = 50;
   
     // Utilities        
-    this.rand = function( rMi, rMa ) {
-        return ~~( ( Math.random() * ( rMa - rMi + 1 ) ) + rMi );
-    };
     this.hitTest = function( x1, y1, w1, h1, x2, y2, w2, h2) {
         return !( x1 + w1 < x2 || x2 + w2 < x1 || y1 + h1 < y2 || y2 + h2 < y1 );
     };
     
 // Create Lightning
-    this.createL= function( x, y, canSpawn ){                   
-        this.lightning.push({
+    this.createL = function( x, y, canSpawn ){
+
+        let thisLightning = {
             x: x,
             y: y,
-            xRange: this.rand(lightningSegmentRangeXLow, lightningSegmentRangeXHigh),
-            yRange: this.rand(lightningSegmentRangeYLow, lightningSegmentRangeYHigh),
+            xRange: rndInt( lSegmentXBoundsL, lSegmentXBoundsH ),
+            yRange: rndInt( lSegmentYBoundsL, lSegmentYBoundsH ),
             path: [{
                 x: x,
                 y: y    
             }],
-            pathLimit: this.rand( lightningSegmentsLow, lightningSegmentsHigh ),
+            pathLimit: rndInt( lSegmentCountL, lSegmentCountH ),
             canSpawn: canSpawn,
             hasFired: false
-        });
+        }
+
+        this.lightning.push( thisLightning );
     };
     
 // Update Lightning
     this.updateL = function(){
         var i = this.lightning.length;
         while( i-- ){
-            var light = this.lightning[i];                        
+            let light = this.lightning[ i ];
+            let lPath = light.path;
+            let prevLPath = lPath[ lPath.length - 1 ];                      
             light.path.push({
-                x: light.path[light.path.length-1].x + (this.rand(0, light.xRange)-(light.xRange/2)),
-                y: light.path[light.path.length-1].y + (this.rand(0, light.yRange))
+                x: prevLPath.x + ( rndInt( 0, light.xRange )-( light.xRange / 2 ) ),
+                y: prevLPath.y + ( rndInt( 0, light.yRange ) )
             });
 
-            if( light.path.length > light.pathLimit ){
-                this.lightning.splice(i, 1)
+            if( lPath.length > light.pathLimit ){
+                this.lightning.splice( i, 1 )
             }
             light.hasFired = true;
         };
@@ -76,57 +111,41 @@ function canvasLightning( c, cw, ch ){
     
 // Render Lightning
     this.renderL = function(){
-        var i = this.lightning.length;
+        let i = this.lightning.length;
+        let c = this.ctx;
         while( i-- ){
             var light = this.lightning[ i ];
-            this.ctx.strokeStyle = 'hsla( 0, 100%, 100%, ' + this.rand( 10, 100 ) / 100 + ')';
-            this.ctx.lineWidth = 1;
+            c.strokeStyle = 'hsla( 0, 100%, 100%, ' + rndInt( 10, 100 ) / 100 + ')';
+            
+            c.lineWidth = lWidthFn( 0, 150 );
+            c.beginPath();
 
-            if( this.rand( 0, 30 ) === 0 ){
-                this.ctx.lineWidth = 2; 
-            }
-            if( this.rand( 0, 60 ) === 0 ){
-                this.ctx.lineWidth = 3; 
-            }
-            if( this.rand( 0, 90 ) === 0 ){
-                this.ctx.lineWidth = 4; 
-            }
-            if( this.rand( 0, 120 ) === 0 ){
-                this.ctx.lineWidth = 5; 
-            }
-            if( this.rand( 0, 150 ) === 0 ){
-                this.ctx.lineWidth = 6; 
-            } 
-
-            this.ctx.beginPath();
-
-            var pathCount = light.path.length;
-            this.ctx.moveTo( light.x, light.y );
+            let pathCount = light.path.length;
+            c.moveTo( light.x, light.y );
 
             for( var pc = 0; pc < pathCount; pc++ ){    
-
-                this.ctx.lineTo( light.path[ pc ].x, light.path[ pc ].y );
-
+                let pSegment = light.path[ pc ];
+                c.lineTo( pSegment.x, pSegment.y );
 
                 if( light.canSpawn ){
-                  if( this.rand(0, 100 ) == 0 ){
-                    light.canSpawn = false;
-                    this.createL( light.path[ pc ].x, light.path[ pc ].y, false );
-                  } 
+                    if( rndInt(0, 100 ) == 50 ){
+                        light.canSpawn = false;
+                        this.createL( pSegment.x, pSegment.y, false );
+                    } 
                 }
             }
 
             if( !light.hasFired ){
-                this.ctx.fillStyle = 'rgba( 255, 255, 255, ' + this.rand( 4, 12 ) / 100 + ')';
-                this.ctx.fillRect( 0, 0, this.cw, this.ch );  
+                c.fillStyle = 'rgba( 255, 255, 255, ' + rndInt( 4, 12 ) / 100 + ')';
+                c.fillRect( 0, 0, this.cw, this.ch );  
             }
 
-            if( this.rand( 0, 30 ) === 0 ){
-                this.ctx.fillStyle = 'rgba( 255, 255, 255, ' + this.rand( 1, 3 ) / 100 + ')';
-                this.ctx.fillRect( 0, 0, this.cw, this.ch );  
+            if( rndInt( 0, 30 ) === 0 ){
+                c.fillStyle = 'rgba( 255, 255, 255, ' + rndInt( 1, 3 ) / 100 + ')';
+                c.fillRect( 0, 0, this.cw, this.ch );  
             } 
 
-            this.ctx.stroke();
+            c.stroke();
         };
     };
     
@@ -135,23 +154,22 @@ function canvasLightning( c, cw, ch ){
         this.lightTimeCurrent++;
         if( this.lightTimeCurrent >= this.lightTimeTotal ){
 
-            var newX = this.rand( 50, cw - 50 );
-            var newY = this.rand( -30, -25 ); 
-            var createCount = this.rand( 1, 3 );
+            var newX = rndInt( 50, cw - 50 );
+            var newY = rndInt( -30, -25 ); 
+            var createCount = rndInt( 1, 3 );
             
             while( createCount-- ){                         
                 this.createL( newX, newY, true );
             }
             
             this.lightTimeCurrent = 0;
-            this.lightTimeTotal = this.rand( lightningFrequencyLow, lightningFrequencyHigh );
+            this.lightTimeTotal = rndInt( lightningFrequencyLow, lightningFrequencyHigh );
         }
     }
  
-// Clear Canvas
     this.clearCanvas = function(){
         this.ctx.globalCompositeOperation = 'destination-out';
-        this.ctx.fillStyle = 'rgba( 0,0,0,' + this.rand( 1, 30 ) / 100 + ')';
+        this.ctx.fillStyle = 'rgba( 0,0,0,' + rndInt( 1, 30 ) / 100 + ')';
         this.ctx.fillRect( 0, 0, this.cw, this.ch );
         this.ctx.globalCompositeOperation = 'source-over';
     };
@@ -163,7 +181,6 @@ function canvasLightning( c, cw, ch ){
 
 // Resize on Canvas on Window Resize
     $(window).on( 'resize', function() {
-        console.log( 'resizing' );
         _this.resizeCanvasHandler();
     });
     
@@ -181,47 +198,5 @@ function canvasLightning( c, cw, ch ){
   
 };
 
-
-
-// Setup requestAnimationFrame
-// var setupRAF = function(){
-//     var lastTime = 0;
-//     var vendors = ['ms', 'moz', 'webkit', 'o'];
-//     for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x){
-//         window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-//         window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-//     };
-
-//     if(!window.requestAnimationFrame){
-//         window.requestAnimationFrame = function(callback, element){
-//             var currTime = new Date().getTime();
-//             var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-//             var id = window.setTimeout(function() { callback(currTime + timeToCall); }, timeToCall);
-//             lastTime = currTime + timeToCall;
-//             return id;
-//         };
-//     };
-
-//     if (!window.cancelAnimationFrame){
-//         window.cancelAnimationFrame = function(id){
-//             clearTimeout(id);
-//         };
-//     };
-// };          
-
-/*=============================================================================*/   
-/* Define Canvas and Initialize
-/*=============================================================================*/
-// $(window).load(function(){  
-//   if(isCanvasSupported){
-//     var c = document.getElementById('canvas');
-//     var cw = c.width = window.innerWidth;
-//     var ch = c.height = window.innerHeight; 
-//     var cl = new canvasLightning( c, cw, ch );                
-    
-//     // setupRAF();
-//     cl.init();
-//   }
-// });
 
 module.exports.canvasLightning = canvasLightning;

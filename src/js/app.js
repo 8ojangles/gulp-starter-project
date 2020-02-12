@@ -2,7 +2,7 @@
 const fN = require( './functions.js' ).fN;
 
 
-$( document ).ready( function(){
-	$( 'body main' ).append( '<p>Hello World</p>' );
+// $( document ).ready( function(){
+// 	$( 'body main' ).append( '<p>Hello World</p>' );
 
-} );
+// } );
