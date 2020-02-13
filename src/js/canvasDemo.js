@@ -1,10 +1,13 @@
 // Canvas Lightning v1
 const mathUtils = require( './mathUtils.js' );
+const easing = require( './easing.js' ).easingEquations;
+let easeFn = easing.easeInCirc;
+
 let rndInt = mathUtils.randomInteger;
 
 // Lightning trigger range
-let lightningFrequencyLow = 30;
-let lightningFrequencyHigh = 100;
+let lightningFrequencyLow = 50;
+let lightningFrequencyHigh = 150;
 
 // Lightning segment count
 let lSegmentCountL = 10;
@@ -17,8 +20,8 @@ let lSegmentYBoundsL = 25;
 let lSegmentYBoundsH = 55;
 
 function lWidthFn( lowBounds, highBounds ) {
+    
     let rndInt = mathUtils.randomInteger( lowBounds, highBounds );
-
     // range: 0 - 20 - 40 - 130 - 145 - 150
     if ( rndInt > 130 ) {
         // number is between 120 - 150;
@@ -71,7 +74,7 @@ function canvasLightning( c, cw, ch ){
     };
     
 // Create Lightning
-    this.createL = function( x, y, canSpawn ){
+    this.createL = function( x, y, canSpawn, isChild ){
 
         let thisLightning = {
             x: x,
@@ -81,7 +84,9 @@ function canvasLightning( c, cw, ch ){
             path: [{ x: x, y: y }],
             pathLimit: rndInt( lSegmentCountL, lSegmentCountH ),
             canSpawn: canSpawn,
-            hasFired: false
+            isChild: isChild,
+            hasFired: false,
+            alpha: 0
         }
 
         this.lightning.push( thisLightning );
@@ -117,28 +122,58 @@ function canvasLightning( c, cw, ch ){
             let light = this.lightning[ i ];
             let pathCount = light.path.length;
             let alpha;
-            if ( pathCount ===light.pathLimit ) {
-                c.lineWidth = 5;
-                alpha = 1;
+
+            if ( light.isChild === false ) {
+                if ( pathCount === light.pathLimit ) {
+
+                    let maxLineWidth = 150;
+                    let iterations = 30;
+                    let maxAlpha = 0.05;
+                    c.lineCap = "round";
+
+                    for( let i = 0; i < iterations; i++ ){
+                        c.lineWidth = easeFn( i, maxLineWidth, -maxLineWidth, iterations );
+                        c.strokeStyle = `hsla( 0, 100%, 100%, ${ easeFn( i, 0, maxAlpha, iterations ) } )`;
+
+                        c.beginPath();
+                        c.moveTo( light.x, light.y );
+                        for( let j = 0; j < pathCount; j++ ){    
+                            let pSeg = light.path[ j ];
+                            c.lineTo( pSeg.x, pSeg.y );
+                        }
+                        c.stroke();
+
+                    }
+
+                }
+            }
+
+            if ( light.isChild === false ) {
+                if ( pathCount === light.pathLimit ) {
+                    c.lineWidth = 5;
+                    alpha = 1;
+                } else {
+                    c.lineWidth = rndInt( 1, 3 );
+                    alpha = rndInt( 10, 50 ) / 100;
+                }
             } else {
-                c.lineWidth = rndInt( 1, 3 );
+                c.lineWidth = 1;
                 alpha = rndInt( 10, 50 ) / 100;
             }
 
             c.strokeStyle = `hsla( 0, 100%, 100%, ${alpha} )`;
-            // c.lineWidth = lWidthFn( 0, 150 );
+
 
             c.beginPath();
             c.moveTo( light.x, light.y );
-
             for( let i = 0; i < pathCount; i++ ){    
                 let pSeg = light.path[ i ];
                 c.lineTo( pSeg.x, pSeg.y );
 
                 if( light.canSpawn ){
-                    if( rndInt(0, 100 ) == 50 ){
+                    if( rndInt(0, 100 ) < 1 ){
                         light.canSpawn = false;
-                        this.createL( pSeg.x, pSeg.y, true );
+                        this.createL( pSeg.x, pSeg.y, true, true );
                     } 
                 }
             }
@@ -162,12 +197,12 @@ function canvasLightning( c, cw, ch ){
         this.lightTimeCurrent++;
         if( this.lightTimeCurrent >= this.lightTimeTotal ){
 
-            var newX = rndInt( 50, cw - 50 );
-            var newY = rndInt( -30, -25 ); 
-            var createCount = rndInt( 1, 3 );
+            let newX = rndInt( 50, cw - 50 );
+            let newY = rndInt( -30, -25 ); 
+            let createCount = rndInt( 1, 2 );
             
             while( createCount-- ){                         
-                this.createL( newX, newY, true );
+                this.createL( newX, newY, true, false );
             }
             
             this.lightTimeCurrent = 0;
@@ -176,10 +211,11 @@ function canvasLightning( c, cw, ch ){
     }
  
     this.clearCanvas = function(){
-        this.ctx.globalCompositeOperation = 'destination-out';
-        this.ctx.fillStyle = 'rgba( 0,0,0,' + rndInt( 1, 30 ) / 100 + ')';
-        this.ctx.fillRect( 0, 0, this.cw, this.ch );
-        this.ctx.globalCompositeOperation = 'source-over';
+        let c = this.ctx;
+        c.globalCompositeOperation = 'destination-out';
+        c.fillStyle = 'rgba( 0,0,0,' + rndInt( 1, 30 ) / 100 + ')';
+        c.fillRect( 0, 0, this.cw, this.ch );
+        c.globalCompositeOperation = 'source-over';
     };
     
 
