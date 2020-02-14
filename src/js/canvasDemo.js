@@ -1,13 +1,13 @@
 // Canvas Lightning v1
 const mathUtils = require( './mathUtils.js' );
 const easing = require( './easing.js' ).easingEquations;
-let easeFn = easing.easeInCirc;
-
+// let easeFn = easing.easeInCirc;
+let easeFn = easing.linearEase;
 let rndInt = mathUtils.randomInteger;
 
 // Lightning trigger range
-let lightningFrequencyLow = 50;
-let lightningFrequencyHigh = 150;
+let lightningFrequencyLow = 100;
+let lightningFrequencyHigh = 250;
 
 // Lightning segment count
 let lSegmentCountL = 10;
@@ -19,36 +19,7 @@ let lSegmentXBoundsH = 60;
 let lSegmentYBoundsL = 25;
 let lSegmentYBoundsH = 55;
 
-function lWidthFn( lowBounds, highBounds ) {
-    
-    let rndInt = mathUtils.randomInteger( lowBounds, highBounds );
-    // range: 0 - 20 - 40 - 130 - 145 - 150
-    if ( rndInt > 130 ) {
-        // number is between 120 - 150;
-        if ( rndInt < 145 ) {
-            // number is between 120 - 140;
-            return 4;
-        } else {
-            // number is between 140 - 150;
-            return 5;
-        }
-    } else {
-        // number is between 0 - 120;
-        if ( rndInt < 40 ) {
-            // number is between 0 - 40;
-            if ( rndInt < 20 ) {
-                // number is between 0 - 20;
-                return 3;
-            } else {
-                // number is between 20 - 40;
-                return 2;
-            }
-        } else {
-            // number is between 40 - 120;
-            return 1;
-        }
-    }
-}
+
 
 function canvasLightning( c, cw, ch ){
   
@@ -104,7 +75,7 @@ function canvasLightning( c, cw, ch ){
                 x: prevLPath.x + ( rndInt( 0, xRange )-( xRange / 2 ) ),
                 y: prevLPath.y + ( rndInt( 0, yRange ) )
             });
-
+            
             if( pathLen > pathLimit ){
                 this.lightning.splice( i, 1 )
             }
@@ -116,44 +87,56 @@ function canvasLightning( c, cw, ch ){
     this.renderL = function(){
         let i = this.lightning.length;
         let c = this.ctx;
-
+        let glowColor = 'white';
+        let glowBlur = 30;
+        let shadowRenderOffset = 10000;
         while( i-- ){
 
             let light = this.lightning[ i ];
             let pathCount = light.path.length;
             let alpha;
 
-            if ( light.isChild === false ) {
-                if ( pathCount === light.pathLimit ) {
+            let childLightFires = rndInt( 0, 100 ) < 30 ? true : false;
 
-                    let maxLineWidth = 150;
-                    let iterations = 30;
-                    let maxAlpha = 0.05;
+            if ( light.isChild === false || childLightFires ) {
+                if ( pathCount === light.pathLimit ) {
+                    
+                    c.fillStyle = 'rgba( 255, 255, 255, ' + rndInt( 20, 50 ) / 100 + ')';
+                    c.fillRect( 0, 0, this.cw, this.ch );
+
+                    let maxLineWidth = 100;
+                    let iterations = rndInt( 10, 50 );
                     c.lineCap = "round";
 
                     for( let i = 0; i < iterations; i++ ){
-                        c.lineWidth = easeFn( i, maxLineWidth, -maxLineWidth, iterations );
-                        c.strokeStyle = `hsla( 0, 100%, 100%, ${ easeFn( i, 0, maxAlpha, iterations ) } )`;
 
+                        let colorChange = easeFn( i, 150, 105, iterations );
+                        c.globalCompositeOperation = 'lighter';
+                        c.strokeStyle = 'white';
+                        c.shadowBlur = easeFn( i, maxLineWidth, -maxLineWidth, iterations );
+                        c.shadowColor = `rgba( ${ colorChange }, ${ colorChange }, 255, 1 )`;
+                        c.shadowOffsetY = shadowRenderOffset;
                         c.beginPath();
-                        c.moveTo( light.x, light.y );
-                        for( let j = 0; j < pathCount; j++ ){    
-                            let pSeg = light.path[ j ];
-                            c.lineTo( pSeg.x, pSeg.y );
+                        c.moveTo( light.x, light.y - shadowRenderOffset );
+                        for( let j = 0; j < pathCount; j++ ){  
+                            let p = light.path[ j ];
+                            c.lineTo( p.x, p.y - shadowRenderOffset );
                         }
                         c.stroke();
-
+                        
                     }
-
+                    c.shadowOffsetY = 0;
                 }
             }
 
-            if ( light.isChild === false ) {
+            if ( light.isChild === false || childLightFires ) {
                 if ( pathCount === light.pathLimit ) {
                     c.lineWidth = 5;
                     alpha = 1;
+                    c.shadowColor = 'rgba( 100, 100, 255, 1 )';
+                    c.shadowBlur = glowBlur;
                 } else {
-                    c.lineWidth = rndInt( 1, 3 );
+                    c.lineWidth = 0.5;
                     alpha = rndInt( 10, 50 ) / 100;
                 }
             } else {
@@ -178,16 +161,7 @@ function canvasLightning( c, cw, ch ){
                 }
             }
             c.stroke();
-
-            if( !light.hasFired ){
-                c.fillStyle = 'rgba( 255, 255, 255, ' + rndInt( 4, 12 ) / 100 + ')';
-                c.fillRect( 0, 0, this.cw, this.ch );  
-            }
-
-            if( rndInt( 0, 30 ) === 0 ){
-                c.fillStyle = 'rgba( 255, 255, 255, ' + rndInt( 1, 3 ) / 100 + ')';
-                c.fillRect( 0, 0, this.cw, this.ch );  
-            }
+            c.shadowBlur = 0;
 
         };
     };
@@ -212,8 +186,9 @@ function canvasLightning( c, cw, ch ){
  
     this.clearCanvas = function(){
         let c = this.ctx;
-        c.globalCompositeOperation = 'destination-out';
+        // c.globalCompositeOperation = 'destination-out';
         c.fillStyle = 'rgba( 0,0,0,' + rndInt( 1, 30 ) / 100 + ')';
+        // c.fillStyle = 'rgba( 0,0,0,0.1)';
         c.fillRect( 0, 0, this.cw, this.ch );
         c.globalCompositeOperation = 'source-over';
     };

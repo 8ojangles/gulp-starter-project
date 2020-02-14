@@ -4,7 +4,7 @@ let contentSVGHighlight = require( './contentSVGHighlight.js' ).contentSVGHighli
 let detectTransitionEnd = require( './detectTransitionEndEventCompat.js'); 
 let transEndEvent = detectTransitionEnd();
 
-let thisVar = 200;
+
 function measureEls( arr ) {
 	arrLen = arr.length;
 	for( let i = arrLen - 1; i >= 0; i-- ) {
@@ -65,7 +65,7 @@ window.onload = function() {
 	if(isCanvasSupported){
 		var c = document.getElementById( 'canvas' );
 		var cw = c.width = c.parentNode.clientWidth;
-		var ch = c.height = 300; 
+		var ch = c.height = 500; 
 		var cl = new canvasLightning( c, cw, ch );
 		cl.init();
 	}
