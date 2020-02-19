@@ -60,14 +60,20 @@ var isCanvasSupported = function(){
 };
 
 window.onload = function() {
-	contentSVGHighlight();
+	if ( $( '.toc' ).length > 0 ) {
+		contentSVGHighlight();
+	}
+	
 
 	if(isCanvasSupported){
-		var c = document.getElementById( 'canvas' );
-		var cw = c.width = c.parentNode.clientWidth;
-		var ch = c.height = 500; 
-		var cl = new canvasLightning( c, cw, ch );
-		cl.init();
+		if ( $( '#canvas').length > 0 ) {
+			var c = document.getElementById( 'canvas' );
+			var cw = c.width = c.parentNode.clientWidth;
+			var ch = c.height = 500; 
+			var cl = new canvasLightning( c, cw, ch );
+			cl.init();
+		}
+		
 	}
 
 };

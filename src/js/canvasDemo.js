@@ -66,7 +66,7 @@ function canvasLightning( c, cw, ch ){
 // Update Lightning
     this.updateL = function(){
         var i = this.lightning.length;
-        while( i-- ){
+        while ( i-- ){
             let light = this.lightning[ i ];
             let { path, xRange, yRange, pathLimit } = light;
             let pathLen = path.length;
@@ -76,7 +76,7 @@ function canvasLightning( c, cw, ch ){
                 y: prevLPath.y + ( rndInt( 0, yRange ) )
             });
             
-            if( pathLen > pathLimit ){
+            if ( pathLen > pathLimit ){
                 this.lightning.splice( i, 1 )
             }
             light.hasFired = true;
@@ -90,13 +90,12 @@ function canvasLightning( c, cw, ch ){
         let glowColor = 'white';
         let glowBlur = 30;
         let shadowRenderOffset = 10000;
+        
         while( i-- ){
-
             let light = this.lightning[ i ];
             let pathCount = light.path.length;
-            let alpha;
-
             let childLightFires = rndInt( 0, 100 ) < 30 ? true : false;
+            let alpha;
 
             if ( light.isChild === false || childLightFires ) {
                 if ( pathCount === light.pathLimit ) {

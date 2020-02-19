@@ -11,6 +11,7 @@ const dirGulp = dirs.gulp;
 // Tasks
 const clean = require( `${ dirGulp }/cleanDirs` );
 const compileJs = require( `${ dirGulp }/compileJs` );
+const compileTestJs = require( `${ dirGulp }/compileJs` ).compileTestJs;
 const compileHtml = require( `${ dirGulp }/compileHtml` );
 const moveHtml = require( `${ dirGulp }/moveHtml` );
 const vendorJs = require( `${ dirGulp }/vendorJs` );
@@ -47,7 +48,7 @@ function watchFiles() {
     gulp.watch( dirs.src.ks.codeExamples, gulp.series( compileHtml, moveCodeExamples, reload ) );
     gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
     gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
-    gulp.watch( dirs.src.js, gulp.series( compileJs, reload ) );
+    gulp.watch( dirs.src.js, gulp.series( compileJs, compileTestJs, reload ) );
     gulp.watch( dirs.src.templates, gulp.series( compileHtml, moveHtml, reload ) );
     gulp.watch( dirs.src.data, gulp.series( compileHtml, moveHtml, reload ) );
 }
@@ -81,6 +82,7 @@ const build = gulp.series(
         ksVendor,
         moveCodeExamples,
         vendorJs,
+        compileTestJs,
         compileJs,
         gulp.series( compileHtml, moveHtml ),
         moveFonts,
