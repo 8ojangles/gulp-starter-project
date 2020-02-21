@@ -1,6 +1,6 @@
-let canvasLightning = require( './canvasDemo.js' ).canvasLightning;
+let checkCanvasSupport = require( './checkCanvasSupport.js' );
+let cLightning = require( './canvasDemo.js' ).startLightningAnimation;
 let contentSVGHighlight = require( './contentSVGHighlight.js' ).contentSVGHighlight; 
-
 let detectTransitionEnd = require( './detectTransitionEndEventCompat.js'); 
 let transEndEvent = detectTransitionEnd();
 
@@ -52,43 +52,14 @@ $( '[ data-reveal-trigger ]' ).click( function( e ){
 
 });
 
-
-// check canvas support
-var isCanvasSupported = function(){
-    var elem = document.createElement('canvas');
-    return !!(elem.getContext && elem.getContext('2d'));
-};
-
 window.onload = function() {
+
 	if ( $( '.toc' ).length > 0 ) {
 		contentSVGHighlight();
 	}
 	
-
-	if(isCanvasSupported){
-		if ( $( '#canvas').length > 0 ) {
-			var c = document.getElementById( 'canvas' );
-			var cw = c.width = c.parentNode.clientWidth;
-			var ch = c.height = 500; 
-			var cl = new canvasLightning( c, cw, ch );
-			cl.init();
-		}
-		
+	if( checkCanvasSupport() ){
+		cLightning( '#canvas', document.querySelector( '#canvas' ).parentElement );	
 	}
 
 };
-
-
-
-
-// window.onload = function() { 
-//   if(isCanvasSupported){
-//     var c = document.getElementById('canvas');
-//     var cw = c.width;
-//     var ch = c.height; 
-//     var cl = new canvasLightning( c, cw, ch );                
-    
-//     // setupRAF();
-//     cl.init();
-//   }
-// };

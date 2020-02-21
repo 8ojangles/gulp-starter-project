@@ -1,10 +1,12 @@
 // Canvas Lightning v1
 const mathUtils = require( './mathUtils.js' );
 const easing = require( './easing.js' ).easingEquations;
+let matchDimentions = require( './matchDimentions.js' );
+
 // let easeFn = easing.easeInCirc;
 let easeFn = easing.linearEase;
 let rndInt = mathUtils.randomInteger;
-
+let rnd = mathUtils.random;
 // Lightning trigger range
 let lightningFrequencyLow = 100;
 let lightningFrequencyHigh = 250;
@@ -21,17 +23,17 @@ let lSegmentYBoundsH = 55;
 
 
 
-function canvasLightning( c, cw, ch ){
+function canvasLightning( canvas ){
   
     this.init = function(){
         this.loop();
     };    
   
     var _this = this;
-    this.c = c;
-    this.ctx = c.getContext( '2d' );
-    this.cw = cw;
-    this.ch = ch;
+    this.c = canvas;
+    this.ctx = canvas.getContext( '2d' );
+    this.cw = canvas.width;
+    this.ch = canvas.height;
     this.mx = 0;
     this.my = 0;
 
@@ -90,7 +92,7 @@ function canvasLightning( c, cw, ch ){
         let glowColor = 'white';
         let glowBlur = 30;
         let shadowRenderOffset = 10000;
-        
+
         while( i-- ){
             let light = this.lightning[ i ];
             let pathCount = light.path.length;
@@ -170,7 +172,7 @@ function canvasLightning( c, cw, ch ){
         this.lightTimeCurrent++;
         if( this.lightTimeCurrent >= this.lightTimeTotal ){
 
-            let newX = rndInt( 50, cw - 50 );
+            let newX = rndInt( 50, this.cw - 50 );
             let newY = rndInt( -30, -25 ); 
             let createCount = rndInt( 1, 2 );
             
@@ -216,5 +218,19 @@ function canvasLightning( c, cw, ch ){
   
 };
 
+function startLightningAnimation( canvasDomSelector, parent ) {
+    let thisParent = parent || window;
+    let thisCanvas = document.querySelector( canvasDomSelector );
+    console.log( 'thisCanvas:, ', thisCanvas );
+    console.log( 'thisParent:, ', thisParent );
+    if ( thisCanvas ) {
+        matchDimentions( thisCanvas, thisParent );
+        var cl = new canvasLightning( thisCanvas );
+        cl.init();
+    } else {
+        console.warn( 'No element matching selector: '+canvasDomSelector+' found!' );
+    }
+}
 
 module.exports.canvasLightning = canvasLightning;
+module.exports.startLightningAnimation = startLightningAnimation;

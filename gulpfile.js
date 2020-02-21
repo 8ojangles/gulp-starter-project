@@ -48,7 +48,7 @@ function watchFiles() {
     gulp.watch( dirs.src.ks.codeExamples, gulp.series( compileHtml, moveCodeExamples, reload ) );
     gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
     gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
-    gulp.watch( dirs.src.js, gulp.series( compileJs, compileTestJs, reload ) );
+    gulp.watch( dirs.src.js, gulp.series( compileJs, compileTestJs, createDocs, reload ) );
     gulp.watch( dirs.src.templates, gulp.series( compileHtml, moveHtml, reload ) );
     gulp.watch( dirs.src.data, gulp.series( compileHtml, moveHtml, reload ) );
 }

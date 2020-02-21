@@ -155,7 +155,7 @@ function loop() {
         }
     }
     
-    // 原点からの距離でソート
+    // Sort by distance from origin
     controls.sort(sortPoints);
     
     baseLine.update(controls);
@@ -243,8 +243,8 @@ function randomRange(min, max) {
     /**
      * NoiseLine
      * 
-     * @param segmentsNum 制御点間の分割数
-     * @param noiseOptions ノイズのオプション
+     * @param segmentsNum Number of divisions between control points
+     * @param noiseOptions Noise options
      */
     function NoiseLine(segmentsNum, noiseOptions) {
         this.segmentsNum = segmentsNum;
@@ -285,7 +285,8 @@ function randomRange(min, max) {
         update: function(controls) {
             var i, len;
             
-            // 振り幅の係数として使用するため制御点を全て直線で結んだ距離を取得する
+            // Obtain the distance connecting all the control points with
+            // a straight line to use as the coefficient of the swing width
             var lineLength = 0;
             for (i = 0, len = controls.length; i < len; i++) {
                 if (i === len - 1) break;
@@ -293,7 +294,7 @@ function randomRange(min, max) {
             }
             this.lineLength = lineLength;
             
-            // スプライン曲線を生成してノイズを適用
+            // Generate spline curves and apply noise
             this.noise(spline(controls, this.segmentsNum), lineLength);
             
             // *** Debug
@@ -304,7 +305,7 @@ function randomRange(min, max) {
             }
             // *********
             
-            // 最短距離を取得
+            // 
             this.points = shortest(this.points);
             
             // *** Debug
@@ -399,7 +400,9 @@ function randomRange(min, max) {
             var parent = this.parent;
             var plen = parent.points.length;
 
-            // 一定時間ごと, あるいは親のポイントの数が子の終了ステップ位置を下回った場合に始点と終点の親からの取得位置を更新する
+            // Or, if the number of parent points is less than the end step
+            // position of the child, update the acquisition position of the
+            // start point and end point from the parent
             var currentTime = new Date().getTime();
             if (
                 currentTime - this._lastChangeTime > 10000 * random()
@@ -411,12 +414,12 @@ function randomRange(min, max) {
                 this._lastChangeTime = currentTime;
             }
 
-            // 親のポイント配列から取得範囲を切り出す
+            // Extract acquisition range from parent point array
             var range = parent.points.slice(this.startStep, this.endStep);
             var rangeLen = range.length;
             
-            // 範囲からスプライン曲線の制御点を取得する
-            var sep = 2; // 分割数
+            // Get control points of spline curve from range
+            var sep = 2; // Number of divisions
             var seg = (rangeLen - 1) / sep;
             var controls = [];
             var i, j;
@@ -438,7 +441,7 @@ function randomRange(min, max) {
             }
             // *********
             
-            // スプライン曲線を生成
+            // Generate spline curves
             var base = spline(controls, Math.floor(rangeLen / 3));
             
             // *** Debug
@@ -455,19 +458,20 @@ function randomRange(min, max) {
             }
             // *********
             
-            // ノイズを適用
+            // Apply noise
             this.noise(base, controls[0].distance(controls[2]));
-            // 最短距離を取得
+            // Get the shortest distance
             this.points = shortest(this.points);
         }
     });
     
     function spline(controls, segmentsNum) {
-        // スプライン補完用に配列の前後にラインの始点, 終点の参照をそれぞれ複製する
+        //  Duplicate line start and end references before and after
+        // the array for spline completion
         controls.unshift(controls[0]);
         controls.push(controls[controls.length - 1]);
 
-        // スプライン曲線のポイントを取得
+        // Get points of spline curve
         var points = [];
         var p0, p1, p2, p3, t;
         var j;
@@ -487,9 +491,9 @@ function randomRange(min, max) {
             }
         }
 
-        // 補完用に追加した参照を削除
+        // Remove references added for completion
         controls.pop();
-        // 削除のついでに描画の始点として追加
+        // Add as starting point of drawing after deletion
         points.unshift(controls.shift());
         
         return points;
@@ -675,7 +679,7 @@ window.onload = function() {
 };
 
 
-// メインスクリプトここまで
+// End of main script
 
 //-----------------------------------------
 // DEBUG
