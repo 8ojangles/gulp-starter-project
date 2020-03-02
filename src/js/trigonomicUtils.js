@@ -1,20 +1,18 @@
-var _trigonomicUtils;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+import './typeDefs';
 
 /**
 * cached values
 */
 
-var piByHalf = Math.Pi / 180;
-var halfByPi = 180 / Math.PI;
+const piByHalf = Math.Pi / 180;
+const halfByPi = 180 / Math.PI;
 
 /**
-* provides trigonmic util methods.
+* provides trigonomic utility methods and helpers.
 *
-* @mixin
+* @module
 */
-var trigonomicUtils = (_trigonomicUtils = {
+let trigonomicUtils = {
 
 	angle: function(originX, originY, targetX, targetY) {
         var dx = originX - targetX;
@@ -37,38 +35,34 @@ var trigonomicUtils = (_trigonomicUtils = {
 	},
 
 	/**
- * @description convert degrees to radians.
- * @param {number} degrees - the degree value to convert.
- * @returns {number} result.
- */
+	* @description convert degrees to radians.
+	* @param {number} degrees - the degree value to convert.
+	* @returns {number} result.
+	*/
 	degreesToRadians: function degreesToRadians(degrees) {
 		return degrees * piByHalf;
 	},
 
 	/**
- * @description convert radians to degrees.
- * @param {number} radians - the degree value to convert.
- * @returns {number} result.
- */
+	* @description convert radians to degrees.
+	* @param {number} radians - the degree value to convert.
+	* @returns {number} result.
+	*/
 	radiansToDegrees: function radiansToDegrees(radians) {
 		return radians * halfByPi;
 	},
 
-	/*
- return useful Trigonomic values from position of 2 objects in x/y space
- where x1/y1 is the current poistion and x2/y2 is the target position
- */
 	/**
- * @description calculate trigomomic values between 2 vector coordinates.
- * @param {number} x1 - X coordinate of vector 1.
- * @param {number} y1 - Y coordinate of vector 1.
- * @param {number} x2 - X coordinate of vector 2.
- * @param {number} y2 - Y coordinate of vector 2.
- * @typedef {Object} Calculation
- * @property {number} distance The distance between vectors
- * @property {number} angle The angle between vectors
- * @returns { Calculation } the calculated angle and distance between vectors
- */
+ 	* @description calculate trigomomic values between 2 vector coordinates.
+	* @param {number} x1 - X coordinate of vector 1.
+	* @param {number} y1 - Y coordinate of vector 1.
+	* @param {number} x2 - X coordinate of vector 2.
+	* @param {number} y2 - Y coordinate of vector 2.
+	* @typedef {Object} Calculation
+	* @property {number} distance The distance between vectors
+	* @property {number} angle The angle between vectors
+	* @returns { Calculation } the calculated angle and distance between vectors
+	*/
 	getAngleAndDistance: function getAngleAndDistance(x1, y1, x2, y2) {
 
 		// set up base values
@@ -87,33 +81,70 @@ var trigonomicUtils = (_trigonomicUtils = {
 	},
 
 	/**
- * @description get new X coordinate from angle and distance.
- * @param {number} radians - the angle to transform in radians.
- * @param {number} distance - the distance to transform.
- * @returns {number} result.
- */
-	getAdjacentLength: function getAdjacentLength(radians, distance) {
-		return Math.cos(radians) * distance;
-	}
+	* @description get length of the Adjacent side of a right-angled triangle.
+	* @param {number} radians - the angle or the triangle.
+	* @param {number} hypotonuse - the length of the hypotenuse.
+	* @returns {number} result - the length of the Adjacent side.
+	*/
+	getAdjacentLength: function getAdjacentLength(radians, hypotonuse) {
+		return Math.cos(radians) * hypotonuse;
+	},
 
-}, _defineProperty(_trigonomicUtils, "getAdjacentLength", function getAdjacentLength(radians, distance) {
-	return Math.sin(radians) * distance;
-}), _defineProperty(_trigonomicUtils, "findNewPoint", function findNewPoint(x, y, angle, distance) {
-	return {
-		x: Math.cos(angle) * distance + x,
-		y: Math.sin(angle) * distance + y
-	};
-}), _defineProperty(_trigonomicUtils, "calculateVelocities", function calculateVelocities(x, y, angle, impulse) {
-	var a2 = Math.atan2(Math.sin(angle) * impulse + y - y, Math.cos(angle) * impulse + x - x);
-	return {
-		xVel: Math.cos(a2) * impulse,
-		yVel: Math.sin(a2) * impulse
-	};
-}), _defineProperty(_trigonomicUtils, "radialDistribution", function radialDistribution(cx, cy, r, a) {
-	return {
-		x: cx + r * Math.cos(a),
-		y: cy + r * Math.sin(a)
-	};
-}), _trigonomicUtils);
+	/**
+	* @description get length of the Opposite side of a right-angled triangle.
+	* @param {number} radians - the angle or the triangle.
+	* @param {number} hypotonuse - the length of the hypotenuse.
+	* @returns {number} result - the length of the Opposite side.
+	*/
+	getOppositeLength: function(radians, hypotonuse) {
+		return Math.sin(radians) * hypotonuse;
+	},
+
+	/**
+	* @description given an origin (x/y), angle and impulse (absulte velocity) calculate relative x/y velocities.
+	* @param {number} x - the coordinate X value of the origin.
+	* @param {number} y - the coordinate Y value of the origin.
+	* @param {number} angle - the angle in radians.
+	* @param {number} impulse - the delta change value.
+	* @returns {VelocityVector} result - relative delta change velocity for X/Y.
+	*/
+	calculateVelocities: function(x, y, angle, impulse) {
+		var a2 = Math.atan2(Math.sin(angle) * impulse + y - y, Math.cos(angle) * impulse + x - x);
+		return {
+			xVel: Math.cos(a2) * impulse,
+			yVel: Math.sin(a2) * impulse
+		}
+	},
+
+	/**
+	* @description Returns a new Point vector (x/y) at the given distance (r) from the origin at the angle (a) .
+	* @param {number} x - the coordinate X value of the origin.
+	* @param {number} y - the coordinate Y value of the origin.
+	* @param {number} r - the absolutedelta change value.
+	* @param {number} a - the angle in radians.
+	* @returns {Point} - the coordinates of the new point.
+	*/
+	radialDistribution: function(x, y, r, a) {
+		return {
+			x: x + r * Math.cos(a),
+			y: y + r * Math.sin(a)
+		}
+	},
+
+	/**
+	* @description Returns a new Point vector (x/y) at the given distance (r) from the origin at the angle (a) .
+	* @param {number} x - the coordinate X value of the origin.
+	* @param {number} y - the coordinate Y value of the origin.
+	* @param {number} angle - the angle in radians.
+	* @param {number} distance - the absolute delta change value.
+	* @returns {Point} - the coordinates of the new point.
+	*/
+	findNewPoint: function(x, y, angle, distance) {
+		return {
+			x: Math.cos(angle) * distance + x,
+			y: Math.sin(angle) * distance + y
+		}
+	}
+};
 
 module.exports.trigonomicUtils = trigonomicUtils;

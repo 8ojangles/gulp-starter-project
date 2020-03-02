@@ -1,8 +1,3 @@
-/**
- * @typedef {Object} Dimensions
- * @property {number} w - width
- * @property {number} h - height
- */
 
 /**
 * Measures the target DOM element dimensions. Dom elements require node.clientWidth/Height.

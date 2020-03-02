@@ -1,7 +1,7 @@
 /**
-* provides maths util methods.
+* provides maths utilility methods and helpers.
 *
-* @mixin
+* @module mathUtils
 */
 
 var mathUtils = {
@@ -12,7 +12,7 @@ var mathUtils = {
  * @returns {number} result.
  */
 	randomInteger: function randomInteger(min, max) {
-		return Math.floor(Math.random() * (max + 1 - min)) + min;
+		return Math.floor(Math.random() * (max + 1 - min) ) + min;
 	},
 
 	/**

@@ -1,7 +1,7 @@
-$page-background-color: #600;
-$page-title-color: choose-contrast-color( hex( $page-background-color, 0.7 ) );
-$text-color-std: choose-contrast-color( hex( $page-background-color, 0.8 ) );
-$page-title-color: rgba( #ffffff, 0.6 );
+$page-background-color: #003;
+$page-title-color: choose-contrast-color( hex( $page-background-color, 0.9 ) );
+$text-color-std: choose-contrast-color( hex( $page-background-color, 0.9 ) );
+$page-title-color: rgba( #ffffff, 0.8 );
 $text-color-std: rgba( #ffffff, 0.8 );;
 
 h1, h2, h3, h4, h5, h6, p, b, i, sup, sub, small, blockquote, li, a, dt, dd {

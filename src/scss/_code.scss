@@ -1,5 +1,5 @@
 $code-border-size: 3px;
-$code-bg: #111;
+$code-bg: darken( $page-background-color, 10% );
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
