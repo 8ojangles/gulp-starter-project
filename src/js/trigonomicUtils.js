@@ -1,15 +1,13 @@
-import './typeDefs';
+require('./typeDefs');
 
 /**
 * cached values
 */
-
 const piByHalf = Math.Pi / 180;
 const halfByPi = 180 / Math.PI;
 
 /**
 * provides trigonomic utility methods and helpers.
-*
 * @module
 */
 let trigonomicUtils = {
@@ -39,7 +37,7 @@ let trigonomicUtils = {
 	* @param {number} degrees - the degree value to convert.
 	* @returns {number} result.
 	*/
-	degreesToRadians: function degreesToRadians(degrees) {
+	degreesToRadians: function(degrees) {
 		return degrees * piByHalf;
 	},
 
@@ -48,7 +46,7 @@ let trigonomicUtils = {
 	* @param {number} radians - the degree value to convert.
 	* @returns {number} result.
 	*/
-	radiansToDegrees: function radiansToDegrees(radians) {
+	radiansToDegrees: function(radians) {
 		return radians * halfByPi;
 	},
 

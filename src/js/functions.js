@@ -27,22 +27,16 @@ measureEls( $revealEls );
 $( '[ data-reveal-trigger ]' ).click( function( e ){
 	$this = $( this );
 	$linkedEl = $( `[ data-reveal-target="${$this.attr( 'data-reveal-trigger' )}" ]` );
-	let thisHeight = $linkedEl.attr( 'data-open-height' )+'px';
+	let thisHeight = `${$linkedEl.attr( 'data-open-height' )}px`;
 
 	if ( $linkedEl.hasClass( 'is-active' ) ) {
 		$linkedEl
-			.css( {
-				'height':  0,
-			} )
+			.css( { 'height':  0 } )
 			.removeClass( 'is-active' );
 		$this.removeClass( 'is-active' );
 	} else {
-
-		// $linkedEl.removeClass( 'transitioner' );
 		$linkedEl
-			.css( {
-				'height':  thisHeight,
-			} )
+			.css( { 'height':  thisHeight } )
 			.addClass( 'is-active' );
 
 		$this.addClass( 'is-active' );
@@ -59,7 +53,9 @@ window.onload = function() {
 	}
 	
 	if( checkCanvasSupport() ){
-		cLightning( '#canvas', document.querySelector( '#canvas' ).parentElement );	
+		if ( $( '#canvas' ).length > 0 ) {
+			cLightning( '#canvas', document.querySelector( '#canvas' ).parentElement );	
+		}
 	}
 
 };

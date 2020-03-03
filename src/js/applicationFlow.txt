@@ -1,0 +1,45 @@
+// - initialise lightning fN
+// - - set base variables
+// - - - set lightning base config
+// - - - - set lightning timer range
+// - - - set lightning instance config
+// - - - - set segment count (per path) range
+// - start runtime loop
+
+// - runtime loop
+// - - clear screen
+// - - lighning array render
+// - - - instance render
+// - - lighning array update
+// - - - instance update
+
+// on trigger
+// - create lightning instance
+// - - initialise firing variables
+// - - set total firing time
+// - - create lightning path
+
+// - create path
+// - set origin vector
+// - set target vector
+// - set number of path segments (rand)
+// - - set path fork points (rand)
+// - - create fork path(s) array
+
+// on loop
+// - check live lightning array
+// - render live lightning linked background flash
+// - - render live lightning
+// - - - run lightning render animation
+// - - update lightning render variables
+// - reset fired/complete lightning instances
+
+// render loop
+// - live lightning
+// - - loop through path array
+// - - - render next set of path segments
+// - - - if segment render complete
+// - - - - render firing sequence
+// - - - - render attached background flash
+// - - - if firing animation rendered
+// - - - - render decay sequence

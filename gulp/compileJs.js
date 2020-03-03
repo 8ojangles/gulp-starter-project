@@ -6,11 +6,14 @@ const plumbError = require( '../gulp/errorReporting' ).plumbError;
 const notify = require('gulp-notify');
 const dirs = require( '../gulp/dirs' );
 
+// helper task
+// converst es6 imports to commonJs
+
+
 // browserify js
 
 function compileJs(){
 	return (
-
 		browserify({
     		entries: dirs.src.jsBundleEntry,
     		debug: true
@@ -34,7 +37,6 @@ module.exports = compileJs;
 
 function compileTestJs(){
 	return (
-
 		browserify({
     		entries: `${dirs.srcDir}/js/lightningTest.js`,
     		debug: true

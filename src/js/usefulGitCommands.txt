@@ -1,0 +1,9 @@
+// useful GIT commands
+
+// clear local repo/branch and replace with remote
+git fetch <origin/upstream>
+git reset --hard <origin/upstream>/<branch_name>
+git clean -f -d
+
+// as one liner
+git fetch <origin/upstream> && git reset --hard <origin/upstream>/<branch_name> && git clean -f -d
