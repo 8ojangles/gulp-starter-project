@@ -44,7 +44,8 @@
 
 /**
 * Provides easing calculation methods.
-* @module easingEquations
+* @name easingEquations
+*
 * @see {@link "http://robertpenner.com/easing/"}
 * @see {@link https://easings.net/en|Easing cheat sheet}
 */
@@ -52,7 +53,7 @@ var easingEquations = {
 	/**
 	 * @function
 	 * @description Interface for easing functions.
-	 * @memberof module:easingEquations
+	 * @memberof easingEquations
 	 * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
 	 * @param {number} startValue - The starting value
 	 * @param {number} changeInValue - The change value relative to the start value.
@@ -65,7 +66,7 @@ var easingEquations = {
 	/**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -78,7 +79,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -91,7 +92,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -107,7 +108,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -121,7 +122,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -134,7 +135,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -150,7 +151,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -163,7 +164,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -176,7 +177,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -192,7 +193,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -205,7 +206,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -218,7 +219,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -234,7 +235,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -247,7 +248,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -260,7 +261,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -273,7 +274,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -286,7 +287,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -299,7 +300,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -315,7 +316,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -328,7 +329,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -341,7 +342,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -357,7 +358,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -375,7 +376,7 @@ var easingEquations = {
 	/**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -393,7 +394,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -412,7 +413,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -426,7 +427,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -446,7 +447,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -470,7 +471,7 @@ var easingEquations = {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.
@@ -484,7 +485,7 @@ easingEquations.easeInBounce = function (t, b, c, d) {
 /**
  * @function
  * @description Interface for easing functions.
- * @memberof module:easingEquations
+ * @memberof easingEquations
  * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
  * @param {number} startValue - The starting value
  * @param {number} changeInValue - The change value relative to the start value.

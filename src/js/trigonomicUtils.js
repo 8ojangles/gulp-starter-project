@@ -21,6 +21,7 @@ let trigonomicUtils = {
 
 	/**
  * @description calculate distance between 2 vector coordinates.
+ * @memberof trigonomicUtils
  * @param {number} x1 - X coordinate of vector 1.
  * @param {number} y1 - Y coordinate of vector 1.
  * @param {number} x2 - X coordinate of vector 2.
@@ -34,6 +35,7 @@ let trigonomicUtils = {
 
 	/**
 	* @description convert degrees to radians.
+	* @memberof trigonomicUtils
 	* @param {number} degrees - the degree value to convert.
 	* @returns {number} result.
 	*/
@@ -43,6 +45,7 @@ let trigonomicUtils = {
 
 	/**
 	* @description convert radians to degrees.
+	* @memberof trigonomicUtils
 	* @param {number} radians - the degree value to convert.
 	* @returns {number} result.
 	*/
@@ -52,6 +55,7 @@ let trigonomicUtils = {
 
 	/**
  	* @description calculate trigomomic values between 2 vector coordinates.
+ 	* @memberof trigonomicUtils
 	* @param {number} x1 - X coordinate of vector 1.
 	* @param {number} y1 - Y coordinate of vector 1.
 	* @param {number} x2 - X coordinate of vector 2.
@@ -80,6 +84,7 @@ let trigonomicUtils = {
 
 	/**
 	* @description get length of the Adjacent side of a right-angled triangle.
+	* @memberof trigonomicUtils
 	* @param {number} radians - the angle or the triangle.
 	* @param {number} hypotonuse - the length of the hypotenuse.
 	* @returns {number} result - the length of the Adjacent side.
@@ -90,6 +95,7 @@ let trigonomicUtils = {
 
 	/**
 	* @description get length of the Opposite side of a right-angled triangle.
+	* @memberof trigonomicUtils
 	* @param {number} radians - the angle or the triangle.
 	* @param {number} hypotonuse - the length of the hypotenuse.
 	* @returns {number} result - the length of the Opposite side.
@@ -100,6 +106,7 @@ let trigonomicUtils = {
 
 	/**
 	* @description given an origin (x/y), angle and impulse (absulte velocity) calculate relative x/y velocities.
+	* @memberof trigonomicUtils
 	* @param {number} x - the coordinate X value of the origin.
 	* @param {number} y - the coordinate Y value of the origin.
 	* @param {number} angle - the angle in radians.
@@ -116,6 +123,7 @@ let trigonomicUtils = {
 
 	/**
 	* @description Returns a new Point vector (x/y) at the given distance (r) from the origin at the angle (a) .
+	* @memberof trigonomicUtils
 	* @param {number} x - the coordinate X value of the origin.
 	* @param {number} y - the coordinate Y value of the origin.
 	* @param {number} r - the absolutedelta change value.
@@ -131,6 +139,7 @@ let trigonomicUtils = {
 
 	/**
 	* @description Returns a new Point vector (x/y) at the given distance (r) from the origin at the angle (a) .
+	* @memberof trigonomicUtils
 	* @param {number} x - the coordinate X value of the origin.
 	* @param {number} y - the coordinate Y value of the origin.
 	* @param {number} angle - the angle in radians.
@@ -146,6 +155,7 @@ let trigonomicUtils = {
 
 	/**
 	* @description Returns a new Point vector (x/y) at the given distance (distance) along a path defined by x1/y1, x2/y2.
+	* @memberof trigonomicUtils
 	* @param {number} x1 - the coordinate X value of the path start.
 	* @param {number} y1 - the coordinate Y value of the path start.
 	* @param {number} x2 - the coordinate X value of the path end.

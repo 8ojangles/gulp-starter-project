@@ -4,6 +4,8 @@ require( './canvasApiAugmentation.js');
 let checkCanvasSupport = require( './checkCanvasSupport.js' );
 let easing = require( './easing.js' ).easingEquations;
 
+let easeFn = easing.easeOutSine;
+
 let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
 // aliases
 let findNewP = trig.findNewPoint;
@@ -14,7 +16,7 @@ let calcA = trig.angle;
 let mathUtils = require( './mathUtils.js' );
 // aliases
 let rnd = mathUtils.random;
-let rndint = mathUtils.randonInteger;
+let rndInt = mathUtils.randomInteger;
 
 // hpusekeeping
 let canvas = document.querySelector( '#lightningDrawingTest' );
@@ -26,9 +28,9 @@ let counter = 0;
 
 // test Vector path
 let testVec = {
-	startX: cW / 2,
+	startX: cW / 3,
 	startY: 50,
-	endX: cW / 2,
+	endX: cW / 1.2,
 	endY: cH - 50
 }
 
@@ -65,25 +67,13 @@ segArrNormals.push(
 	)
 );
 
-function subdivide( x1, y1, x2, y2, dVar, tVar ) {
-	let d = trig.dist( x1, y1, x2, y2 );
-	let t = trig.angle( x1, y1, x2, y2 );
-	let dx = x2 - x1;
-	let dy = y2 - y1;
-	let n1 = { x: -dy, y: dx };
-	let n2 = { x: dy, y: -dx };
-	let plotMidP = findNewP( x1, y1, t, d / 2 );
-	let tmp = findNewP(
-		plotMidP.x, plotMidP.y,
-		t,
-		rnd( -dVar, dVar ) 
-	);
-	return { x: tmp.x, y: tmp.y };
+function subdivide( x1, y1, x2, y2, bias ) {
+	return pointOnPath( x1, y1, x2, y2, bias );
 }
 
 function plotPoints( arr, subdivisions ) {
-	let dRange = 50;
-	let tRange = 0.1;
+	let dRange = 200;
+	let tRange = 0.5;
 	for ( let i = 0; i <= subdivisions - 1; i++ ) {
 		let arrLen = arr.length;
 		for ( let j = arrLen - 1; j > 0; j-- ) {
@@ -92,55 +82,72 @@ function plotPoints( arr, subdivisions ) {
 				return;
 			}
 			let p = arr[ j ];
-			console.log( 'p: ', p );
 			let prevP = arr[ j - 1 ];
-			console.log( 'prevP: ', prevP );
-			let newPoint = subdivide( p.x, p.y, prevP.x, prevP.y, dRange, tRange );
-			arr.splice( j, 0, { x: newPoint.x, y: newPoint.y } );
+			let newPoint = subdivide( p.x, p.y, prevP.x, prevP.y, tRange );
+			let rndRadians = rnd( -2, 2 ) * 180/Math.PI;
+
+
+			let newPointOffset = trig.radialDistribution( newPoint.x, newPoint.y, rnd( -dRange , dRange), rndRadians )
+			arr.splice( j, 0, { x: newPointOffset.x, y: newPointOffset.y } );
 		}
 
 		dRange = dRange * 0.5;
-		tRange = tRange * 0.8;
+		// tRange = tRange * 0.8;
 	}
 }
 
-plotPoints( segArr, 1 );
+plotPoints( segArr, 5 );
+
+let iterations = rndInt( 10, 50 );
 
 function drawPointArr(){
 
-	c.strokeStyle = 'grey';
-	c.beginPath();
-	for ( let i = 0; i <= segArr.length - 1; i++ ) {
-		let p = segArr[ i ];
-		if ( i === 0 ) {
-			c.moveTo( p.x, p.y );
-			continue;
-		}
-		c.lineTo( p.x, p.y );
-	}
-	c.stroke();
+	c.globalCompositeOperation = 'lighter';
+	let shadowOffset = -10000;
+	let blurWidth = 100;
+	let maxLineWidth = 200;
 
+	for ( let j = 0; j <= iterations; j++ ) {
+		let colorChange = easeFn( j, 150, 105, iterations );
 
-	c.fillStyle = 'white';
-	c.fillCircle( testVec.startX, testVec.startY, 7 );
-	c.fillCircle( testVec.endX, testVec.endY, 7 );
-	c.fillStyle = 'blue';
-	for ( let i = 0; i <= segArr.length - 1; i++ ) {
-		if ( i === segArr.length / 2 - 1 ) {
-			c.fillStyle = 'green';
-		}
-		c.fillCircle( segArr[ i ].x, segArr[ i ].y, 5 );
-		if ( i === segArr.length / 2 - 1 ) {
-			c.fillStyle = 'blue';
-		}
-	}
+		c.strokeStyle = 'white';
 
-	for ( let i = 0; i <= segArrNormals.length - 1; i++ ) {
-		let thisN = segArrNormals[ i ];
-		c.fillStyle = 'red';
-		c.fillCircle(thisN.n1.x, thisN.n1.y, 5 );
-		c.fillCircle(thisN.n2.x, thisN.n2.y, 5 );
+		if ( j === 0 ) {
+			c.lineWidth = 1;
+			blurWidth = 0;
+		} else {
+			blurWidth = 10 * j;
+		}
+		c.beginPath();
+		for ( let i = 0; i <= segArr.length - 1; i++ ) {
+			let p = segArr[ i ];
+			if ( i === 0 ) {
+				c.moveTo( p.x, p.y + ( j === 0 ? 0 : shadowOffset ) );
+				continue;
+			}
+			c.lineTo( p.x, p.y + ( j === 0 ? 0 : shadowOffset ) );
+		}
+		c.shadowOffsetY = -shadowOffset;
+		c.shadowBlur = easeFn( j, maxLineWidth, -maxLineWidth, iterations );
+		c.shadowColor = `rgba( ${ colorChange }, ${ colorChange }, 255, 1 )`;
+		c.stroke();
+
 	}
+	c.globalCompositeOperation = 'source-over';
+
+	// c.fillStyle = 'white';
+	// c.fillCircle( testVec.startX, testVec.startY, 7 );
+	// c.fillCircle( testVec.endX, testVec.endY, 7 );
+	// c.fillStyle = 'blue';
+	// for ( let i = 0; i <= segArr.length - 1; i++ ) {
+	// 	if ( i === segArr.length / 2 - 1 ) {
+	// 		c.fillStyle = 'green';
+	// 	}
+	// 	c.fillCircle( segArr[ i ].x, segArr[ i ].y, 5 );
+	// 	if ( i === segArr.length / 2 - 1 ) {
+	// 		c.fillStyle = 'blue';
+	// 	}
+	// }
 }
 
 
