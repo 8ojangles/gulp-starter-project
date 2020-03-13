@@ -1,14 +1,19 @@
 // requestAnimationFrame() shim by Paul Irish
 window.requestAnimFrame = (function() {
-	return  window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame     || function(/* function */ callback, /* DOMElement */ element){
-			window.setTimeout(callback, 1000 / 60);
-		};
+	return  window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame ||
+			window.oRequestAnimationFrame ||
+			window.msRequestAnimationFramec ||
+			function( callback, element ) {
+				window.setTimeout(callback, 1000 / 60);
+			};
 })();
 
 /**
  * Behaves the same as setTimeout except uses requestAnimationFrame() where possible for better performance
  * @param {function} fn The callback function
- * @param {int} delay The delay in milliseconds
+ * @param {number} delay The delay in milliseconds
  */
 
 window.requestTimeout = function(fn, delay) {

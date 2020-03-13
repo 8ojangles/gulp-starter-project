@@ -1,8 +1,8 @@
 
 /**
 * Measures the target DOM element dimensions. Dom elements require node.clientWidth/Height.
-* the global.window object rrequires node.innerWidth/Height
-* @param {HTMLElement} el - Dom node or element to measure.
+* the global.window object requires node.innerWidth/Height
+* @param {HTMLElement} el - DOM node or element to measure.
 * @returns {Dimensions} the dimensions of the element
 */
 

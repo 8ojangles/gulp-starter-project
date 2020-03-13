@@ -142,6 +142,22 @@ let trigonomicUtils = {
 			x: Math.cos(angle) * distance + x,
 			y: Math.sin(angle) * distance + y
 		}
+	},
+
+	/**
+	* @description Returns a new Point vector (x/y) at the given distance (distance) along a path defined by x1/y1, x2/y2.
+	* @param {number} x1 - the coordinate X value of the path start.
+	* @param {number} y1 - the coordinate Y value of the path start.
+	* @param {number} x2 - the coordinate X value of the path end.
+	* @param {number} y2 - the coordinate Y value of the path end.
+	* @param {number} distance - a number between 0 and 1 where 0 is the path start, 1 is the path end, and 0.5 is the path midpoint.
+	* @returns {Point} - the coordinates of the new point along the defined path
+	*/
+	getPointOnPath: function( x1, y1, x2, y2, distance ) {
+		return {
+			x: x1 + ( x2 - x1 ) * distance,
+			y: y1 + ( y2 - y1 ) * distance
+		}
 	}
 };
 

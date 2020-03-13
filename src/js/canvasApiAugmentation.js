@@ -46,9 +46,9 @@ canvasDrawingApi.strokeCircle = function (x, y, r) {
 * @augments canvasDrawingApi
 * @description API to draw ellipse.
 * @param {number} x - origin X of ellipse.
-* @param {number} y - ofigin Y or ellipse.
+* @param {number} y - origin Y of ellipse.
 * @param {number} w - width of ellipse.
-* @param {number} w - height of ellipse.
+* @param {number} h - height of ellipse.
 */
 canvasDrawingApi.ellipse = function (x, y, w, h) {
 	this.beginPath();
@@ -62,9 +62,9 @@ canvasDrawingApi.ellipse = function (x, y, w, h) {
 * @augments canvasDrawingApi
 * @description API to draw filled ellipse.
 * @param {number} x - origin X of ellipse.
-* @param {number} y - ofigin Y or ellipse.
+* @param {number} y - origin Y or ellipse.
 * @param {number} w - width of ellipse.
-* @param {number} w - height of ellipse.
+* @param {number} h - height of ellipse.
 */
 canvasDrawingApi.fillEllipse = function (x, y, w, h) {
 	this.ellipse(x, y, w, h, context);
@@ -76,9 +76,9 @@ canvasDrawingApi.fillEllipse = function (x, y, w, h) {
 * @augments canvasDrawingApi
 * @description API to draw stroked ellipse.
 * @param {number} x - origin X of ellipse.
-* @param {number} y - ofigin Y or ellipse.
+* @param {number} y - origin Y of ellipse.
 * @param {number} w - width of ellipse.
-* @param {number} w - height of ellipse.
+* @param {number} h - height of ellipse.
 */
 canvasDrawingApi.strokeEllipse = function (x, y, w, h) {
 	this.ellipse(x, y, w, h);

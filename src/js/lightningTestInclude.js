@@ -2,10 +2,12 @@ require( './rafPolyfill.js');
 require( './canvasApiAugmentation.js');
 
 let checkCanvasSupport = require( './checkCanvasSupport.js' );
+let easing = require( './easing.js' ).easingEquations;
 
 let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
 // aliases
 let findNewP = trig.findNewPoint;
+let pointOnPath = trig.getPointOnPath;
 let calcD = trig.dist;
 let calcA = trig.angle;
 
@@ -14,18 +16,15 @@ let mathUtils = require( './mathUtils.js' );
 let rnd = mathUtils.random;
 let rndint = mathUtils.randonInteger;
 
-let easing = require( './easing.js' ).easingEquations;
-
-
-let counter = 0;
-
+// hpusekeeping
 let canvas = document.querySelector( '#lightningDrawingTest' );
 let cW = canvas.width = window.innerWidth;
 let cH = canvas.height = window.innerHeight;
 let c = canvas.getContext('2d');
 c.lineCap = 'round';
+let counter = 0;
 
-
+// test Vector path
 let testVec = {
 	startX: cW / 2,
 	startY: 50,
@@ -41,24 +40,38 @@ function drawLine() {
 }
 
 let segArr = [];
+let segArrNormals = [];
 
-segArr.push( {
-	x: testVec.startX, y: testVec.startY
-} );
-
-segArr.push( {
-	x: testVec.endX, y: testVec.endY
-} );		
+segArr.push( { x: testVec.startX, y: testVec.startY } );
+segArr.push( { x: testVec.endX, y: testVec.endY } );		
 
 // calsulate normals
 // https://stackoverflow.com/questions/1243614/how-do-i-calculate-the-normal-vector-of-a-line-segment
 // if we define dx=x2-x1 and dy=y2-y1
 // then the normals are (-dy, dx) and (dy, -dx).
+function computeNormals( x1, y1, x2, y2 ) {
+	let dx = x2 - x1;
+	let dy = y2 - y1;
+	return {
+		n1: { x: -dy, y: dx },
+		n2: { x: dy, y: -dx },
+	}
+}
+
+segArrNormals.push(
+	computeNormals(
+		testVec.startX, testVec.startY,
+		testVec.endX, testVec.endY
+	)
+);
+
 function subdivide( x1, y1, x2, y2, dVar, tVar ) {
 	let d = trig.dist( x1, y1, x2, y2 );
 	let t = trig.angle( x1, y1, x2, y2 );
 	let dx = x2 - x1;
 	let dy = y2 - y1;
+	let n1 = { x: -dy, y: dx };
+	let n2 = { x: dy, y: -dx };
 	let plotMidP = findNewP( x1, y1, t, d / 2 );
 	let tmp = findNewP(
 		plotMidP.x, plotMidP.y,
@@ -69,7 +82,7 @@ function subdivide( x1, y1, x2, y2, dVar, tVar ) {
 }
 
 function plotPoints( arr, subdivisions ) {
-	let dRange = 400;
+	let dRange = 50;
 	let tRange = 0.1;
 	for ( let i = 0; i <= subdivisions - 1; i++ ) {
 		let arrLen = arr.length;
@@ -82,7 +95,7 @@ function plotPoints( arr, subdivisions ) {
 			console.log( 'p: ', p );
 			let prevP = arr[ j - 1 ];
 			console.log( 'prevP: ', prevP );
-			let newPoint = subdivide( p.x, p.y, prevP.x, prevP.y, dRange, tRange )
+			let newPoint = subdivide( p.x, p.y, prevP.x, prevP.y, dRange, tRange );
 			arr.splice( j, 0, { x: newPoint.x, y: newPoint.y } );
 		}
 
@@ -120,6 +133,13 @@ function drawPointArr(){
 		if ( i === segArr.length / 2 - 1 ) {
 			c.fillStyle = 'blue';
 		}
+	}
+
+	for ( let i = 0; i <= segArrNormals.length - 1; i++ ) {
+		let thisN = segArrNormals[ i ];
+		c.fillStyle = 'red';
+		c.fillCircle(thisN.n1.x, thisN.n1.y, 5 );
+		c.fillCircle(thisN.n2.x, thisN.n2.y, 5 );
 	}
 }
 

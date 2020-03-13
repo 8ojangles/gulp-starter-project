@@ -1,4 +1,10 @@
 /**
+ * jQuery object
+ * @external jQuery
+ * @see {@link http://api.jquery.com/jQuery/}
+ */
+
+/**
  * @typedef {Object} Dimensions
  * @property {number} w - width
  * @property {number} h - height
