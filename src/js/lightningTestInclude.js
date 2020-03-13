@@ -96,7 +96,7 @@ function plotPoints( arr, subdivisions ) {
 	}
 }
 
-plotPoints( segArr, 5 );
+plotPoints( segArr, 10 );
 
 let iterations = rndInt( 10, 50 );
 
