@@ -1,5 +1,6 @@
 require( './rafPolyfill.js');
 require( './canvasApiAugmentation.js');
+require( './lightningUtilities.js');
 
 let checkCanvasSupport = require( './checkCanvasSupport.js' );
 let easing = require( './easing.js' ).easingEquations;
@@ -47,29 +48,16 @@ let segArrNormals = [];
 segArr.push( { x: testVec.startX, y: testVec.startY } );
 segArr.push( { x: testVec.endX, y: testVec.endY } );		
 
-// calsulate normals
-// https://stackoverflow.com/questions/1243614/how-do-i-calculate-the-normal-vector-of-a-line-segment
-// if we define dx=x2-x1 and dy=y2-y1
-// then the normals are (-dy, dx) and (dy, -dx).
-function computeNormals( x1, y1, x2, y2 ) {
-	let dx = x2 - x1;
-	let dy = y2 - y1;
-	return {
-		n1: { x: -dy, y: dx },
-		n2: { x: dy, y: -dx },
-	}
-}
-
 segArrNormals.push(
-	computeNormals(
+	trig.computeNormals(
 		testVec.startX, testVec.startY,
 		testVec.endX, testVec.endY
 	)
 );
 
-function subdivide( x1, y1, x2, y2, bias ) {
-	return pointOnPath( x1, y1, x2, y2, bias );
-}
+// function subdivide( x1, y1, x2, y2, bias ) {
+// 	return pointOnPath( x1, y1, x2, y2, bias );
+// }
 
 function plotPoints( arr, subdivisions ) {
 	let dRange = 200;
@@ -83,7 +71,7 @@ function plotPoints( arr, subdivisions ) {
 			}
 			let p = arr[ j ];
 			let prevP = arr[ j - 1 ];
-			let newPoint = subdivide( p.x, p.y, prevP.x, prevP.y, tRange );
+			let newPoint = trig.subdivide( p.x, p.y, prevP.x, prevP.y, tRange );
 			let rndRadians = rnd( -2, 2 ) * 180/Math.PI;
 
 

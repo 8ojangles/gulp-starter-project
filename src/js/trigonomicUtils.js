@@ -161,14 +161,47 @@ let trigonomicUtils = {
 	* @param {number} x2 - the coordinate X value of the path end.
 	* @param {number} y2 - the coordinate Y value of the path end.
 	* @param {number} distance - a number between 0 and 1 where 0 is the path start, 1 is the path end, and 0.5 is the path midpoint.
-	* @returns {Point} - the coordinates of the new point along the defined path
 	*/
 	getPointOnPath: function( x1, y1, x2, y2, distance ) {
 		return {
 			x: x1 + ( x2 - x1 ) * distance,
 			y: y1 + ( y2 - y1 ) * distance
 		}
+	},
+	/**
+	* @name computeNormals
+	* @description https://stackoverflow.com/questions/1243614/how-do-i-calculate-the-normal-vector-of-a-line-segment
+	* if we define dx=x2-x1 and dy=y2-y1
+	* @memberof trigonomicUtils
+	* @param {number} x1 - the coordinate X value of the path start.
+	* @param {number} y1 - the coordinate Y value of the path start.
+	* @param {number} x2 - the coordinate X value of the path end.
+	* @param {number} y2 - the coordinate Y value of the path end.
+	* @returns {object} - The 2 normal vectors from the defined path as points
+	*/
+	computeNormals: function( x1, y1, x2, y2 ) {
+		let dx = x2 - x1;
+		let dy = y2 - y1;
+		return {
+			n1: { x: -dy, y: dx },
+			n2: { x: dy, y: -dx },
+		}
+	},
+	/**
+	* @name subdivide
+	* @description subdivides a vector path (x1, y1, x2, y2) proportionate to the bias
+	* @memberof trigonomicUtils
+	* @param {number} x1 - the coordinate X value of the path start.
+	* @param {number} y1 - the coordinate Y value of the path start.
+	* @param {number} x2 - the coordinate X value of the path end.
+	* @param {number} y2 - the coordinate Y value of the path end.
+	* @param {number} bias - offset of the subdivision between the sbdivision: i.e. 0 - the start vector, 0.5 - midpoint between the 2 vectors, 1 - the end vector.
+	* @returns {point} - The coordinates of the subdivision point
+	*/
+	subdivide: function( x1, y1, x2, y2, bias ) {
+		return this.getPointOnPath( x1, y1, x2, y2, bias );
 	}
+
 };
 
 module.exports.trigonomicUtils = trigonomicUtils;

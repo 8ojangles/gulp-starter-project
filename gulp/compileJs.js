@@ -16,7 +16,8 @@ function compileJs(){
 	return (
 		browserify({
     		entries: dirs.src.jsBundleEntry,
-    		debug: true
+    		debug: true,
+    		transform: ['babelify']
   		})
 		.bundle()
 		.pipe( plumbError() )
@@ -39,7 +40,8 @@ function compileTestJs(){
 	return (
 		browserify({
     		entries: `${dirs.srcDir}/js/lightningTest.js`,
-    		debug: true
+    		debug: true,
+    		transform: ['babelify']
   		})
 		.bundle()
 		.pipe( plumbError() )
