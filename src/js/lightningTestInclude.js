@@ -1,6 +1,6 @@
 require( './rafPolyfill.js');
 require( './canvasApiAugmentation.js');
-require( './lightningUtilities.js');
+let ligntningMgr = require( './lightningUtilities.js');
 
 let checkCanvasSupport = require( './checkCanvasSupport.js' );
 let easing = require( './easing.js' ).easingEquations;
@@ -84,7 +84,7 @@ function plotPoints( arr, subdivisions ) {
 	}
 }
 
-plotPoints( segArr, 10 );
+plotPoints( segArr, 5 );
 
 let iterations = rndInt( 10, 50 );
 
@@ -138,9 +138,16 @@ function drawPointArr(){
 	// }
 }
 
+ligntningMgr.createLightning( {
+	startX: testVec.startX,
+	startY: testVec.startY,
+	endX: testVec.endX,
+	endY: testVec.endY,
+	subdivisions: mathUtils.randomInteger( 5, 10 )	
+} );
 
 function drawTest() {
-	drawPointArr();
+	ligntningMgr.drawPointArr( c );
 	drawLine();
 }
 
