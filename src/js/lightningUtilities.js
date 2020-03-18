@@ -14,15 +14,21 @@ let ligntningMgr = {
 	},
 
 	creationConfig: {
-
 		branches: {
+			subD: {
+				min: 3,
+				max: 6
+			},
+			depth: {
+				min: 1,
+				max: 3,
+				curr: 0
+			},
 			spawnRate: {
 				min: 0,
-				max: mathUtils.randomInteger( 0, 20 )
-			},
-			min: 2,
-			max: 5
-		},
+				max: 3
+			}
+		}
 	},
 
 	renderConfig: {
@@ -82,14 +88,15 @@ let ligntningMgr = {
 		for ( let i = 0; i <= subdivisions - 1; i++ ) {
 			let arrLen = arr.length;
 			for ( let j = arrLen - 1; j > 0; j-- ) {
-				console.log( 'j: ', j );
+				// console.log( 'j: ', j );
 				if ( j === 0 ) {
 					return;
 				}
 				let p = arr[ j ];
 				let prevP = arr[ j - 1 ];
 				let newPoint = trig.subdivide( p.x, p.y, prevP.x, prevP.y, tRange );
-				let rndRadians = mathUtils.random( -2, 2 ) * 180/Math.PI;
+				let currAngle = trig.angle( prevP.x, prevP.y, p.x, p.y );
+				let rndRadians = mathUtils.random( currAngle - 0.25, currAngle + 0.25 ) * 180/Math.PI;
 
 
 				let newPointOffset = trig.radialDistribution( newPoint.x, newPoint.y, mathUtils.random( -dRange , dRange), rndRadians )
@@ -114,6 +121,8 @@ let ligntningMgr = {
 			isChild: opts.isChild || false,
 			branchDepth: opts.branchDepth || 0,
 			renderOffset: opts.renderOffset || 0,
+			baseAngle: trig.angle( opts.startX, opts.startY, opts.endX, opts.endY ),
+			baseDist: trig.dist( opts.startX, opts.startY, opts.endX, opts.endY ),
 			path: temp
 		};
 
@@ -138,70 +147,86 @@ let ligntningMgr = {
 		let opts = options;
 		let creationConfig = this.creationConfig;
 		let branchCfg = creationConfig.branches;
-		let branchCount = mathUtils.randomInteger(
-			branchCfg.min, branchCfg.max
+		branchCfg.depth.curr = mathUtils.randomInteger(
+			branchCfg.depth.min, branchCfg.depth.max
 		);
 		let tempPaths = [];
 		let branchCurr = 0;
-		let subDivs = opts.subdivisions;
+		let subDivs = opts.subdivisions || mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max);
 
 		// 1. create intial/main path
-			// 2. increment branch depth level
-				// 3. for each path at branch depth level
+		this.createPath(
+			{
+				isChild: false,
+				branchDepth: 0,
+				renderOffset: 0,
+				startX: opts.startX,
+				startY: opts.startY,
+				endX: opts.endX,
+				endY: opts.endY,
+				subdivisions: mathUtils.randomInteger( 8, 12 )
+			},
+			tempPaths
+		);
+
+				
 					// 3.a for each branch point
 						// 3.b create path
 						// goto 3
+		// 2. iterate through branch depth levels
+		for( let i = 0; i <= branchCfg.depth.curr; i++ ){
+			
+			console.log( 'tempPaths.length: ', tempPaths.length );
 
-		for( let i = 0; i <= branchCount; i++ ){
-			if ( i === 0 ) {
-				this.createPath(
-					{
-						isChild: false,
-						branchDepth: 0,
-						renderOffset: 0,
-						startX: opts.startX,
-						startY: opts.startY,
-						endX: opts.endX,
-						endY: opts.endY,
-						subdivisions: subDivs
-					},
-					tempPaths
-				);
-				console.log( 'tempPaths main: ', tempPaths );
-			} else {
-				for( let i = 0; i < tempPaths.length - 1; i++ ) {
-					let thisPath = tempPaths[ i ].path;
+			for( let j = 0; j < tempPaths.length; j++ ) {
+				let thisPathCfg =  tempPaths[ j ];
+				
+				// 3. for each path at branch depth level
+				console.log( 'branch level: ', i );
+				if ( thisPathCfg.branchDepth === i ) {
+					console.log( 'thisPathCfg: ', thisPathCfg );
+					let thisPath = thisPathCfg.path;
+					console.log( 'thisPath actual: ', thisPath );
+					let thisPathLen = thisPath.length;
+
 					// set random number of branch points
 					let branchPointsCount = mathUtils.randomInteger(
-						0, creationConfig.branches.spawnRate.max
+						branchCfg.spawnRate.min,
+						branchCfg.spawnRate.max
 					);
-					subDivs = subDivs / 2;
-					for( let i = 0; i < branchPointsCount; i++ ) {
+					// subDivs = subDivs / 2;
+					console.log( 'thisPathCfg.baseAngle: ', thisPathCfg.baseAngle );
+					for( let k = 0; k < branchPointsCount; k++ ) {
+
+						let branchAngle = thisPathCfg.baseAngle +  mathUtils.random(-0.25, 0.25);
 						let thisPoint = thisPath[ mathUtils.randomInteger(
-							0, thisPath.length ) ];
+							0, (thisPath.length / 1.5) - 1 ) ];
 						let branchEndpoint = trig.radialDistribution(
 							thisPoint.x,
 							thisPoint.y,
-							mathUtils.randomInteger( 100, 300 ),
-							mathUtils.random( -2, 2 ) * 180 / Math.PI
+							mathUtils.randomInteger( 0, (thisPathCfg.baseDist / 2) / ( i > 1 ? i : 1) ),
+							branchAngle
 						);
 						this.createPath(
 							{
 								isChild: true,
-								branchDepth: 0,
+								branchDepth: i + 1,
 								renderOffset: 0,
-								startX: thisPath.x,
-								startY: thisPath.y,
+								startX: thisPoint.x,
+								startY: thisPoint.y,
 								endX: branchEndpoint.x,
 								endY: branchEndpoint.y,
-								subdivisions: opts.subdivisions
+								subdivisions: mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max)
 							},
 							tempPaths
 						);
 					}
+
 				}
+
+			
 			}
-		};
+		}
 		console.log( 'tempPaths: ', tempPaths );
 		let lInstance = {
 			isActive: true,
@@ -217,14 +242,17 @@ let ligntningMgr = {
 
 	drawPointArr: function( c ){
 		let renderCfg = this.renderConfig;
-		let iterations = renderCfg.blurIterations;
+		let iterations = 1;
 		let membersLen = this.members.length;
+		let strokeWidth = this.creationConfig.branches.depth.curr;
 
 		for( let i = 0; i < membersLen; i++ ) {
 			let thisMember = this.members[ i ];
-			for( let j = 0; i < thisMember.paths.length; i++ ) {
-				let thisPath =  thisMember.paths[ j ];
-
+			for( let j = 0; j < thisMember.paths.length; j++ ) {
+				let thisPathCfg =  thisMember.paths[ j ];
+				let thisPath =  thisPathCfg.path;
+				let thisPathLen = thisPath.length;
+				console.log( 'thisPathCfg: ', thisPathCfg );
 				c.globalCompositeOperation = 'lighter';
 				let shadowOffset = -10000;
 				let blurWidth = 100;
@@ -234,25 +262,32 @@ let ligntningMgr = {
 					let colorChange = easeFn( k, 150, 105, iterations );
 
 					c.strokeStyle = 'white';
+					
+					if ( thisPathCfg.isChild === false ) {
+						c.lineWidth = 4;
+						
+					} else {
+						c.lineWidth = 1;
+						
+					}
 
 					if ( k === 0 ) {
-						c.lineWidth = 1;
 						blurWidth = 0;
 					} else {
 						blurWidth = 10 * k;
 					}
 					c.beginPath();
-					for ( let l = 0; l <= thisPath.length - 1; l++ ) {
+					for ( let l = 0; l <= thisPathLen - 1; l++ ) {
 						let p = thisPath[ l ];
 						if ( l === 0 ) {
-							c.moveTo( p.x, p.y + ( l === 0 ? 0 : shadowOffset ) );
+							c.moveTo( p.x, p.y );
 							continue;
 						}
-						c.lineTo( p.x, p.y + ( l === 0 ? 0 : shadowOffset ) );
+						c.lineTo( p.x, p.y );
 					}
-					c.shadowOffsetY = -shadowOffset;
-					c.shadowBlur = easeFn( k, maxLineWidth, -maxLineWidth, iterations );
-					c.shadowColor = `rgba( ${ colorChange }, ${ colorChange }, 255, 1 )`;
+					// c.shadowOffsetY = -shadowOffset;
+					// c.shadowBlur = easeFn( k, maxLineWidth, -maxLineWidth, iterations );
+					// c.shadowColor = `rgba( ${ colorChange }, ${ colorChange }, 255, 1 )`;
 					c.stroke();
 
 				}
@@ -260,8 +295,9 @@ let ligntningMgr = {
 
 			}
 
+			this.drawDebugLines( c );
 		}
-
+		// shadow offset : + ( l === 0 ? 0 : shadowOffset )
 		// c.globalCompositeOperation = 'lighter';
 		// let shadowOffset = -10000;
 		// let blurWidth = 100;
@@ -308,6 +344,31 @@ let ligntningMgr = {
 		// 		c.fillStyle = 'blue';
 		// 	}
 		// }
+	},
+
+	drawDebugLines: function( c ) {
+		let members = this.members;
+		let membersLen = members.length;
+
+		for( let i = 0; i < membersLen; i++ ) {
+			let thisMember = this.members[ i ];
+
+			let thisPaths = thisMember.paths;
+			let thisPathsLen = thisPaths.length;
+			for( let j = 0; j < thisPathsLen; j++ ) {
+				let path = thisPaths[ j ].path;
+
+				c.lineWidth = 5;
+				c.strokeStyle = 'red';
+				c.setLineDash( [5, 15] );
+				c.line( path[0].x, path[0].y, path[path.length - 1].x, path[path.length - 1].y );
+				c.setLineDash( [] );
+
+				
+
+			}
+
+		}
 	}
 }
 

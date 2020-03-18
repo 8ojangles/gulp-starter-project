@@ -59,32 +59,32 @@ segArrNormals.push(
 // 	return pointOnPath( x1, y1, x2, y2, bias );
 // }
 
-function plotPoints( arr, subdivisions ) {
-	let dRange = 200;
-	let tRange = 0.5;
-	for ( let i = 0; i <= subdivisions - 1; i++ ) {
-		let arrLen = arr.length;
-		for ( let j = arrLen - 1; j > 0; j-- ) {
-			console.log( 'j: ', j );
-			if ( j === 0 ) {
-				return;
-			}
-			let p = arr[ j ];
-			let prevP = arr[ j - 1 ];
-			let newPoint = trig.subdivide( p.x, p.y, prevP.x, prevP.y, tRange );
-			let rndRadians = rnd( -2, 2 ) * 180/Math.PI;
+// function plotPoints( arr, subdivisions ) {
+// 	let dRange = 200;
+// 	let tRange = 0.5;
+// 	for ( let i = 0; i <= subdivisions - 1; i++ ) {
+// 		let arrLen = arr.length;
+// 		for ( let j = arrLen - 1; j > 0; j-- ) {
+// 			// console.log( 'j: ', j );
+// 			if ( j === 0 ) {
+// 				return;
+// 			}
+// 			let p = arr[ j ];
+// 			let prevP = arr[ j - 1 ];
+// 			let newPoint = trig.subdivide( p.x, p.y, prevP.x, prevP.y, tRange );
+// 			let rndRadians = rnd( -2, 2 ) * 180/Math.PI;
 
 
-			let newPointOffset = trig.radialDistribution( newPoint.x, newPoint.y, rnd( -dRange , dRange), rndRadians )
-			arr.splice( j, 0, { x: newPointOffset.x, y: newPointOffset.y } );
-		}
+// 			let newPointOffset = trig.radialDistribution( newPoint.x, newPoint.y, rnd( -dRange , dRange), rndRadians )
+// 			arr.splice( j, 0, { x: newPointOffset.x, y: newPointOffset.y } );
+// 		}
 
-		dRange = dRange * 0.5;
-		// tRange = tRange * 0.8;
-	}
-}
+// 		dRange = dRange * 0.5;
+// 		// tRange = tRange * 0.8;
+// 	}
+// }
 
-plotPoints( segArr, 5 );
+// plotPoints( segArr, 5 );
 
 let iterations = rndInt( 10, 50 );
 
@@ -143,7 +143,7 @@ ligntningMgr.createLightning( {
 	startY: testVec.startY,
 	endX: testVec.endX,
 	endY: testVec.endY,
-	subdivisions: mathUtils.randomInteger( 5, 10 )	
+	subdivisions: mathUtils.randomInteger( 3, 6 )	
 } );
 
 function drawTest() {

@@ -126,7 +126,7 @@ let trigonomicUtils = {
 	* @memberof trigonomicUtils
 	* @param {number} x - the coordinate X value of the origin.
 	* @param {number} y - the coordinate Y value of the origin.
-	* @param {number} r - the absolutedelta change value.
+	* @param {number} r - the absolute delta change value.
 	* @param {number} a - the angle in radians.
 	* @returns {Point} - the coordinates of the new point.
 	*/
