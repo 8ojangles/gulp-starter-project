@@ -103,14 +103,8 @@ let ligntningMgr = {
 					{x: nP.x, y: nP.y},
 					{x: p.x, y: p.y},
 					mathUtils.random( 0.25, 0.75 ),
-					mathUtils.random( 0, vectorDist/4 ) * ( mathUtils.randomInteger( 1, 10 ) <= 5 ? 1 : -1 )
+					mathUtils.random( 0, vectorDist/8 ) * ( mathUtils.randomInteger( 1, 10 ) <= 5 ? 1 : -1 )
 				)
-				
-				// let currAngle = trig.angle( prevP.x, prevP.y, p.x, p.y );
-				// currAngle = currAngle + ( mathUtils.randomInteger(0, 10) < 5 ? -0.5 : 0.5 );
-				// let rndRadians = mathUtils.random( currAngle - 0.25, currAngle + 0.25 );
-
-				// let newPointOffset = trig.radialDistribution( newPoint.x, newPoint.y, mathUtils.random( -dRange , dRange), rndRadians )
 				arr.splice( j, 0, { x: offsetPoint.x, y: offsetPoint.y } );
 			}
 
@@ -184,7 +178,7 @@ let ligntningMgr = {
 				startY: opts.startY,
 				endX: opts.endX,
 				endY: opts.endY,
-				subdivisions: 5,
+				subdivisions: 7,
 				dRange: trig.dist( opts.startX, opts.startY, opts.endX, opts.endY ) / 2
 			},
 			tempPaths
