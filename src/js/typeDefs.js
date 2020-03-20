@@ -21,3 +21,9 @@
 *  @property {number} xVel The X delta change value.
 *  @property {number} yVel The Y delta change value.
 */
+
+/**
+* @typedef {Object} vectorCalculation
+* @property {number} distance The distance between vectors
+* @property {number} angle The angle between vectors
+*/

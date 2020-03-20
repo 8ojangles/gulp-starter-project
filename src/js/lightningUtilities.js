@@ -7,6 +7,8 @@ let ligntningMgr = {
 
 	members: [],
 
+	debugMembers: [],
+
 	globalConfig: {
 		intervalMin: 0,
 		intervalMax: 0,
@@ -82,28 +84,37 @@ let ligntningMgr = {
 		}
 	},
 
-	plotPoints: function( arr, subdivisions ) {
-		let dRange = 200;
-		let tRange = 0.5;
+	plotPoints: function( arr, subdivisions, options ) {
+		let dRange = options.dRange || 200;
+		let tRange = options.tRange || 0.35;
 		for ( let i = 0; i <= subdivisions - 1; i++ ) {
 			let arrLen = arr.length;
+			console.log( 'dRange ', dRange );
 			for ( let j = arrLen - 1; j > 0; j-- ) {
-				// console.log( 'j: ', j );
 				if ( j === 0 ) {
 					return;
 				}
 				let p = arr[ j ];
 				let prevP = arr[ j - 1 ];
-				let newPoint = trig.subdivide( p.x, p.y, prevP.x, prevP.y, tRange );
-				let currAngle = trig.angle( prevP.x, prevP.y, p.x, p.y );
-				let rndRadians = mathUtils.random( currAngle - 0.25, currAngle + 0.25 ) * 180/Math.PI;
+				let vectorDist = trig.dist( p.x, p.y, prevP.x, prevP.y );
+				let nP = trig.subdivide( prevP.x, prevP.y, p.x, p.y, 0.5 );
+				let offsetPoint = trig.projectNormalAtDistance(
+					{x: prevP.x, y: prevP.y},
+					{x: nP.x, y: nP.y},
+					{x: p.x, y: p.y},
+					mathUtils.random( 0.25, 0.75 ),
+					mathUtils.random( 0, vectorDist/4 ) * ( mathUtils.randomInteger( 1, 10 ) <= 5 ? 1 : -1 )
+				)
+				
+				// let currAngle = trig.angle( prevP.x, prevP.y, p.x, p.y );
+				// currAngle = currAngle + ( mathUtils.randomInteger(0, 10) < 5 ? -0.5 : 0.5 );
+				// let rndRadians = mathUtils.random( currAngle - 0.25, currAngle + 0.25 );
 
-
-				let newPointOffset = trig.radialDistribution( newPoint.x, newPoint.y, mathUtils.random( -dRange , dRange), rndRadians )
-				arr.splice( j, 0, { x: newPointOffset.x, y: newPointOffset.y } );
+				// let newPointOffset = trig.radialDistribution( newPoint.x, newPoint.y, mathUtils.random( -dRange , dRange), rndRadians )
+				arr.splice( j, 0, { x: offsetPoint.x, y: offsetPoint.y } );
 			}
 
-			dRange = dRange * 0.5;
+			dRange *= 0.5;
 			// tRange = tRange * 0.8;
 		}
 	},
@@ -115,7 +126,7 @@ let ligntningMgr = {
 		let temp = [];
 		temp.push( { x: opts.startX, y: opts.startY } );
 		temp.push( { x: opts.endX, y: opts.endY } );
-		this.plotPoints( temp, opts.subdivisions );
+		this.plotPoints( temp, opts.subdivisions, { dRange: opts.dRange } );
 
 		let lPath = {
 			isChild: opts.isChild || false,
@@ -141,6 +152,16 @@ let ligntningMgr = {
 		return temp;
 	},
 
+	checkPointIndex: function( pointIndex, pathLength ) {
+		let result = pointIndex;
+		if ( pointIndex === 0 ) {
+			return 1;
+		} else if ( pointIndex === pathLength - 1 ) {
+			return pathLength - 2;
+		}
+		return result;
+	},
+
 	createLightning: function( options ) {
 
 		let lMgr = this;
@@ -153,7 +174,6 @@ let ligntningMgr = {
 		let tempPaths = [];
 		let branchCurr = 0;
 		let subDivs = opts.subdivisions || mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max);
-
 		// 1. create intial/main path
 		this.createPath(
 			{
@@ -164,10 +184,13 @@ let ligntningMgr = {
 				startY: opts.startY,
 				endX: opts.endX,
 				endY: opts.endY,
-				subdivisions: mathUtils.randomInteger( 8, 12 )
+				subdivisions: 5,
+				dRange: trig.dist( opts.startX, opts.startY, opts.endX, opts.endY ) / 2
 			},
 			tempPaths
 		);
+
+		// 
 
 				
 					// 3.a for each branch point
@@ -175,48 +198,64 @@ let ligntningMgr = {
 						// goto 3
 		// 2. iterate through branch depth levels
 		for( let i = 0; i <= branchCfg.depth.curr; i++ ){
-			
-			console.log( 'tempPaths.length: ', tempPaths.length );
 
 			for( let j = 0; j < tempPaths.length; j++ ) {
 				let thisPathCfg =  tempPaths[ j ];
 				
 				// 3. for each path at branch depth level
-				console.log( 'branch level: ', i );
 				if ( thisPathCfg.branchDepth === i ) {
-					console.log( 'thisPathCfg: ', thisPathCfg );
-					let thisPath = thisPathCfg.path;
-					console.log( 'thisPath actual: ', thisPath );
-					let thisPathLen = thisPath.length;
+					let p = thisPathCfg.path;
+					let pLen = p.length;
 
 					// set random number of branch points
 					let branchPointsCount = mathUtils.randomInteger(
 						branchCfg.spawnRate.min,
 						branchCfg.spawnRate.max
 					);
-					// subDivs = subDivs / 2;
-					console.log( 'thisPathCfg.baseAngle: ', thisPathCfg.baseAngle );
+					// let branchPointsCount = 4;
 					for( let k = 0; k < branchPointsCount; k++ ) {
+						let maxD = p.baseDist;
+						// setup some vars to play with
+						let pIndex, p1, p2, p3, p4, theta;
 
-						let branchAngle = thisPathCfg.baseAngle +  mathUtils.random(-0.25, 0.25);
-						let thisPoint = thisPath[ mathUtils.randomInteger(
-							0, (thisPath.length / 1.5) - 1 ) ];
-						let branchEndpoint = trig.radialDistribution(
-							thisPoint.x,
-							thisPoint.y,
-							mathUtils.randomInteger( 0, (thisPathCfg.baseDist / 2) / ( i > 1 ? i : 1) ),
-							branchAngle
-						);
+						console.log( `pLen: ${pLen}`);
+						// get random point for branch
+						if ( pLen === 2 ) {
+							console.log( `pLen === 2` );
+							let d = mathUtils.randomInteger( 1, 10 ) < 5 ? -0.5 : 0.5;
+							let v = mathUtils.random( -0.2, 0.2 );
+							p1 = thisPath[ 0 ];
+							p2 = thisPath[ 1 ];
+							theta = trig.angle( p1.x, p1.y, p2.x, p2.y ) + d + v;
+						}
+
+						if ( pLen > 2 ) {
+							console.log( `pLen > 2` );
+							pIndex = this.checkPointIndex( mathUtils.randomInteger( 0, pLen - 1 ), pLen );
+							console.log( `pIndex: ${pIndex}`);
+							p1 = p[ pIndex - 1 ];
+							p2 = p[ pIndex ];
+							p3 = p[ pIndex + 1 ];
+							console.log( `p1: ${p1}, p2: ${p2}, p3: ${p3}`);
+							// p4 = trig.subdivide( p1.x, p1.y, p3.x, p3.y, 0.5 );
+							console.log( `p4: ${p4}`);
+							theta = trig.getAngleOfNormal( p1, p2, p3, 0.5 );
+							console.log( `theta: ${theta}` );
+						}
+
+						// let branchAngle = thisPathCfg.baseAngle + (chooseDirection <= 5 ? -0.5  : 0.5);
+						let branchEndpoint = trig.radialDistribution( p2.x, p2.y, mathUtils.random( 0, maxD ), theta );
 						this.createPath(
 							{
 								isChild: true,
 								branchDepth: i + 1,
 								renderOffset: 0,
-								startX: thisPoint.x,
-								startY: thisPoint.y,
+								startX: p2.x,
+								startY: p2.y,
 								endX: branchEndpoint.x,
 								endY: branchEndpoint.y,
-								subdivisions: mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max)
+								subdivisions: 1,
+								dRange: trig.dist( p2.x, p2.y, branchEndpoint.x, branchEndpoint.y ) / 2
 							},
 							tempPaths
 						);
@@ -252,7 +291,7 @@ let ligntningMgr = {
 				let thisPathCfg =  thisMember.paths[ j ];
 				let thisPath =  thisPathCfg.path;
 				let thisPathLen = thisPath.length;
-				console.log( 'thisPathCfg: ', thisPathCfg );
+				// console.log( 'thisPathCfg: ', thisPathCfg );
 				c.globalCompositeOperation = 'lighter';
 				let shadowOffset = -10000;
 				let blurWidth = 100;
@@ -295,7 +334,7 @@ let ligntningMgr = {
 
 			}
 
-			this.drawDebugLines( c );
+			// this.drawDebugLines( c );
 		}
 		// shadow offset : + ( l === 0 ? 0 : shadowOffset )
 		// c.globalCompositeOperation = 'lighter';
