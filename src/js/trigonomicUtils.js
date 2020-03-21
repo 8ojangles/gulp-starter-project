@@ -29,6 +29,9 @@ let trigonomicUtils = {
         return theta;
     },
 
+    getRadianAngleBetween2Vectors: function( x1, y1, x2, y2 ) {
+    	return Math.atan2(y2 - y1, x2 - x1);
+    },
 	/**
 	* @name dist
 	* @description calculate distance between 2 vector coordinates.
@@ -55,6 +58,7 @@ let trigonomicUtils = {
 		return degrees * piByHalf;
 	},
 
+	d2R: this.degreesToRadians,
 	/**
 	* @name radiansToDegrees
 	* @description convert radians to degrees.
@@ -66,6 +70,7 @@ let trigonomicUtils = {
 		return radians * halfByPi;
 	},
 
+	r2D: this.radiansToDegrees,
 	/**
 	* @name getAngleAndDistance
  	* @description calculate trigomomic values between 2 vector coordinates.
@@ -141,14 +146,14 @@ let trigonomicUtils = {
 	* @memberof trigonomicUtils
 	* @param {number} x - the coordinate X value of the origin.
 	* @param {number} y - the coordinate Y value of the origin.
-	* @param {number} r - the absolute delta change value.
+	* @param {number} d - the absolute delta change value.
 	* @param {number} a - the angle in radians.
 	* @returns {Point} - the coordinates of the new point.
 	*/
-	radialDistribution: function(x, y, r, a) {
+	radialDistribution: function(x, y, d, a) {
 		return {
-			x: x + r * Math.cos(a),
-			y: y + r * Math.sin(a)
+			x: x + d * Math.cos(a),
+			y: y + d * Math.sin(a)
 		}
 	},
 
@@ -306,10 +311,7 @@ let trigonomicUtils = {
 	getAngleOfNormal: function( p1, pc, p2, bias ) {
 		const p = this.getPointAt(p1, pc, p2, bias);
       	const n = this.getNormalAt(p1, pc, p2, bias);
-      	const d = 20;
-      	n.x *= d;
-      	n.y *= d;
-      	return this.angle( p.x, p.y, n.x, n.y );
+      	return this.getRadianAngleBetween2Vectors( p.x, p.y, n.x, n.y );
 	}
 
 

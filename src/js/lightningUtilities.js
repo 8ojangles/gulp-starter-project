@@ -166,7 +166,6 @@ let ligntningMgr = {
 			branchCfg.depth.min, branchCfg.depth.max
 		);
 		let tempPaths = [];
-		let branchCurr = 0;
 		let subDivs = opts.subdivisions || mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max);
 		// 1. create intial/main path
 		this.createPath(
@@ -184,83 +183,86 @@ let ligntningMgr = {
 			tempPaths
 		);
 
-		// 
-
+		// cycle through branch depth levels starting with 0
+		for( let branchCurrNum = 0; branchCurrNum <= branchCfg.depth.curr; branchCurrNum++){
+			// cycle through current paths in tempPath array
+			for( let currPathNum = 0; currPathNum < tempPaths.length; currPathNum++ ) {
+				// get path object instance
+				let thisPathCfg = tempPaths[ currPathNum ];
 				
-					// 3.a for each branch point
-						// 3.b create path
-						// goto 3
-		// 2. iterate through branch depth levels
-		for( let i = 0; i <= branchCfg.depth.curr; i++ ){
-
-			for( let j = 0; j < tempPaths.length; j++ ) {
-				let thisPathCfg =  tempPaths[ j ];
-				
-				// 3. for each path at branch depth level
-				if ( thisPathCfg.branchDepth === i ) {
-					let p = thisPathCfg.path;
-					let pLen = p.length;
-
-					// set random number of branch points
-					let branchPointsCount = mathUtils.randomInteger(
-						branchCfg.spawnRate.min,
-						branchCfg.spawnRate.max
-					);
-					// let branchPointsCount = 4;
-					for( let k = 0; k < branchPointsCount; k++ ) {
-						let maxD = p.baseDist;
-						// setup some vars to play with
-						let pIndex, p1, p2, p3, p4, theta;
-
-						console.log( `pLen: ${pLen}`);
-						// get random point for branch
-						if ( pLen === 2 ) {
-							console.log( `pLen === 2` );
-							let d = mathUtils.randomInteger( 1, 10 ) < 5 ? -0.5 : 0.5;
-							let v = mathUtils.random( -0.2, 0.2 );
-							p1 = thisPath[ 0 ];
-							p2 = thisPath[ 1 ];
-							theta = trig.angle( p1.x, p1.y, p2.x, p2.y ) + d + v;
-						}
-
-						if ( pLen > 2 ) {
-							console.log( `pLen > 2` );
-							pIndex = this.checkPointIndex( mathUtils.randomInteger( 0, pLen - 1 ), pLen );
-							console.log( `pIndex: ${pIndex}`);
-							p1 = p[ pIndex - 1 ];
-							p2 = p[ pIndex ];
-							p3 = p[ pIndex + 1 ];
-							console.log( `p1: ${p1}, p2: ${p2}, p3: ${p3}`);
-							// p4 = trig.subdivide( p1.x, p1.y, p3.x, p3.y, 0.5 );
-							console.log( `p4: ${p4}`);
-							theta = trig.getAngleOfNormal( p1, p2, p3, 0.5 );
-							console.log( `theta: ${theta}` );
-						}
-
-						// let branchAngle = thisPathCfg.baseAngle + (chooseDirection <= 5 ? -0.5  : 0.5);
-						let branchEndpoint = trig.radialDistribution( p2.x, p2.y, mathUtils.random( 0, maxD ), theta );
-						this.createPath(
-							{
-								isChild: true,
-								branchDepth: i + 1,
-								renderOffset: 0,
-								startX: p2.x,
-								startY: p2.y,
-								endX: branchEndpoint.x,
-								endY: branchEndpoint.y,
-								subdivisions: 1,
-								dRange: trig.dist( p2.x, p2.y, branchEndpoint.x, branchEndpoint.y ) / 2
-							},
-							tempPaths
-						);
-					}
-
+				if ( thisPathCfg.branchDepth !== branchCurrNum ) {
+					// if path branch depth and current loop branch depth dont match
+					// exit to next loop instance
+					continue;
 				}
 
-			
-			}
-		}
+				// matching branch depth:
+
+				// get the path point array
+				let p = thisPathCfg.path
+				// get the path array length
+				let pLen = p.length;
+				// set random number of branch points
+				let branchPointsCount = mathUtils.randomInteger(
+					branchCfg.spawnRate.min,
+					branchCfg.spawnRate.max
+				);
+				// for each of the generated branch count
+				for( let k = 0; k < branchPointsCount; k++ ) {
+					// setup some vars to play with
+					let pIndex, p1, p2, p3, p4, theta;
+					// random left or right toggle
+					let d = mathUtils.randomInteger( 1, 10 ) < 5 ? -0.5 : 0.5;
+					// angle variation randomiser
+					let v = mathUtils.random( -0.2, 0.2 );
+
+					// if path is only start/end points
+					if ( pLen === 2 ) {
+						console.log( `pLen === 2` );
+						p1 = thisPath[ 0 ];
+						let p2 = trig.subdivide(p1.x, p1.y, p2.x, p2.y);
+						p3 = thisPath[ 1 ];
+						
+						theta = trig.getAngleOfNormal( p1, p2, p3, 0.5 );
+					}
+
+					if ( pLen > 2 ) {
+						pIndex = this.checkPointIndex(
+							mathUtils.randomInteger( 0, pLen - 1 ),
+							pLen
+						);
+						p1 = p[ pIndex - 1 ];
+						p2 = p[ pIndex ];
+						p3 = p[ pIndex + 1 ];
+						console.log( `p1: ${p1}, p2: ${p2}, p3: ${p3}`);
+						// p4 = trig.subdivide( p1.x, p1.y, p3.x, p3.y, 0.5 );
+						console.log( `p4: ${p4}`);
+						theta = trig.getAngleOfNormal( p1, p2, p3, 0.5 );
+						console.log( `theta: ${theta}` );
+					}
+					let maxD = trig.dist( p2.x, p2.y, p[ pLen - 1].x, p[ pLen - 1 ].y);
+					// let branchAngle = thisPathCfg.baseAngle + (chooseDirection <= 5 ? -0.5  : 0.5);
+					let branchEndpoint = trig.radialDistribution( p2.x, p2.y, mathUtils.random( 0, maxD ), theta );
+					this.createPath(
+						{
+							isChild: true,
+							branchDepth: branchCurrNum + 1,
+							renderOffset: 0,
+							startX: p2.x,
+							startY: p2.y,
+							endX: branchEndpoint.x,
+							endY: branchEndpoint.y,
+							subdivisions: 1,
+							dRange: trig.dist( p2.x, p2.y, branchEndpoint.x, branchEndpoint.y ) / 2
+						},
+						tempPaths
+					);
+				}
+			} // end current paths loop
+		} // end branch depth loop
+
 		console.log( 'tempPaths: ', tempPaths );
+		// create parent lightning instance
 		let lInstance = {
 			isActive: true,
 			glowBlurIterations: mathUtils.randomInteger( 10, 50 ),
@@ -269,7 +271,7 @@ let ligntningMgr = {
 			},
 			paths: tempPaths
 		}
-
+		// push instance to master array
 		this.members.push( lInstance );
 	},
 
@@ -330,6 +332,7 @@ let ligntningMgr = {
 
 			// this.drawDebugLines( c );
 		}
+		
 		// shadow offset : + ( l === 0 ? 0 : shadowOffset )
 		// c.globalCompositeOperation = 'lighter';
 		// let shadowOffset = -10000;
@@ -377,6 +380,52 @@ let ligntningMgr = {
 		// 		c.fillStyle = 'blue';
 		// 	}
 		// }
+	},
+	drawDebugRadialTest: function( c ) {
+		let PI = Math.PI;
+		PISQ = PI * 2;
+		let testCX = 200, testCY = 200, testCR = 150;
+		let zeroRotPoint = trig.radialDistribution( testCX, testCY, testCR, PISQ );
+		let qRotPoint = trig.radialDistribution( testCX, testCY, testCR, PISQ * 0.25 );
+		let halfRotPoint = trig.radialDistribution( testCX, testCY, testCR, PISQ * 0.5 );
+		let threeQRotPoint = trig.radialDistribution( testCX, testCY, testCR, PISQ * 0.75 );
+
+		// start point
+		let testP1Point = trig.radialDistribution( testCX, testCY, testCR, PISQ * 0.125 );
+		// end point
+		let testP2Point = trig.radialDistribution( testCX, testCY, testCR, PISQ * 0.625 );
+		// curvePoint
+		let testP3Point = trig.radialDistribution( testCX, testCY, testCR, PISQ * 0.875 );
+		let testNormalPoint = trig.projectNormalAtDistance(
+			testP1Point, testP3Point, testP2Point, 0.5, testCR * 1.1
+		);
+		c.strokeStyle = '#880000';
+		c.fillStyle = 'blue';
+		c.lineWidth = 2;
+		c.strokeCircle( testCX, testCY, testCR );
+		c.fillCircle( testCX, testCY, 5 );
+		c.fillCircle( zeroRotPoint.x, zeroRotPoint.y, 5 );
+		c.fillCircle( qRotPoint.x, qRotPoint.y, 5 );
+		c.fillCircle( halfRotPoint.x, halfRotPoint.y, 5 );
+		c.fillCircle( threeQRotPoint.x, threeQRotPoint.y, 5 );
+
+		c.fillCircle( testP1Point.x, testP1Point.y, 5 );
+		c.fillCircle( testP2Point.x, testP2Point.y, 5 );
+		c.fillCircle( testP3Point.x, testP3Point.y, 5 );
+		c.fillStyle = 'green';
+		c.fillCircle( testNormalPoint.x, testNormalPoint.y, 5 );
+
+		c.line( testP1Point.x, testP1Point.y, testP2Point.x, testP2Point.y );
+		c.line( testP1Point.x, testP1Point.y, testP3Point.x, testP3Point.y );
+		c.line( testP2Point.x, testP2Point.y, testP3Point.x, testP3Point.y );
+		c.strokeStyle = '#009900';
+		c.line( testCX, testCY, testNormalPoint.x, testNormalPoint.y );
+		
+		let testAngle = trig.getAngleOfNormal( testP1Point, testP3Point, testP2Point,0.5);
+		console.log( 'testAngle: ', testAngle );
+		let testAnglePoint = trig.radialDistribution( zeroRotPoint.x, zeroRotPoint.y, 100, testAngle );
+		c.strokeStyle = '#000099';
+		c.line( zeroRotPoint.x, zeroRotPoint.y, testAnglePoint.x, testAnglePoint.y );
 	},
 
 	drawDebugLines: function( c ) {

@@ -149,6 +149,7 @@ ligntningMgr.createLightning( {
 function drawTest() {
 	ligntningMgr.drawPointArr( c );
 	drawLine();
+	ligntningMgr.drawDebugRadialTest( c );
 }
 
 function clearScreen() {
