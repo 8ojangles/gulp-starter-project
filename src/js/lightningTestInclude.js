@@ -9,7 +9,7 @@ let easeFn = easing.easeOutSine;
 
 let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
 // aliases
-let findNewP = trig.findNewPoint;
+// let findNewP = trig.findNewPoint;
 let pointOnPath = trig.getPointOnPath;
 let calcD = trig.dist;
 let calcA = trig.angle;
@@ -29,9 +29,9 @@ let counter = 0;
 
 // test Vector path
 let testVec = {
-	startX: cW / 3,
+	startX: cW / 2,
 	startY: 50,
-	endX: cW / 1.2,
+	endX: cW / 2,
 	endY: cH - 50
 }
 
@@ -42,101 +42,58 @@ function drawLine() {
 	c.setLineDash( [] );
 }
 
-let segArr = [];
-let segArrNormals = [];
+// let iterations = rndInt( 10, 50 );
+let iterations = 1;
 
-segArr.push( { x: testVec.startX, y: testVec.startY } );
-segArr.push( { x: testVec.endX, y: testVec.endY } );		
+// function drawPointArr(){
 
-segArrNormals.push(
-	trig.computeNormals(
-		testVec.startX, testVec.startY,
-		testVec.endX, testVec.endY
-	)
-);
+// 	c.globalCompositeOperation = 'lighter';
+// 	let shadowOffset = -10000;
+// 	let blurWidth = 100;
+// 	let maxLineWidth = 200;
 
-// function subdivide( x1, y1, x2, y2, bias ) {
-// 	return pointOnPath( x1, y1, x2, y2, bias );
-// }
+// 	for ( let j = 0; j <= iterations; j++ ) {
+// 		let colorChange = easeFn( j, 150, 105, iterations );
 
-// function plotPoints( arr, subdivisions ) {
-// 	let dRange = 200;
-// 	let tRange = 0.5;
-// 	for ( let i = 0; i <= subdivisions - 1; i++ ) {
-// 		let arrLen = arr.length;
-// 		for ( let j = arrLen - 1; j > 0; j-- ) {
-// 			// console.log( 'j: ', j );
-// 			if ( j === 0 ) {
-// 				return;
-// 			}
-// 			let p = arr[ j ];
-// 			let prevP = arr[ j - 1 ];
-// 			let newPoint = trig.subdivide( p.x, p.y, prevP.x, prevP.y, tRange );
-// 			let rndRadians = rnd( -2, 2 ) * 180/Math.PI;
+// 		c.strokeStyle = 'white';
 
-
-// 			let newPointOffset = trig.radialDistribution( newPoint.x, newPoint.y, rnd( -dRange , dRange), rndRadians )
-// 			arr.splice( j, 0, { x: newPointOffset.x, y: newPointOffset.y } );
+// 		if ( j === 0 ) {
+// 			c.lineWidth = 1;
+// 			blurWidth = 0;
+// 		} else {
+// 			blurWidth = 10 * j;
 // 		}
+// 		c.beginPath();
+// 		for ( let i = 0; i <= segArr.length - 1; i++ ) {
+// 			let p = segArr[ i ];
+// 			if ( i === 0 ) {
+// 				c.moveTo( p.x, p.y + ( j === 0 ? 0 : shadowOffset ) );
+// 				continue;
+// 			}
+// 			c.lineTo( p.x, p.y + ( j === 0 ? 0 : shadowOffset ) );
+// 		}
+// 		c.shadowOffsetY = -shadowOffset;
+// 		c.shadowBlur = easeFn( j, maxLineWidth, -maxLineWidth, iterations );
+// 		c.shadowColor = `rgba( ${ colorChange }, ${ colorChange }, 255, 1 )`;
+// 		c.stroke();
 
-// 		dRange = dRange * 0.5;
-// 		// tRange = tRange * 0.8;
 // 	}
+// 	c.globalCompositeOperation = 'source-over';
+
+// 	// c.fillStyle = 'white';
+// 	// c.fillCircle( testVec.startX, testVec.startY, 7 );
+// 	// c.fillCircle( testVec.endX, testVec.endY, 7 );
+// 	// c.fillStyle = 'blue';
+// 	// for ( let i = 0; i <= segArr.length - 1; i++ ) {
+// 	// 	if ( i === segArr.length / 2 - 1 ) {
+// 	// 		c.fillStyle = 'green';
+// 	// 	}
+// 	// 	c.fillCircle( segArr[ i ].x, segArr[ i ].y, 5 );
+// 	// 	if ( i === segArr.length / 2 - 1 ) {
+// 	// 		c.fillStyle = 'blue';
+// 	// 	}
+// 	// }
 // }
-
-// plotPoints( segArr, 5 );
-
-let iterations = rndInt( 10, 50 );
-
-function drawPointArr(){
-
-	c.globalCompositeOperation = 'lighter';
-	let shadowOffset = -10000;
-	let blurWidth = 100;
-	let maxLineWidth = 200;
-
-	for ( let j = 0; j <= iterations; j++ ) {
-		let colorChange = easeFn( j, 150, 105, iterations );
-
-		c.strokeStyle = 'white';
-
-		if ( j === 0 ) {
-			c.lineWidth = 1;
-			blurWidth = 0;
-		} else {
-			blurWidth = 10 * j;
-		}
-		c.beginPath();
-		for ( let i = 0; i <= segArr.length - 1; i++ ) {
-			let p = segArr[ i ];
-			if ( i === 0 ) {
-				c.moveTo( p.x, p.y + ( j === 0 ? 0 : shadowOffset ) );
-				continue;
-			}
-			c.lineTo( p.x, p.y + ( j === 0 ? 0 : shadowOffset ) );
-		}
-		c.shadowOffsetY = -shadowOffset;
-		c.shadowBlur = easeFn( j, maxLineWidth, -maxLineWidth, iterations );
-		c.shadowColor = `rgba( ${ colorChange }, ${ colorChange }, 255, 1 )`;
-		c.stroke();
-
-	}
-	c.globalCompositeOperation = 'source-over';
-
-	// c.fillStyle = 'white';
-	// c.fillCircle( testVec.startX, testVec.startY, 7 );
-	// c.fillCircle( testVec.endX, testVec.endY, 7 );
-	// c.fillStyle = 'blue';
-	// for ( let i = 0; i <= segArr.length - 1; i++ ) {
-	// 	if ( i === segArr.length / 2 - 1 ) {
-	// 		c.fillStyle = 'green';
-	// 	}
-	// 	c.fillCircle( segArr[ i ].x, segArr[ i ].y, 5 );
-	// 	if ( i === segArr.length / 2 - 1 ) {
-	// 		c.fillStyle = 'blue';
-	// 	}
-	// }
-}
 
 ligntningMgr.createLightning( {
 	startX: testVec.startX,
@@ -149,7 +106,8 @@ ligntningMgr.createLightning( {
 function drawTest() {
 	ligntningMgr.drawPointArr( c );
 	drawLine();
-	ligntningMgr.drawDebugRadialTest( c );
+	ligntningMgr.updateRenderCfg();
+	// ligntningMgr.drawDebugRadialTest( c );
 }
 
 function clearScreen() {
