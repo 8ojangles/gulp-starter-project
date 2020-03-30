@@ -46,13 +46,15 @@ function createPathFromOptions( opts ) {
 		clock: opts.clock || 0,
 		sequenceClock: opts.sequenceClock || 0,
 		totalClock: opts.totalClock || 0,
-		sequences: [],
+		sequences: opts.sequences || [],
+		sequenceStartIndex: opts.sequenceStartIndex || 0,
 		sequenceIndex: opts.sequenceIndex || 0,
 		// colors
 		colR: opts.colR || 255,
 		colG: opts.colG || 255,
 		colB: opts.colB || 255,
-		colA: opts.colA || 1,
+		colA: opts.isChild ? 0.5 : opts.colA,
+		glowColApha:  opts.glowColApha || 1,
 		// computed config
 		baseAngle: trig.angle( opts.startX, opts.startY, opts.endX, opts.endY ),
 		baseDist: trig.dist( opts.startX, opts.startY, opts.endX, opts.endY ),

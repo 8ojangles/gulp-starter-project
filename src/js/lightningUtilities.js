@@ -4,7 +4,7 @@ let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
 let createPathFromOptions = require( './createPathFromOptions.js' );
 let createPathConfig = require( './createPathConfig.js' );
 let updateLightningArray = require( './updateLightningArray.js' );
-
+let childPathAnimSequence = require( './childPathAnimSequence.js' ); 
 let easeFn = easing.easeOutSine;
 
 let lightningStrikeTimeMax = 300;
@@ -134,12 +134,19 @@ let ligntningMgr = {
 		let opts = options;
 		let creationConfig = this.creationConfig;
 		let branchCfg = creationConfig.branches;
+		lMgr.canvasW = opts.canvasW;
+		lMgr.canvasH = opts.canvasH;
 		// branchCfg.depth.curr = mathUtils.randomInteger(
 		// 	branchCfg.depth.min, branchCfg.depth.max
 		// );
 		branchCfg.depth.curr = 1;
 		let tempPaths = [];
 		let subDivs = opts.subdivisions || mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max);
+		let subD = 7;
+		let d = trig.dist( opts.startX, opts.startY, opts.endX, opts.endY );
+		let parentPathDist = d;
+		let subDRate =  Math.floor( d / subD );
+		console.log( 'parent subD rate: ', subDRate );
 		// 1. create intial/main path
 		tempPaths.push(
 			createPathFromOptions(
@@ -157,8 +164,10 @@ let ligntningMgr = {
 					pathColR: 255,
 					pathColG: 255,
 					pathColB: 255,
-					subdivisions: 7,
-					dRange: trig.dist( opts.startX, opts.startY, opts.endX, opts.endY ) / 2
+					parentPathDist: 0,
+					subDRate: subDRate,
+					subdivisions: subD,
+					dRange: d / 2
 				}
 			)
 		);
@@ -185,7 +194,9 @@ let ligntningMgr = {
 
 					let pCfg = createPathConfig(
 						thisPathCfg,
-						{
+						{	
+							subDRate: subDRate,
+							parentPathDist: d,
 							branchSubDFactor: branchSubDFactor,
 							branchDepth: branchCurrNum + 1
 						}
@@ -207,8 +218,11 @@ let ligntningMgr = {
 								startY: pCfg.startY,
 								endX: pCfg.endX,
 								endY: pCfg.endY,
+								parentPathDist: d,
 								subdivisions: pCfg.subdivisions,
-								dRange: pCfg.dVar
+								dRange: pCfg.dVar,
+								sequences: childPathAnimSequence,
+								sequenceStartIndex: 1
 							}
 						)
 					);
@@ -227,6 +241,7 @@ let ligntningMgr = {
 		// create parent lightning instance
 		let lInstance = {
 			isActive: true,
+			skyFlashAlpha: 1,
 			glowBlurIterations: mathUtils.randomInteger( 10, 50 ),
 			clock: 0,
 			totalClock: 0,
@@ -259,11 +274,13 @@ let ligntningMgr = {
 		let membersLen = this.members.length;
 		let strokeWidth = this.creationConfig.branches.depth.curr;
 
+		c.globalCompositeOperation = 'lighter';
+
 		for( let i = 0; i < membersLen; i++ ) {
 			let thisMember = this.members[ i ];
 			for( let j = 0; j < thisMember.paths.length; j++ ) {
 				let thisPathCfg = thisMember.paths[ j ];
-				c.globalCompositeOperation = 'lighter';
+				
 				let shadowOffset = -10000;
 				let blurWidth = 100;
 				let maxLineWidth = 200;
@@ -280,9 +297,10 @@ let ligntningMgr = {
 					thisPathCfg.update( thisMember, this );
 					
 				}
-				c.globalCompositeOperation = 'source-over';
+				
 			}
-		}	
+		}
+		c.globalCompositeOperation = 'source-over';
 	},
 
 	updateRenderCfg: function() {

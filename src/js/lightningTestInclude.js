@@ -29,9 +29,9 @@ let counter = 0;
 
 // test Vector path
 let testVec = {
-	startX: cW / 2,
+	startX: cW / 4,
 	startY: 50,
-	endX: cW / 2,
+	endX: (cW / 4) * 3,
 	endY: cH - 50
 }
 
@@ -96,6 +96,8 @@ let iterations = 1;
 // }
 
 ligntningMgr.createLightning( {
+	canvasW: cW,
+	canvasH: cH,
 	startX: testVec.startX,
 	startY: testVec.startY,
 	endX: testVec.endX,

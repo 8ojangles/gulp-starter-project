@@ -21,7 +21,7 @@ function updatePath( parentConfig, globalConfig ) {
 	} else {
 		if ( thisPathCfg.isRendering === false ) {
 			if ( thisPathCfg.colA > 0 ) {
-				thisPathCfg.colA -= 0.02;
+				thisPathCfg.colA -= 0.005;
 			}
 		}
 	}
@@ -30,6 +30,29 @@ function updatePath( parentConfig, globalConfig ) {
 		// currRenderTail += renderCfg.currHead;
 		thisPathCfg.isRendering = false;
 	}
+
+	if ( parent.status.renderPhase >= 1 ) {
+		if ( parentConfig.skyFlashAlpha > 0 ) {
+			parentConfig.skyFlashAlpha -= 0.001;
+		}
+	}
+
+	if (parent.status.renderPhase === 2 ) {
+		if ( thisPathCfg.colR > 0 ) {
+			thisPathCfg.colR -= 5;
+			thisPathCfg.colG -= 5;
+			thisPathCfg.colB -= 5;
+			thisPathCfg.colA -= 0.001;
+		}
+	}
+
+	if ( parent.status.renderPhase === 1 )  {
+		// console.log( 'parent.status.renderPhase: ', parent.status.renderPhase );
+		// console.log( 'changing to phase 2');
+		// parent.status.renderPhase = 2;
+	};
+
+	thisPathCfg.updateSequenceClock;
 }
 
 module.exports = updatePath;
