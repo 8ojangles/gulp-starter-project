@@ -1,6 +1,6 @@
-let mathUtils = require( './mathUtils.js' );
-let easing = require( './easing.js' ).easingEquations;
-let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
+let mathUtils = require( '../../mathUtils.js' );
+let easing = require( '../../easing.js' ).easingEquations;
+let trig = require( '../../trigonomicUtils.js' ).trigonomicUtils;
 
 function checkPointIndex( i, len ) {
 	return i === 0 ? 1 : i === len - 1 ? len - 2 : i;

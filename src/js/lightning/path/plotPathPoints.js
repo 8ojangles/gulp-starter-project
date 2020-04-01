@@ -1,6 +1,6 @@
-let mathUtils = require( './mathUtils.js' );
-let easing = require( './easing.js' ).easingEquations;
-let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
+let mathUtils = require( '../../mathUtils.js' );
+let easing = require( '../../easing.js' ).easingEquations;
+let trig = require( '../../trigonomicUtils.js' ).trigonomicUtils;
 
 // lightning path constructor
 

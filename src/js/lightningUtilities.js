@@ -1,10 +1,9 @@
 let mathUtils = require( './mathUtils.js' );
 let easing = require( './easing.js' ).easingEquations;
 let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
-let createPathFromOptions = require( './createPathFromOptions.js' );
-let createPathConfig = require( './createPathConfig.js' );
-let updateLightningArray = require( './updateLightningArray.js' );
-let childPathAnimSequence = require( './childPathAnimSequence.js' ); 
+let createPathFromOptions = require( './lightning/path/createPathFromOptions.js' );
+let createPathConfig = require( './lightning/path/createPathConfig.js' );
+let updateLightningArray = require( './lightning/updateLightningArray.js' ); 
 let easeFn = easing.easeOutSine;
 
 let lightningStrikeTimeMax = 300;
@@ -13,12 +12,9 @@ let strikeFireTime = lightningStrikeTimeMax / 6;
 let strikeCoolTime = lightningStrikeTimeMax / 3;
 
 
-
-
 let ligntningMgr = {
 
 	members: [],
-
 	debugMembers: [],
 
 	globalConfig: {
@@ -53,7 +49,7 @@ let ligntningMgr = {
 			draw: strikeDrawTime,
 			fire: strikeFireTime,
 			cool: strikeCoolTime,
-			segmentsPerFrame: 0.5
+			segmentsPerFrame: 10
 		}
 	},
 
@@ -74,26 +70,6 @@ let ligntningMgr = {
 			this.globalConfig,intervalMin,
 			this.globalConfig,intervalMax
 			);
-	},
-
-	startGlobalClock: function() {
-		this.clock.global.isRunning = true;
-	},
-
-	stopGlobalClock: function() {
-		this.clock.global.isRunning = false;
-	},
-
-	startLocalClock: function() {
-		this.clock.local.isRunning = true;
-	},
-
-	stopLocalClock: function() {
-		this.clock.local.isRunning = false;
-	},
-
-	resetLocalClock: function() {
-		this.clock.local.currentTick = 0;
 	},
 
 	setLocalClockTarget: function( target ) {
@@ -221,7 +197,6 @@ let ligntningMgr = {
 								parentPathDist: d,
 								subdivisions: pCfg.subdivisions,
 								dRange: pCfg.dVar,
-								sequences: childPathAnimSequence,
 								sequenceStartIndex: 1
 							}
 						)
@@ -242,6 +217,7 @@ let ligntningMgr = {
 		let lInstance = {
 			isActive: true,
 			skyFlashAlpha: 1,
+			originFlashAlpha: 1,
 			glowBlurIterations: mathUtils.randomInteger( 10, 50 ),
 			clock: 0,
 			totalClock: 0,
