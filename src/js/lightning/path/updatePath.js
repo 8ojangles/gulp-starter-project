@@ -11,17 +11,23 @@ function updatePath( parentConfig, globalConfig ) {
 	let pStatus = p.status;
 	let pathCfg = this;
 	let pathLen = pathCfg.path.length;
-	let rndOffset = pathCfg.renderOffset;
+	let rndOffset = pathCfg.renderOffset;	
 
 	if ( pathCfg.isChild === false ) {
-		if ( rCfg.currHead >= pathLen ) {
+		if ( p.renderConfig.currHead >= pathLen ) {
 			pStatus.renderPhase = 1;
-		}
-		if ( pathCfg.sequenceIndex === 1 ) {
-			if ( pathCfg.playSequence === false ) {
-				pathCfg.startSequence( { index: 0 } );
+
+			if ( pathCfg.currSequence === false ) {
+				if ( pathCfg.playSequence === false ) {
+					pathCfg.startSequence( { index: pathCfg.sequenceStartIndex } );
+				}
 			}
 		}
+		// if ( pathCfg.sequenceIndex === 1 ) {
+		// 	if ( pathCfg.playSequence === false ) {
+		// 		pathCfg.startSequence( { index: pathCfg.sequenceStartIndex } );
+		// 	}
+		// }
 	} else {
 		if ( pathCfg.isRendering === false ) {
 			if ( pathCfg.colA > 0 ) {
@@ -30,16 +36,16 @@ function updatePath( parentConfig, globalConfig ) {
 		}
 	}
 
-	if ( pathLen + rndOffset < rCfg.currHead) {
+	if ( pathLen + rndOffset < p.renderConfig.currHead) {
 		pathCfg.isRendering = false;
 	}
 
 	if ( pStatus.renderPhase >= 1 ) {
-		if ( parentConfig.skyFlashAlpha > 0 ) {
-			parentConfig.skyFlashAlpha -= 0.005;
+		if ( p.skyFlashAlpha > 0 ) {
+			p.skyFlashAlpha -= 0.005;
 		}
-		if ( parentConfig.originFlashAlpha > 0 ) {
-			parentConfig.originFlashAlpha -= 0.002;
+		if ( p.originFlashAlpha > 0 ) {
+			p.originFlashAlpha -= 0.0005;
 		}
 	}
 

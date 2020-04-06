@@ -35,6 +35,8 @@ function createPathFromOptions( opts ) {
 	let thisSequences = opts.isChild ? childPathAnimSequence : mainPathAnimSequence;
 	let thisAlpha = opts.isChild ? 0.5 : opts.colA ? opts.colA : 1;
 
+	
+
 	return {
 		// flags
 		isChild: opts.isChild || false,
@@ -53,6 +55,7 @@ function createPathFromOptions( opts ) {
 		colB: opts.colB || 255,
 		colA: thisAlpha,
 		glowColApha:  opts.glowColApha || 1,
+		lineWidth: 1,
 		// clocks
 		clock: opts.clock || 0,
 		sequenceClock: opts.sequenceClock || 0,

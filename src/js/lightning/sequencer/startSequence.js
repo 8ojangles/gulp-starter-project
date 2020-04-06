@@ -4,14 +4,20 @@ function startSequence( opts ) {
 	let seqIndex = opts.index || 0;
 	// set current values to start sequence with
 	let tempSeq = t.sequences[ seqIndex ];
+	let seqArray = [];
 	for( let i = 0; i < tempSeq.items.length; i++ ){
 		let item = tempSeq.items[ i ];
 		let currItemVal = t[ item.param ];
-		let delta = item.target - currItemVal;
-		tempSeq.start = currItemVal;
-		tempSeq.target = delta;
+		seqArray.push(
+			{ param: item.param, start: currItemVal, target: item.target - currItemVal, easefN: item.easefN }
+		);
 	}
-	t.currSequence = tempSeq;
+	t.currSequence = {
+		name: tempSeq.name,
+		time: tempSeq.time,
+		items: seqArray,
+		linkedSeq: tempSeq.linkedSeq
+	};
 	t.sequenceClock = 0;
 	t.playSequence = true;
 }

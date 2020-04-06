@@ -1,5 +1,5 @@
 function pathGlow( c, pathCfg, savedPath, glowOpts ) {
-	let blurs = glowOpts.blurs || [ 100, 50, 20 ];
+	let blurs = glowOpts.blurs ||  [ 100, 70, 50, 30, 10 ];;
 	let blurColor = glowOpts.blurColor || 'white';
 	let blurShapeOffset = glowOpts.blurShapeOffset || 10000;
 
@@ -17,7 +17,7 @@ function pathGlow( c, pathCfg, savedPath, glowOpts ) {
 
 // path rendering function
 function renderPath( c, parent, globalConfig ) {
-	let renderCfg = globalConfig.renderConfig;
+	let renderCfg = parent.renderConfig;
 	let currRenderPoint = 0;
 	let currRenderHead = 0;
 	let currRenderTail = 0;
@@ -29,18 +29,19 @@ function renderPath( c, parent, globalConfig ) {
 
 	// shadow render offset
 	let sRO = 10000;
-
-	if ( isChild === false ) {
-		if ( parent.status.renderPhase === 1 ) {
-			c.lineWidth = 5;
-		} else {
-			c.lineWidth = 1;
-		}
+	c.lineWidth = thisCfg.lineWidth;
+	// if ( isChild === false ) {
+	// 	if ( parent.status.renderPhase === 1 ) {
+	// 		c.lineWidth = 5;
+	// 	} else {
+	// 		c.lineWidth = 1;
+	// 	}
 		
-		c.strokeStyle = 'white';
-	} else {
-		c.lineWidth = 1;
-	}
+	// 	c.strokeStyle = 'white';
+	// } else {
+	// 	c.lineWidth = 1;
+	// }
+
 	let cHP = 0; // current head point
 
 	c.strokeStyle = `rgba( ${thisCfg.colR}, ${thisCfg.colG}, ${thisCfg.colB}, ${thisCfg.colA})`;
@@ -97,7 +98,7 @@ function renderPath( c, parent, globalConfig ) {
 			{
 				blurs: [ 100, 70, 50, 30, 10 ],
 				blurShapeOffset: sRO,
-				blurColor: `rgba( 150, 150, 255, ${thisCfg.glowColApha} )`
+				blurColor: `rgba( 150, 150, 255, ${thisCfg.colA} )`
 			}
 		);
 
@@ -106,7 +107,7 @@ function renderPath( c, parent, globalConfig ) {
 			{
 				blurs: [ 100, 70, 50, 30, 10 ],
 				blurShapeOffset: sRO,
-				blurColor: `rgba( 150, 150, 255, ${thisCfg.glowColApha} )`
+				blurColor: `rgba( 150, 150, 255, ${thisCfg.colA} )`
 			} 
 		);
 

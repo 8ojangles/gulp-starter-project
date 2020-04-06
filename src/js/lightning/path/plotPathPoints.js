@@ -4,6 +4,19 @@ let trig = require( '../../trigonomicUtils.js' ).trigonomicUtils;
 
 // lightning path constructor
 
+
+/**
+* @name plotPathPoints
+* @description given an origin plot a path, randomised and subdivided, to a target.
+* @param {object} options - the constructor configuration object.
+* @param {number} options.startX - the X coordinate of the path start point.
+* @param {number} options.startY - the XYcoordinate of the path start point.
+* @param {number} options.endX - the X coordinate of the path end point.
+* @param {number} options.endY - the Y coordinate of the path end point.
+* @param {boolean} options.isChild - is this path instance a child/subpath of a parent?.
+* @param {number} options.subdivisions - the level of path subdivisions.
+* @returns {array} the path as a vector coordinate set.
+ */
 function plotPathPoints( options ) {
 		
 	let opts = options;
@@ -29,6 +42,7 @@ function plotPathPoints( options ) {
 			}
 			let p = temp[ j ];
 			let prevP = temp[ j - 1 ];
+			
 			// set up some numbers for making the path
 			// distance between the 2 points
 			let vD = trig.dist( p.x, p.y, prevP.x, prevP.y ) / 2;
@@ -39,8 +53,6 @@ function plotPathPoints( options ) {
 
 			// calculate some numbers for random distance
 			if ( isChild === false ) {
-				// minD = vD / ( i === 0 ? 2 : 2 + (i * 2) );
-				// maxD = ( vD * 0.8 ) / 4;
 				minD = easing.easeInQuint( i, vD / 2, -( vD / 2 ), subD );
 				maxD = easing.easeInQuint( i, vD, -vD, subD );
 			} else {

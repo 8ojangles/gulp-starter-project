@@ -27,19 +27,33 @@ let c = canvas.getContext('2d');
 c.lineCap = 'round';
 let counter = 0;
 
+let showDebugInfo = false;
+
+$( '.js-show-debug-overlay' ).click( function( event ){
+	if ( $( this ).hasClass( 'active' ) ) {
+		$( this ).removeClass( 'active' );
+		showDebugInfo = false;
+	} else {
+		$( this ).addClass( 'active' );
+		showDebugInfo = true;
+	}
+} );
+
 // test Vector path
 let testVec = {
-	startX: cW / 4,
+	startX: cW / 2,
 	startY: 50,
-	endX: (cW / 4) * 3,
+	endX: (cW / 2),
 	endY: cH - 50
 }
 
-function drawLine() {
-	c.strokeStyle = 'red';
-	c.setLineDash( [5, 15] );
-	c.line( testVec.startX, testVec.startY, testVec.endX, testVec.endY );
-	c.setLineDash( [] );
+function drawLine( debug ) {
+	if ( debug === true ) {
+		c.strokeStyle = 'red';
+		c.setLineDash( [5, 15] );
+		c.line( testVec.startX, testVec.startY, testVec.endX, testVec.endY );
+		c.setLineDash( [] );
+	}
 }
 
 // let iterations = rndInt( 10, 50 );
@@ -105,9 +119,40 @@ ligntningMgr.createLightning( {
 	subdivisions: mathUtils.randomInteger( 3, 6 )	
 } );
 
+$( '.js-run' ).click( function( event ){
+	ligntningMgr.createLightning( {
+		canvasW: cW,
+		canvasH: cH,
+		startX: testVec.startX,
+		startY: testVec.startY,
+		endX: testVec.endX,
+		endY: testVec.endY,
+		subdivisions: mathUtils.randomInteger( 3, 6 )	
+	} );
+
+} );
+
+$( '.js-clear-mgr' ).click( function( event ){
+	ligntningMgr.members.length = 0;
+} );
+
+$( '.js-clear-mgr-run' ).click( function( event ){
+	ligntningMgr.members.length = 0;
+	ligntningMgr.createLightning( {
+		canvasW: cW,
+		canvasH: cH,
+		startX: testVec.startX,
+		startY: testVec.startY,
+		endX: testVec.endX,
+		endY: testVec.endY,
+		subdivisions: mathUtils.randomInteger( 3, 6 )	
+	} );
+} );
+
+
 function drawTest() {
-	ligntningMgr.drawPointArr( c );
-	drawLine();
+	ligntningMgr.updateArr( c );
+	drawLine( showDebugInfo );
 	ligntningMgr.updateRenderCfg();
 	// ligntningMgr.drawDebugRadialTest( c );
 }

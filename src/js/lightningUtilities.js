@@ -132,6 +132,7 @@ let ligntningMgr = {
 					isRendering: true,
 					branchDepth: 0,
 					renderOffset: 0,
+					sequenceStartIndex: 1,
 					startX: opts.startX,
 					startY: opts.startY,
 					endX: opts.endX,
@@ -186,6 +187,7 @@ let ligntningMgr = {
 								isRendering: true,
 								branchDepth: pCfg.branchDepth,
 								renderOffset: pCfg.renderOffset,
+								sequenceStartIndex: 1,
 								pathAlpha: 1,
 								pathColR: 255,
 								pathColG: 255,
@@ -226,12 +228,18 @@ let ligntningMgr = {
 				{ name: 'fire', time: strikeFireTime },
 				{ name: 'cool', time: strikeCoolTime }
 			],
+			renderConfig: {
+				currHead: 0,
+				segmentsPerFrame: lMgr.renderConfig.timing.segmentsPerFrame
+			},
 			status: {
 				currentHead: 0,
 				renderPhase: 0
 			},
 			paths: tempPaths
 		};
+
+		console.log( 'lInstance.renderConfig.segmentsPerFrame', lInstance.renderConfig.segmentsPerFrame );
 
 		let accumulator = 0;
 		for (let i = 0; i < lInstance.sequence.length; i++ ) {
@@ -244,11 +252,9 @@ let ligntningMgr = {
 		this.members.push( lInstance );
 	},
 
-	drawPointArr: function( c ){
+	updateArr: function( c ){
 		let renderCfg = this.renderConfig;
-		let iterations = 1;
 		let membersLen = this.members.length;
-		let strokeWidth = this.creationConfig.branches.depth.curr;
 
 		c.globalCompositeOperation = 'lighter';
 
@@ -256,32 +262,20 @@ let ligntningMgr = {
 			let thisMember = this.members[ i ];
 			for( let j = 0; j < thisMember.paths.length; j++ ) {
 				let thisPathCfg = thisMember.paths[ j ];
-				
-				let shadowOffset = -10000;
-				let blurWidth = 100;
-				let maxLineWidth = 200;
-
-				for ( let k = 0; k <= iterations; k++ ) {
-					let colorChange = easeFn( k, 150, 105, iterations );
-
-					if ( k === 0 ) {
-						blurWidth = 0;
-					} else {
-						blurWidth = 10 * k;
-					}
-					thisPathCfg.render( c, thisMember, this );
-					thisPathCfg.update( thisMember, this );
-					
-				}
-				
+				thisPathCfg.render( c, thisMember, this );
+				thisPathCfg.update( thisMember, this );
 			}
 		}
 		c.globalCompositeOperation = 'source-over';
 	},
 
 	updateRenderCfg: function() {
-		let rnd = this.renderConfig;
-		rnd.currHead += rnd.timing.segmentsPerFrame;
+		let members = this.members;
+		let memLen = members.length;
+		for( let i = 0; i <= memLen - 1; i++ ) {
+			let m = members[ i ];
+			m.renderConfig.currHead += m.renderConfig.segmentsPerFrame;
+		}
 	},
 
 	drawDebugRadialTest: function( c ) {

@@ -6,12 +6,23 @@
 <style>
     html, body, main { width: 100vw; height: 100vh; padding: 0; margin: 0; }
     #lightningDrawingTest { background-color: #000; display: block; width: 100%; height: 100%; }
+    .debug-panel { position: fixed; bottom: 1rem; right: 1rem; padding: 1rem; }
+    .debug-panel .button { background: CornflowerBlue; color: white; border: none; padding: 0.5rem; cursor: pointer; outline: 0; font-size: 0.8rem; }
+    .debug-panel .button:hover { background: DarkSlateBlue; }
+    .debug-panel .button.active { background: DarkSlateBlue; color: blue; }
+    .debug-panel .button.active:hover { background: white; color: blue; }
 </style>
 {% endblock %}
 
 {% block mainContent %}
     <!-- Page contents -->
 <canvas id="lightningDrawingTest"></canvas>
+<div class="debug-panel">
+    <button class="button js-clear-mgr-run">Clear/Fire</button>
+	<button class="button js-run">Fire</button>
+	<button class="button js-clear-mgr">Clear</button>
+	<button class="button js-show-debug-overlay">Debug Display</button>
+</div>
 {% endblock %}
 {%- block pageScriptsJs -%}
 <script src="js/lightningTest.js"></script>
