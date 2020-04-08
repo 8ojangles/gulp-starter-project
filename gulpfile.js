@@ -47,7 +47,6 @@ function watchFiles() {
     });
     gulp.watch( dirs.src.ks.codeExamples, gulp.series( compileHtml, moveCodeExamples, reload ) );
     gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
-    gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
     gulp.watch( dirs.src.js, gulp.series( compileJs, compileTestJs, createDocs, reload ) );
     gulp.watch( dirs.src.templates, gulp.series( compileHtml, moveHtml, reload ) );
     gulp.watch( dirs.src.data, gulp.series( compileHtml, moveHtml, reload ) );
@@ -93,6 +92,22 @@ const build = gulp.series(
     gulp.series( tests, createDocs )
 );
 
+const buildDev = gulp.series(
+    gulp.series( clean ), 
+    gulp.parallel(
+        ksVendor,
+        moveCodeExamples,
+        vendorJs,
+        compileTestJs,
+        compileJs,
+        gulp.series( compileHtml, moveHtml ),
+        moveFonts,
+        moveImages,
+        moveData,
+        sass
+    )
+);
+
 // expose task to cli
 exports.build = build;
 
@@ -101,3 +116,5 @@ exports.tests = tests;
 
 // default task
 gulp.task( 'default', gulp.series( build, watch ) );
+// dev task
+gulp.task( 'dev', gulp.series( buildDev, watch ) );

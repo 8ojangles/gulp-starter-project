@@ -109,27 +109,33 @@ let iterations = 1;
 // 	// }
 // }
 
-ligntningMgr.createLightning( {
+let baseTheme = {
 	canvasW: cW,
 	canvasH: cH,
 	startX: testVec.startX,
 	startY: testVec.startY,
 	endX: testVec.endX,
 	endY: testVec.endY,
-	subdivisions: mathUtils.randomInteger( 3, 6 )	
-} );
+	subdivisions: mathUtils.randomInteger( 3, 6 )
+}
 
-$( '.js-run' ).click( function( event ){
-	ligntningMgr.createLightning( {
+function createTheme( event ) {
+	return {
 		canvasW: cW,
 		canvasH: cH,
 		startX: testVec.startX,
 		startY: testVec.startY,
-		endX: testVec.endX,
-		endY: testVec.endY,
-		subdivisions: mathUtils.randomInteger( 3, 6 )	
-	} );
+		endX: event.clientX,
+		endY: event.clientY,
+		subdivisions: mathUtils.randomInteger( 3, 6 )
+	}
+}
 
+
+ligntningMgr.createLightning( baseTheme );
+
+$( '.js-run' ).click( function( event ){
+	ligntningMgr.createLightning( baseTheme );
 } );
 
 $( '.js-clear-mgr' ).click( function( event ){
@@ -138,15 +144,11 @@ $( '.js-clear-mgr' ).click( function( event ){
 
 $( '.js-clear-mgr-run' ).click( function( event ){
 	ligntningMgr.members.length = 0;
-	ligntningMgr.createLightning( {
-		canvasW: cW,
-		canvasH: cH,
-		startX: testVec.startX,
-		startY: testVec.startY,
-		endX: testVec.endX,
-		endY: testVec.endY,
-		subdivisions: mathUtils.randomInteger( 3, 6 )	
-	} );
+	ligntningMgr.createLightning( baseTheme );
+} );
+
+$( 'canvas' ).click( function( event ){
+	ligntningMgr.createLightning( createTheme( event ) );
 } );
 
 

@@ -2,7 +2,7 @@ function pathGlow( c, pathCfg, savedPath, glowOpts ) {
 	let blurs = glowOpts.blurs ||  [ 100, 70, 50, 30, 10 ];;
 	let blurColor = glowOpts.blurColor || 'white';
 	let blurShapeOffset = glowOpts.blurShapeOffset || 10000;
-
+	c.lineWidth = pathCfg.lineWidth;
 	c.strokeStyle = "white";
 	c.fillSbtyle = 'white';
 	c.shadowOffsetY = blurShapeOffset;
@@ -30,6 +30,7 @@ function renderPath( c, parent, globalConfig ) {
 	// shadow render offset
 	let sRO = 10000;
 	c.lineWidth = thisCfg.lineWidth;
+	// console.log( 'thisCfg.lineWidth: ', thisCfg.lineWidth ); 
 	// if ( isChild === false ) {
 	// 	if ( parent.status.renderPhase === 1 ) {
 	// 		c.lineWidth = 5;
@@ -90,20 +91,20 @@ function renderPath( c, parent, globalConfig ) {
 	if ( parent.status.renderPhase === 1 && thisCfg.isChild === false) {
 
 		// sky flash
-		c.fillStyle = `rgba( 255, 255, 255, ${parent.skyFlashAlpha} )`;
+		c.fillStyle = `rgba( 255, 255, 255, ${thisCfg.colA / 4} )`;
 		c.fillRect( 0, 0, globalConfig.canvasW, globalConfig.canvasH );
 
 		pathGlow(
 			c, thisCfg, offsetPath,
 			{
 				blurs: [ 100, 70, 50, 30, 10 ],
-				blurShapeOffset: sRO,
+				blurShapeOffset: 0,
 				blurColor: `rgba( 150, 150, 255, ${thisCfg.colA} )`
 			}
 		);
 
 		pathGlow( 
-			c, thisCfg, originGlowLong,
+				c, thisCfg, originGlowLong,
 			{
 				blurs: [ 100, 70, 50, 30, 10 ],
 				blurShapeOffset: sRO,
@@ -115,7 +116,7 @@ function renderPath( c, parent, globalConfig ) {
 			thisCfg.path[0].x, thisCfg.path[0].y, 0,
 			thisCfg.path[0].x, thisCfg.path[0].y, 600
 		);
-		longGlowGradient.addColorStop( 0, `rgba( 255, 150, 255, ${parent.originFlashAlpha} )` );
+		longGlowGradient.addColorStop( 0, `rgba( 255, 150, 255, ${thisCfg.colA} )` );
 		longGlowGradient.addColorStop( 1, 'rgba( 255, 150, 255, 0 )' );
 
 		c.fillStyle = longGlowGradient;
@@ -125,11 +126,12 @@ function renderPath( c, parent, globalConfig ) {
 			thisCfg.path[0].x, thisCfg.path[0].y, 0,
 			thisCfg.path[0].x, thisCfg.path[0].y, 100
 		);
-		originGradient.addColorStop( 0, `rgba( 150, 150, 255, ${parent.originFlashAlpha} )` );
+		originGradient.addColorStop( 0, `rgba( 150, 150, 255, ${thisCfg.colA} )` );
 		originGradient.addColorStop( 1, 'rgba( 150, 150, 255, 0 )' );
 
 		c.fillStyle = originGradient;
 		c.fillCircle( thisCfg.path[0].x, thisCfg.path[0].y, 100 );
+		
 		// pathGlow( 
 		// 	c, thisCfg, originGlowShort,
 		// 	{
@@ -152,7 +154,7 @@ function renderPath( c, parent, globalConfig ) {
 		c.lineWidth = 3;
 		c.shadowBlur = 20;
 		c.shadowColor = `rgba( ${thisCfg.colR}, ${thisCfg.colG}, ${thisCfg.colB}, ${thisCfg.colA})`;
-
+		// c.shadowOffsetY = sRO;
 		let glowHeadPathL = new Path2D();
 		let glowHeadPathS = new Path2D();
 		if ( cHP > 2 ) {
@@ -165,7 +167,7 @@ function renderPath( c, parent, globalConfig ) {
 			c.stroke( glowHeadPathL );
 		}
 		
-		c.shadowColor = `rgba( ${thisCfg.colR}, ${thisCfg.colG}, ${thisCfg.colB}, ${thisCfg.colA / 2})`;
+		c.shadowColor = `rgba( ${thisCfg.colR}, ${thisCfg.colG}, ${thisCfg.colB}, ${thisCfg.colA})`;
 		c.shadowBlur = 10;
 		glowHeadPathS.moveTo( thisPath[ cHP - 1 ].x, thisPath[ cHP - 1 ].y - sRO );
 		glowHeadPathS.lineTo( thisPath[ cHP ].x, thisPath[ cHP ].y - sRO );

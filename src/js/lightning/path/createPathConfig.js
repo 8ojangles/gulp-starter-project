@@ -12,7 +12,6 @@ function createPathConfig( thisPath, options ) {
 	let pLen = p.length;
 
 	let opts = options;
-	let branchSubDFactor = opts.branchSubDFactor || 6;
 	let pathIndex = opts.pathIndex;
 	let pathAngleSpread = opts.pathAngleSpread || 0.2;
 	let branchDepth = opts.branchDepth || 0;
@@ -45,15 +44,6 @@ function createPathConfig( thisPath, options ) {
 	// console.log( 'randTheta: ', randTheta );
 	let branchEndpoint = trig.radialDistribution( p2.x, p2.y, dVar, theta );
 
-	if ( opts.subDRate < 2 ) {
-		branchSubDFactor = 2;
-	} else {
-		let tempSubDRate =  dVar / opts.subDRate;
-
-		branchSubDFactor = Math.round( tempSubDRate > 5 ? 5 : tempSubDRate ) + 1;
-	}
-	console.log( branchSubDFactor );
-
 	return {
 		branchDepth: branchDepth,
 		renderOffset: rOffset,
@@ -61,7 +51,6 @@ function createPathConfig( thisPath, options ) {
 		startY: p2.y,
 		endX: branchEndpoint.x,
 		endY: branchEndpoint.y,
-		subdivisions: branchSubDFactor,
 		dRange: dVar
 	};
 }

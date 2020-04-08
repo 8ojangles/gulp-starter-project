@@ -18,7 +18,9 @@ function startSequence( opts ) {
 		items: seqArray,
 		linkedSeq: tempSeq.linkedSeq
 	};
+	// console.log( 't.currSequence: ', t.currSequence );
 	t.sequenceClock = 0;
+	t.sequenceIndex = opts.index
 	t.playSequence = true;
 }
 

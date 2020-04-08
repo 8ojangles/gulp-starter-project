@@ -11,6 +11,16 @@ let strikeDrawTime = lightningStrikeTimeMax / 2;
 let strikeFireTime = lightningStrikeTimeMax / 6;
 let strikeCoolTime = lightningStrikeTimeMax / 3;
 
+// store subdivision level segment count as a look up table/array
+let subDSegmentCountLookUp = [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 ];
+
+function calculateSubDRate( length, targetLength, subDRate ) {
+	let lDiv = targetLength / length;
+	let lDivCalc = subDRate - Math.floor( lDiv );
+	if ( lDivCalc <= 1 ) return 1;
+	if ( lDiv > 2 ) return lDivCalc;
+	return subDRate;
+}
 
 let ligntningMgr = {
 
@@ -49,7 +59,7 @@ let ligntningMgr = {
 			draw: strikeDrawTime,
 			fire: strikeFireTime,
 			cool: strikeCoolTime,
-			segmentsPerFrame: 10
+			segmentsPerFrame: 20
 		}
 	},
 
@@ -112,17 +122,27 @@ let ligntningMgr = {
 		let branchCfg = creationConfig.branches;
 		lMgr.canvasW = opts.canvasW;
 		lMgr.canvasH = opts.canvasH;
+		let maxCanvasDist = trig.dist( 0, 0, opts.canvasW, opts.canvasH );
+		let maxSubD = 8;
 		// branchCfg.depth.curr = mathUtils.randomInteger(
 		// 	branchCfg.depth.min, branchCfg.depth.max
 		// );
 		branchCfg.depth.curr = 1;
 		let tempPaths = [];
 		let subDivs = opts.subdivisions || mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max);
-		let subD = 7;
+		let subD = 6;
 		let d = trig.dist( opts.startX, opts.startY, opts.endX, opts.endY );
 		let parentPathDist = d;
-		let subDRate =  Math.floor( d / subD );
-		console.log( 'parent subD rate: ', subDRate );
+		let subDRate = calculateSubDRate( d, maxCanvasDist, subD );
+
+		console.log(
+			`d: ${d},\nsubDRate: ${subDRate},\nmaxCanvasDist: ${maxCanvasDist}\nsubDSegmentCountLookUp[ subDRate ]: ${subDSegmentCountLookUp[ subDRate ]}\nd / subDSegmentCountLookUp[ subDRate ]: ${d / subDSegmentCountLookUp[ subDRate ]}`
+		);
+
+		let speed =  ( d / subDSegmentCountLookUp[ subDRate ] ) ;
+		// calculate draw speed based on bolt length / 
+
+
 		// 1. create intial/main path
 		tempPaths.push(
 			createPathFromOptions(
@@ -149,7 +169,7 @@ let ligntningMgr = {
 			)
 		);
 
-		let branchPointsCount = 20;
+		let branchPointsCount = 6;
 		let branchSubDFactor = 6;
 		// cycle through branch depth levels starting with 0
 		for( let branchCurrNum = 0; branchCurrNum <= branchCfg.depth.curr; branchCurrNum++){
@@ -172,9 +192,7 @@ let ligntningMgr = {
 					let pCfg = createPathConfig(
 						thisPathCfg,
 						{	
-							subDRate: subDRate,
 							parentPathDist: d,
-							branchSubDFactor: branchSubDFactor,
 							branchDepth: branchCurrNum + 1
 						}
 					);
@@ -197,7 +215,7 @@ let ligntningMgr = {
 								endX: pCfg.endX,
 								endY: pCfg.endY,
 								parentPathDist: d,
-								subdivisions: pCfg.subdivisions,
+								subdivisions: calculateSubDRate( pCfg.dVar, maxCanvasDist, subD ),
 								dRange: pCfg.dVar,
 								sequenceStartIndex: 1
 							}
@@ -218,7 +236,8 @@ let ligntningMgr = {
 		// create parent lightning instance
 		let lInstance = {
 			isActive: true,
-			skyFlashAlpha: 1,
+			speed: speed,
+			skyFlashAlpha: 0.2,
 			originFlashAlpha: 1,
 			glowBlurIterations: mathUtils.randomInteger( 10, 50 ),
 			clock: 0,
@@ -230,7 +249,7 @@ let ligntningMgr = {
 			],
 			renderConfig: {
 				currHead: 0,
-				segmentsPerFrame: lMgr.renderConfig.timing.segmentsPerFrame
+				segmentsPerFrame: speed
 			},
 			status: {
 				currentHead: 0,
@@ -239,7 +258,7 @@ let ligntningMgr = {
 			paths: tempPaths
 		};
 
-		console.log( 'lInstance.renderConfig.segmentsPerFrame', lInstance.renderConfig.segmentsPerFrame );
+		// console.log( 'speed',speed );
 
 		let accumulator = 0;
 		for (let i = 0; i < lInstance.sequence.length; i++ ) {

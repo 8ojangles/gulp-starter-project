@@ -19,6 +19,7 @@ function updatePath( parentConfig, globalConfig ) {
 
 			if ( pathCfg.currSequence === false ) {
 				if ( pathCfg.playSequence === false ) {
+					pathCfg.sequenceindex = pathCfg.sequenceStartIndex;
 					pathCfg.startSequence( { index: pathCfg.sequenceStartIndex } );
 				}
 			}
