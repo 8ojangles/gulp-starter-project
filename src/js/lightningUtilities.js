@@ -3,7 +3,7 @@ let easing = require( './easing.js' ).easingEquations;
 let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
 let createPathFromOptions = require( './lightning/path/createPathFromOptions.js' );
 let createPathConfig = require( './lightning/path/createPathConfig.js' );
-let updateLightningArray = require( './lightning/updateLightningArray.js' ); 
+let updateLightningArray = require( './lightning/updateLightningArray.js' );
 let easeFn = easing.easeOutSine;
 
 let lightningStrikeTimeMax = 300;
@@ -103,17 +103,6 @@ let ligntningMgr = {
 		}
 	},
 
-	createBranchPoints: function( pathArray, branchCount ) {
-		let pLen = pathArray.length;
-		let temp = [];
-		for( let i = branchCount; i > 0; i-- ) {
-			let branchP = pathArray[ mathutils.random( 0, pLen ) ];
-
-			temp.push( mathutils.random( 0, pLen ) );
-		};
-		return temp;
-	},
-
 	createLightning: function( options ) {
 
 		let lMgr = this;
@@ -135,9 +124,9 @@ let ligntningMgr = {
 		let parentPathDist = d;
 		let subDRate = calculateSubDRate( d, maxCanvasDist, subD );
 
-		console.log(
-			`d: ${d},\nsubDRate: ${subDRate},\nmaxCanvasDist: ${maxCanvasDist}\nsubDSegmentCountLookUp[ subDRate ]: ${subDSegmentCountLookUp[ subDRate ]}\nd / subDSegmentCountLookUp[ subDRate ]: ${d / subDSegmentCountLookUp[ subDRate ]}`
-		);
+		// console.log(
+		// 	`d: ${d},\nsubDRate: ${subDRate},\nmaxCanvasDist: ${maxCanvasDist}\nsubDSegmentCountLookUp[ subDRate ]: ${subDSegmentCountLookUp[ subDRate ]}\nd / subDSegmentCountLookUp[ subDRate ]: ${d / subDSegmentCountLookUp[ subDRate ]}`
+		// );
 
 		let speed =  ( d / subDSegmentCountLookUp[ subDRate ] ) ;
 		// calculate draw speed based on bolt length / 
@@ -162,6 +151,7 @@ let ligntningMgr = {
 					pathColG: 255,
 					pathColB: 255,
 					parentPathDist: 0,
+					lineWidth: 1,
 					subDRate: subDRate,
 					subdivisions: subD,
 					dRange: d / 2
@@ -215,6 +205,7 @@ let ligntningMgr = {
 								endX: pCfg.endX,
 								endY: pCfg.endY,
 								parentPathDist: d,
+								lineWidth: 1,
 								subdivisions: calculateSubDRate( pCfg.dVar, maxCanvasDist, subD ),
 								dRange: pCfg.dVar,
 								sequenceStartIndex: 1

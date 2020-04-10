@@ -12,6 +12,7 @@ let mainPathAnimSequence = require( `../sequencer/mainPathAnimSequence.js` );
 let startSequence = require( `../sequencer/startSequence.js` );
 let updateSequenceClock = require( `../sequencer/updateSequenceClock.js` );
 let updateSequence = require( `../sequencer/updateSequence.js` );
+let setupSequences = require( `../sequencer/setupSequences.js` );
 
 // lightning path constructor
 
@@ -32,10 +33,8 @@ function createPathFromOptions( opts ) {
 		isChild: opts.isChild
 	});
 
-	let thisSequences = opts.isChild ? childPathAnimSequence : mainPathAnimSequence;
-	let thisAlpha = opts.isChild ? 0.5 : opts.colA ? opts.colA : 1;
-
-	
+	let chosenSequence = opts.isChild ? childPathAnimSequence: mainPathAnimSequence;
+	let thisSequences = setupSequences( chosenSequence );
 
 	return {
 		// flags
@@ -53,7 +52,7 @@ function createPathFromOptions( opts ) {
 		colR: opts.colR || 255,
 		colG: opts.colG || 255,
 		colB: opts.colB || 255,
-		colA: thisAlpha,
+		colA: opts.isChild ? 0.5 : opts.colA ? opts.colA : 1,
 		glowColApha:  opts.glowColApha || 1,
 		lineWidth: 1,
 		// clocks

@@ -52,6 +52,20 @@ function watchFiles() {
     gulp.watch( dirs.src.data, gulp.series( compileHtml, moveHtml, reload ) );
 }
 
+function watchFilesDev() {
+
+    gulp.watch( dirs.src.scss , sass );
+    gulp.watch( dirs.dist.css ).on('change', function ( e ) {
+        return gulp.src( dirs.dist.css )
+            .pipe( browserSync.stream() );
+    });
+    gulp.watch( dirs.src.ks.codeExamples, gulp.series( compileHtml, moveCodeExamples, reload ) );
+    gulp.watch( dirs.src.images, gulp.series( moveImages, reload ) );
+    gulp.watch( dirs.src.js, gulp.series( compileJs, compileTestJs, reload ) );
+    gulp.watch( dirs.src.templates, gulp.series( compileHtml, moveHtml, reload ) );
+    gulp.watch( dirs.src.data, gulp.series( compileHtml, moveHtml, reload ) );
+}
+
 // browsersync file watcher
 function watch(){
 	browserSync.emitter.on(
@@ -66,7 +80,22 @@ function watch(){
     browserSync.reload();
     watchFiles();
 }
-    
+
+// browsersync file watcher
+function watchDev(){
+    browserSync.emitter.on(
+        'init',
+        function(){
+            notify( {message: "Localhost started" } );
+            console.log( "Localhost started" );
+        }
+    );
+
+    browserSync.init( bsOpts );
+    browserSync.reload();
+    watchFilesDev();
+}
+
 // expose task to cli
 exports.watch = watch;
 
@@ -117,4 +146,4 @@ exports.tests = tests;
 // default task
 gulp.task( 'default', gulp.series( build, watch ) );
 // dev task
-gulp.task( 'dev', gulp.series( buildDev, watch ) );
+gulp.task( 'dev', gulp.series( buildDev, watchDev ) );

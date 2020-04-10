@@ -13,22 +13,16 @@ function updatePath( parentConfig, globalConfig ) {
 	let pathLen = pathCfg.path.length;
 	let rndOffset = pathCfg.renderOffset;	
 
+	// console.log( "this: ", this );
+
 	if ( pathCfg.isChild === false ) {
 		if ( p.renderConfig.currHead >= pathLen ) {
-			pStatus.renderPhase = 1;
-
-			if ( pathCfg.currSequence === false ) {
-				if ( pathCfg.playSequence === false ) {
-					pathCfg.sequenceindex = pathCfg.sequenceStartIndex;
-					pathCfg.startSequence( { index: pathCfg.sequenceStartIndex } );
-				}
+			if ( pathCfg.playSequence === false ) {
+				// console.log( 'starting 1st animation' );
+				pathCfg.playSequence = true; 
+				pathCfg.startSequence( {index: 0} );
 			}
 		}
-		// if ( pathCfg.sequenceIndex === 1 ) {
-		// 	if ( pathCfg.playSequence === false ) {
-		// 		pathCfg.startSequence( { index: pathCfg.sequenceStartIndex } );
-		// 	}
-		// }
 	} else {
 		if ( pathCfg.isRendering === false ) {
 			if ( pathCfg.colA > 0 ) {
@@ -50,18 +44,10 @@ function updatePath( parentConfig, globalConfig ) {
 		}
 	}
 
-	if (pStatus.renderPhase === 2 ) {
-		// if ( pathCfg.colR > 0 ) {
-		// 	pathCfg.colR -= 5;
-		// 	pathCfg.colG -= 5;
-		// 	pathCfg.colB -= 5;
-		// 	pathCfg.colA -= 0.001;
-		// }
-	}
-
-	if ( pathCfg.playSequence === true ) {
-		pathCfg.updateSequence();
-	}
+	pathCfg.updateSequence();
+	// if ( pathCfg.playSequence === true ) {
+	// 	pathCfg.updateSequence();
+	// }
 
 }
 

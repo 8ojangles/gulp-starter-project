@@ -1,12 +1,12 @@
 let mainPathAnimSequence = [
 	{
 		name: 'lPathFire',
-		time: 20,
+		time: 2,
 		items: [
 			{ param: 'lineWidth', start: 0, target: 10, easefN: 'linearEase' },
 			{ param: 'glowColApha', start: 0, target: 1, easefN: 'easeOutQuint' }
 		],
-		linkedSeq: '2'
+		linkedSeq: '1'
 	},
 	{
 		name: 'lPathCool',

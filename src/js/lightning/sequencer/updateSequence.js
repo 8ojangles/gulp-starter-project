@@ -2,23 +2,36 @@ let easing = require( '../../easing.js' ).easingEquations;
 
 function updateSequence(){
 	let t = this;
-	let cClock = t.sequenceClock;
-	// console.log( 'cClock: ', cClock);
-	let cS = t.currSequence;
-	let tClock = cS.time;
-	for( let i = 0; i < cS.items.length; i++ ){
-		let s = cS.items[ i ];
-		t[ s.param ] = easing[ s.easefN ]( cClock, s.start, s.target, tClock );
-	}
+	console.log( 'update this: ', this );
+	let cS = t.sequences;
+	let cSLen = t.sequences.length;
 
-	if( cClock >= tClock ) {
-		if( cS.linkedSeq !== '' ) {
-			t.startSequence( { index: cS.linkedSeq } );
-		} else {
-			t.playSequence = false;
+	for( let i = 0; i < cSLen; i++ ){
+		let thisSeq = cS[ i ];
+		if ( thisSeq.active === false ) {
+			continue;
 		}
+
+		let thisSeqItems = thisSeq.items;
+		let thisSeqItemLen = thisSeqItems.length;
+		let seqClock = thisSeq.clock;
+		let tClock = thisSeq.totalClock;
+
+		for( let i = 0; i < thisSeqItemLen; i++ ){
+			let s = thisSeqItems[ i ];
+			t[ s.param ] = easing[ s.easefN ]( seqClock, s.start, s.target, tClock );
+		}
+
+		if( seqClock >= tClock ) {
+			thisSeq.active = false;
+			thisSeq.clock = 0;
+			if( seqClock.linkedSeq !== '' ) {
+				t.startSequence( { index: thisSeq.linkedSeq } );
+				continue;
+			}
+		}
+		thisSeq.clock++;
 	}
-	t.updateSequenceClock();
 }
 
 module.exports = updateSequence;
