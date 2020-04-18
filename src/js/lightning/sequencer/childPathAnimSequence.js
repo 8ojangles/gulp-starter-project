@@ -1,7 +1,8 @@
 let childPathAnimSequence = [
 	{
 		name: 'lPathCool',
-		time: 100,
+		time: 80,
+		final: true,
 		items: [
 			{ param: 'colA', target: 0, easefN: 'easeOutQuint' }
 		]

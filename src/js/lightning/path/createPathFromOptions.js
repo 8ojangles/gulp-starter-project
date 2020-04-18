@@ -33,7 +33,7 @@ function createPathFromOptions( opts ) {
 		isChild: opts.isChild
 	});
 
-	let chosenSequence = opts.isChild ? childPathAnimSequence: mainPathAnimSequence;
+	let chosenSequence = opts.sequences || mainPathAnimSequence;
 	let thisSequences = setupSequences( chosenSequence );
 
 	return {
@@ -49,11 +49,14 @@ function createPathFromOptions( opts ) {
 		baseAngle: trig.angle( opts.startX, opts.startY, opts.endX, opts.endY ),
 		baseDist: trig.dist( opts.startX, opts.startY, opts.endX, opts.endY ),
 		// colors
-		colR: opts.colR || 255,
-		colG: opts.colG || 255,
-		colB: opts.colB || 255,
-		colA: opts.isChild ? 0.5 : opts.colA ? opts.colA : 1,
-		glowColApha:  opts.glowColApha || 1,
+		colR: opts.pathColR || 255,
+		colG: opts.pathColG || 255,
+		colB: opts.pathColB || 255,
+		colA: opts.isChild ? 0.5 : opts.pathColA ? opts.pathColA : 1,
+		glowColR:  opts.glowColR || 255,
+		glowColG:  opts.glowColG || 255,
+		glowColB:  opts.glowColB || 255,
+		glowColA:  opts.glowColA || 1,
 		lineWidth: 1,
 		// clocks
 		clock: opts.clock || 0,
@@ -73,8 +76,16 @@ function createPathFromOptions( opts ) {
 		updateSequenceClock: updateSequenceClock,
 		update: updatePath,
 		render: renderPath,
+		currHeadPoint: 0,
 		// the actual path
-		path: newPath
+		path: newPath,
+		// saved paths
+		savedPaths: {
+			main: new Path2D(),
+			offset: new Path2D(),
+			originShort: new Path2D(),
+			originLong: new Path2D()
+		}
 	};
 }
 

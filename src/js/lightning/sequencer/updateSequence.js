@@ -1,8 +1,8 @@
 let easing = require( '../../easing.js' ).easingEquations;
 
-function updateSequence(){
-	let t = this;
-	console.log( 'update this: ', this );
+function updateSequence( opts ){
+	let t = opts || this;
+	// console.log( 'update this: ', this );
 	let cS = t.sequences;
 	let cSLen = t.sequences.length;
 
@@ -12,23 +12,26 @@ function updateSequence(){
 			continue;
 		}
 
-		let thisSeqItems = thisSeq.items;
-		let thisSeqItemLen = thisSeqItems.length;
-		let seqClock = thisSeq.clock;
-		let tClock = thisSeq.totalClock;
-
-		for( let i = 0; i < thisSeqItemLen; i++ ){
-			let s = thisSeqItems[ i ];
-			t[ s.param ] = easing[ s.easefN ]( seqClock, s.start, s.target, tClock );
+		let { items, linkedSeq, clock, totalClock, final } = thisSeq;
+		let itemLen = items.length;
+		for( let i = 0; i < itemLen; i++ ){
+			let s = items[ i ];
+			t[ s.param ] = easing[ s.easefN ](
+				clock, s.start, s.target, totalClock
+			);
 		}
 
-		if( seqClock >= tClock ) {
-			thisSeq.active = false;
+		if( clock >= totalClock ) {
+			thisSeq.active = false
 			thisSeq.clock = 0;
-			if( seqClock.linkedSeq !== '' ) {
-				t.startSequence( { index: thisSeq.linkedSeq } );
+			if( linkedSeq !== '' ) {
+				t.startSequence( { index: linkedSeq } );
 				continue;
 			}
+			if( !t.isChild && final ) {
+				t.isActive = false;
+			}
+
 		}
 		thisSeq.clock++;
 	}

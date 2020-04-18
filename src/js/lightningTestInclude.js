@@ -59,56 +59,6 @@ function drawLine( debug ) {
 // let iterations = rndInt( 10, 50 );
 let iterations = 1;
 
-// function drawPointArr(){
-
-// 	c.globalCompositeOperation = 'lighter';
-// 	let shadowOffset = -10000;
-// 	let blurWidth = 100;
-// 	let maxLineWidth = 200;
-
-// 	for ( let j = 0; j <= iterations; j++ ) {
-// 		let colorChange = easeFn( j, 150, 105, iterations );
-
-// 		c.strokeStyle = 'white';
-
-// 		if ( j === 0 ) {
-// 			c.lineWidth = 1;
-// 			blurWidth = 0;
-// 		} else {
-// 			blurWidth = 10 * j;
-// 		}
-// 		c.beginPath();
-// 		for ( let i = 0; i <= segArr.length - 1; i++ ) {
-// 			let p = segArr[ i ];
-// 			if ( i === 0 ) {
-// 				c.moveTo( p.x, p.y + ( j === 0 ? 0 : shadowOffset ) );
-// 				continue;
-// 			}
-// 			c.lineTo( p.x, p.y + ( j === 0 ? 0 : shadowOffset ) );
-// 		}
-// 		c.shadowOffsetY = -shadowOffset;
-// 		c.shadowBlur = easeFn( j, maxLineWidth, -maxLineWidth, iterations );
-// 		c.shadowColor = `rgba( ${ colorChange }, ${ colorChange }, 255, 1 )`;
-// 		c.stroke();
-
-// 	}
-// 	c.globalCompositeOperation = 'source-over';
-
-// 	// c.fillStyle = 'white';
-// 	// c.fillCircle( testVec.startX, testVec.startY, 7 );
-// 	// c.fillCircle( testVec.endX, testVec.endY, 7 );
-// 	// c.fillStyle = 'blue';
-// 	// for ( let i = 0; i <= segArr.length - 1; i++ ) {
-// 	// 	if ( i === segArr.length / 2 - 1 ) {
-// 	// 		c.fillStyle = 'green';
-// 	// 	}
-// 	// 	c.fillCircle( segArr[ i ].x, segArr[ i ].y, 5 );
-// 	// 	if ( i === segArr.length / 2 - 1 ) {
-// 	// 		c.fillStyle = 'blue';
-// 	// 	}
-// 	// }
-// }
-
 let baseTheme = {
 	canvasW: cW,
 	canvasH: cH,

@@ -5,7 +5,9 @@ let createPathFromOptions = require( './lightning/path/createPathFromOptions.js'
 let createPathConfig = require( './lightning/path/createPathConfig.js' );
 let updateLightningArray = require( './lightning/updateLightningArray.js' );
 let easeFn = easing.easeOutSine;
-
+let createBlurArray = require( './lightning/createBlurArray.js' );
+let mainPathAnimSequence = require( `./lightning/sequencer/mainPathAnimSequence.js` );
+let childPathAnimSequence = require( `./lightning/sequencer/childPathAnimSequence.js` );
 let lightningStrikeTimeMax = 300;
 let strikeDrawTime = lightningStrikeTimeMax / 2;
 let strikeFireTime = lightningStrikeTimeMax / 6;
@@ -52,14 +54,15 @@ let ligntningMgr = {
 	},
 
 	renderConfig: {
-		blurIterations: mathUtils.randomInteger( 10, 40 ),
+		blurIterations: mathUtils.randomInteger( 5, 8 ),
+		blurRenderOffset: 10000,
 		currHead: 0,
 		timing: {
 			max: lightningStrikeTimeMax,
 			draw: strikeDrawTime,
 			fire: strikeFireTime,
 			cool: strikeCoolTime,
-			segmentsPerFrame: 20
+			segmentsPerFrame: 1
 		}
 	},
 
@@ -113,25 +116,20 @@ let ligntningMgr = {
 		lMgr.canvasH = opts.canvasH;
 		let maxCanvasDist = trig.dist( 0, 0, opts.canvasW, opts.canvasH );
 		let maxSubD = 8;
-		// branchCfg.depth.curr = mathUtils.randomInteger(
-		// 	branchCfg.depth.min, branchCfg.depth.max
-		// );
 		branchCfg.depth.curr = 1;
-		let tempPaths = [];
 		let subDivs = opts.subdivisions || mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max);
 		let subD = 6;
 		let d = trig.dist( opts.startX, opts.startY, opts.endX, opts.endY );
 		let parentPathDist = d;
 		let subDRate = calculateSubDRate( d, maxCanvasDist, subD );
 
-		// console.log(
-		// 	`d: ${d},\nsubDRate: ${subDRate},\nmaxCanvasDist: ${maxCanvasDist}\nsubDSegmentCountLookUp[ subDRate ]: ${subDSegmentCountLookUp[ subDRate ]}\nd / subDSegmentCountLookUp[ subDRate ]: ${d / subDSegmentCountLookUp[ subDRate ]}`
-		// );
-
-		let speed =  ( d / subDSegmentCountLookUp[ subDRate ] ) ;
+		let speed =  ( d / subDSegmentCountLookUp[ subDRate ] );
+		let speedModRate = opts.speedModRate || 0.1;
+		let speedMod = speed * speedModRate;
 		// calculate draw speed based on bolt length / 
 
-
+		let tempPaths = [];
+		
 		// 1. create intial/main path
 		tempPaths.push(
 			createPathFromOptions(
@@ -139,17 +137,20 @@ let ligntningMgr = {
 					isChild: false,
 					isActive: true,
 					isRendering: true,
-					branchDepth: 0,
-					renderOffset: 0,
 					sequenceStartIndex: 1,
+					sequences: mainPathAnimSequence,
 					startX: opts.startX,
 					startY: opts.startY,
 					endX: opts.endX,
 					endY: opts.endY,
-					pathAlpha: 1,
 					pathColR: 255,
-					pathColG: 255,
+					pathColG: 0,
 					pathColB: 255,
+					pathColA: 1,
+					glowColR: 150,
+					glowColG: 150,
+					glowColB: 255,
+					glowColA: 1,
 					parentPathDist: 0,
 					lineWidth: 1,
 					subDRate: subDRate,
@@ -196,10 +197,14 @@ let ligntningMgr = {
 								branchDepth: pCfg.branchDepth,
 								renderOffset: pCfg.renderOffset,
 								sequenceStartIndex: 1,
-								pathAlpha: 1,
+								sequences: childPathAnimSequence,
 								pathColR: 255,
-								pathColG: 255,
+								pathColG: 0,
 								pathColB: 255,
+								glowColR: 150,
+								glowColG: 150,
+								glowColB: 255,
+								glowColA: 1,
 								startX: pCfg.startX,
 								startY: pCfg.startY,
 								endX: pCfg.endX,
@@ -227,10 +232,15 @@ let ligntningMgr = {
 		// create parent lightning instance
 		let lInstance = {
 			isActive: true,
-			speed: speed,
+			speed: speedMod,
 			skyFlashAlpha: 0.2,
 			originFlashAlpha: 1,
-			glowBlurIterations: mathUtils.randomInteger( 10, 50 ),
+			glowBlurIterations: createBlurArray(
+				mathUtils.randomInteger( 5, 8 ),
+				5,
+				120,
+				'linearEase'
+			),
 			clock: 0,
 			totalClock: 0,
 			sequence: [
@@ -240,7 +250,7 @@ let ligntningMgr = {
 			],
 			renderConfig: {
 				currHead: 0,
-				segmentsPerFrame: speed
+				segmentsPerFrame: speedMod
 			},
 			status: {
 				currentHead: 0,
@@ -265,15 +275,22 @@ let ligntningMgr = {
 	updateArr: function( c ){
 		let renderCfg = this.renderConfig;
 		let membersLen = this.members.length;
-
 		c.globalCompositeOperation = 'lighter';
 
 		for( let i = 0; i < membersLen; i++ ) {
 			let thisMember = this.members[ i ];
-			for( let j = 0; j < thisMember.paths.length; j++ ) {
-				let thisPathCfg = thisMember.paths[ j ];
-				thisPathCfg.render( c, thisMember, this );
-				thisPathCfg.update( thisMember, this );
+			if ( thisMember !== undefined ) {
+				for( let j = 0; j < thisMember.paths.length; j++ ) {
+					let thisPathCfg = thisMember.paths[ j ];
+					if ( thisPathCfg.isChild === false && thisPathCfg.isActive === false ) {
+						this.members.splice(i, 1);
+						i--;
+						break;
+					}
+					thisPathCfg.render( c, thisMember, this ).update( thisMember, this );
+				}
+			} else {
+				continue;
 			}
 		}
 		c.globalCompositeOperation = 'source-over';

@@ -9,6 +9,7 @@ function setupSequences( sequences ) {
 			totalClock: seq.time,
 			linkedSeq: seq.linkedSeq,
 			name: seq.name,
+			final: seq.final,
 			items: []
 		};
 		for( let i = 0; i < seq.items.length; i++ ){

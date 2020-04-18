@@ -15,19 +15,10 @@ function updatePath( parentConfig, globalConfig ) {
 
 	// console.log( "this: ", this );
 
-	if ( pathCfg.isChild === false ) {
-		if ( p.renderConfig.currHead >= pathLen ) {
-			if ( pathCfg.playSequence === false ) {
-				// console.log( 'starting 1st animation' );
-				pathCfg.playSequence = true; 
-				pathCfg.startSequence( {index: 0} );
-			}
-		}
-	} else {
-		if ( pathCfg.isRendering === false ) {
-			if ( pathCfg.colA > 0 ) {
-				pathCfg.colA -= 0.01;
-			}
+	if ( p.renderConfig.currHead >= pathLen ) {
+		if ( pathCfg.playSequence === false ) {
+			pathCfg.playSequence = true; 
+			pathCfg.startSequence( {index: 0} );
 		}
 	}
 
@@ -35,20 +26,11 @@ function updatePath( parentConfig, globalConfig ) {
 		pathCfg.isRendering = false;
 	}
 
-	if ( pStatus.renderPhase >= 1 ) {
-		if ( p.skyFlashAlpha > 0 ) {
-			p.skyFlashAlpha -= 0.005;
-		}
-		if ( p.originFlashAlpha > 0 ) {
-			p.originFlashAlpha -= 0.0005;
-		}
-	}
-
 	pathCfg.updateSequence();
 	// if ( pathCfg.playSequence === true ) {
 	// 	pathCfg.updateSequence();
 	// }
-
+	return this;
 }
 
 module.exports = updatePath;
