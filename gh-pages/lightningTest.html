@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Lightning drawing test</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <link rel="stylesheet" href="css/lightning-test.css">
+
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+    <main>
+
+        <!-- Page contents -->
+        <canvas id="lightningDrawingTest"></canvas>
+
+        <div class="panel-container">
+
+            <div class="panel panel-left effects-panel">
+                <button data-linked-toggle="js-move-target" class="button button-toggle js-button-toggle js-move-emmiter">Move Emmiter</button>
+                <button data-linked-toggle="js-move-emmiter" class="button button-toggle js-button-toggle js-move-target">Move Target</button>
+
+                <button class="button button-toggle js-hit-type">
+                    <span data-hit-type="target" class="js-toggle-option toggle-option-text js-hit-type-target js-isActive">Hit Target</span>
+                    <span data-hit-type="mouse" class="js-toggle-option toggle-option-text js-hit-type-mouse">Hit Mouse</span>
+                </button>
+
+                <button class="button button-toggle js-emmision-type">
+                    <span data-emmision-type="strike" class="js-toggle-option toggle-option-text js-emmision-type-strike js-isActive">Strike</span>
+                    <span data-emmision-type="connect" class="js-toggle-option toggle-option-text js-emmision-type-connect">Connect</span>
+                </button>
+            </div>
+
+            <div class="panel panel-right debug-panel">
+                <button class="button js-clear-mgr-run">Clear/Fire</button>
+                <button class="button js-run">Fire</button>
+                <button class="button js-clear-mgr">Clear</button>
+                <button class="button js-show-debug-overlay">Debug Display</button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="js/vendor.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/lightningTest.js"></script>
+</body>
+
+</html>

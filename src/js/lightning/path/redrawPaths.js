@@ -1,7 +1,7 @@
 function redrawPath( renderCfg, parent, globalConfig ) {
 
 	let thisCfg = this;
-	let { path: pathArr, savedPaths, renderOffset: pathStartPoint } = thisCfg;
+	let { path: pathArr, savedPaths, renderOffset: pathStartPoint, isChild } = thisCfg;
 	let pathArrLen = pathArr.length;
 	let noiseField = globalConfig.noiseField;
 	let newMainPath = new Path2D();
@@ -10,6 +10,14 @@ function redrawPath( renderCfg, parent, globalConfig ) {
 
 	for( let i = 0; i < pathArrLen; i++ ) {
 		let p = pathArr[ i ];
+		
+		let t = 0;
+		
+		// modify corrdinates with field effect:
+		let fieldModVal = noiseField.noise3D( p.x, p.y, t );
+		let x = p.x * fieldModVal;
+		let y = p.y * fieldModVal;
+
 		if ( i === 0 ) {
 			newMainPath.moveTo( p.x, p.y );
 			newOffsetPath.moveTo( p.x, p.y - 10000 );

@@ -30,6 +30,10 @@ const ksVendorJs = require( `${ dirGulp }/ksVendorJs` );
 const ksVendorCss = require( `${ dirGulp }/ksVendorCss` );
 const moveCodeExamples = require( `${ dirGulp }/moveCodeExamples` );
 
+// GH Specific
+const createGHPages = require( `${ dirGulp }/createGHPages` );
+
+
 exports.createColorScssMap = createColorScssMap;
 exports.createScssVars = createScssVars;
 
@@ -122,7 +126,13 @@ const build = gulp.series(
         sass,
         lightningCss
     ),
-    gulp.series( tests, createDocs )
+    gulp.series(
+        tests,
+        gulp.parallel( 
+            createGHPages,
+            createDocs
+        )
+    )
 );
 
 const buildDev = gulp.series(
@@ -138,7 +148,11 @@ const buildDev = gulp.series(
         moveImages,
         moveData,
         sass,
-        lightningCss
+        lightningCss,
+        gulp.parallel( 
+            createGHPages,
+            createDocs
+        )
     )
 );
 
