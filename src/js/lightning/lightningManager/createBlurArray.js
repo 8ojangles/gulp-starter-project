@@ -1,4 +1,4 @@
-let easing = require( '../easing.js' ).easingEquations;
+let easing = require( '../../utils/easing.js' ).easingEquations;
 
 function createBlurArray( blurCount, minBlurDist, maxBlurDist, ease ){
 	let tmp = [];

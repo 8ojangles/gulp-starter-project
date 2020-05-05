@@ -1,6 +1,8 @@
-let mathUtils = require( '../../mathUtils.js' );
-let easing = require( '../../easing.js' ).easingEquations;
-let trig = require( '../../trigonomicUtils.js' ).trigonomicUtils;
+const cl = require( '../../utils/cl.js' );
+
+let mathUtils = require( '../../utils/mathUtils.js' );
+let easing = require( '../../utils/easing.js' ).easingEquations;
+let trig = require( '../../utils/trigonomicUtils.js' ).trigonomicUtils;
 
 // lightning path constructor
 
@@ -77,6 +79,7 @@ function plotPathPoints( options ) {
 			// recurse the loop by the number given by "subD", to subdivinde and randomise the line
 		}
 	};
+	// console.log( `${cl.dim}${cl.y}path.length: ${cl.bld}${cl.b}${temp.length}${cl.rst}` );
 	return temp;
 };
 

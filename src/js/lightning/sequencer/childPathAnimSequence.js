@@ -1,11 +1,14 @@
+const alphaFadeOut = require( './sequenceItems/alphaFadeOut.js' );
+
 let childPathAnimSequence = [
 	{
 		name: 'lPathCool',
-		time: 80,
+		time: 30,
+		linkedSeq: '',
+		loop: false,
+		loopBack: false,
 		final: true,
-		items: [
-			{ param: 'colA', target: 0, easefN: 'easeOutQuint' }
-		]
+		items: alphaFadeOut
 	}
 ];
 

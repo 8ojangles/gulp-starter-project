@@ -1,6 +1,6 @@
-let mathUtils = require( '../../mathUtils.js' );
-let easing = require( '../../easing.js' ).easingEquations;
-let trig = require( '../../trigonomicUtils.js' ).trigonomicUtils;
+let mathUtils = require( '../../utils/mathUtils.js' );
+let easing = require( '../../utils/easing.js' ).easingEquations;
+let trig = require( '../../utils/trigonomicUtils.js' ).trigonomicUtils;
 
 // path update function
 
@@ -8,18 +8,24 @@ function updatePath( parentConfig, globalConfig ) {
 
 	let rCfg = globalConfig.renderConfig
 	let p = parentConfig;
-	let pStatus = p.status;
+	let pState = p.state.states;
 	let pathCfg = this;
 	let pathLen = pathCfg.path.length;
-	let rndOffset = pathCfg.renderOffset;	
+	let rndOffset = pathCfg.renderOffset;
 
-	// console.log( "this: ", this );
+	if ( pState.isDrawn === true ) {
 
-	if ( p.renderConfig.currHead >= pathLen ) {
-		if ( pathCfg.playSequence === false ) {
-			pathCfg.playSequence = true; 
-			pathCfg.startSequence( {index: 0} );
+		if ( p.willConnect === false ) {
+			if ( pathCfg.playSequence === false ) {
+				pathCfg.playSequence = true; 
+				pathCfg.startSequence( {index: 0} );
+			}
+		} else {
+
+			
+			
 		}
+
 	}
 
 	if ( pathLen + rndOffset < p.renderConfig.currHead) {
@@ -27,9 +33,7 @@ function updatePath( parentConfig, globalConfig ) {
 	}
 
 	pathCfg.updateSequence();
-	// if ( pathCfg.playSequence === true ) {
-	// 	pathCfg.updateSequence();
-	// }
+
 	return this;
 }
 

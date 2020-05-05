@@ -3,25 +3,40 @@
 
 {% block pageTitle %}
 <title>Lightning drawing test</title>
-<style>
-    html, body, main { width: 100vw; height: 100vh; padding: 0; margin: 0; }
-    #lightningDrawingTest { background-color: #000; display: block; width: 100%; height: 100%; }
-    .debug-panel { position: fixed; bottom: 1rem; right: 1rem; padding: 1rem; }
-    .debug-panel .button { background: CornflowerBlue; color: white; border: none; padding: 0.5rem; cursor: pointer; outline: 0; font-size: 0.8rem; }
-    .debug-panel .button:hover { background: DarkSlateBlue; }
-    .debug-panel .button.active { background: DarkSlateBlue; color: blue; }
-    .debug-panel .button.active:hover { background: white; color: blue; }
-</style>
+{% endblock %}
+
+{% block pageCSS %}
+<link rel="stylesheet" href="css/lightning-test.css">
 {% endblock %}
 
 {% block mainContent %}
     <!-- Page contents -->
 <canvas id="lightningDrawingTest"></canvas>
-<div class="debug-panel">
-    <button class="button js-clear-mgr-run">Clear/Fire</button>
-	<button class="button js-run">Fire</button>
-	<button class="button js-clear-mgr">Clear</button>
-	<button class="button js-show-debug-overlay">Debug Display</button>
+
+<div class="panel-container">
+    
+    <div class="panel panel-left effects-panel">
+        <button data-linked-toggle="js-move-target" class="button button-toggle js-button-toggle js-move-emmiter">Move Emmiter</button>
+        <button data-linked-toggle="js-move-emmiter" class="button button-toggle js-button-toggle js-move-target">Move Target</button>
+
+        <button class="button button-toggle js-hit-type">
+            <span data-hit-type="target" class="js-toggle-option toggle-option-text js-hit-type-target js-isActive">Hit Target</span>
+            <span data-hit-type="mouse" class="js-toggle-option toggle-option-text js-hit-type-mouse">Hit Mouse</span>
+        </button>
+        
+        <button class="button button-toggle js-emmision-type">
+            <span data-emmision-type="strike" class="js-toggle-option toggle-option-text js-emmision-type-strike js-isActive">Strike</span>
+            <span data-emmision-type="connect" class="js-toggle-option toggle-option-text js-emmision-type-connect">Connect</span>
+        </button>
+    </div>
+
+    <div class="panel panel-right debug-panel">
+        <button class="button js-clear-mgr-run">Clear/Fire</button>
+    	<button class="button js-run">Fire</button>
+    	<button class="button js-clear-mgr">Clear</button>
+    	<button class="button js-show-debug-overlay">Debug Display</button>
+    </div>
+
 </div>
 {% endblock %}
 {%- block pageScriptsJs -%}

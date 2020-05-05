@@ -1,6 +1,6 @@
 // Canvas Lightning v1
-const mathUtils = require( './mathUtils.js' );
-const easing = require( './easing.js' ).easingEquations;
+const mathUtils = require( './utils/mathUtils.js' );
+const easing = require( './utils/easing.js' ).easingEquations;
 let matchDimentions = require( './matchDimentions.js' );
 
 // let easeFn = easing.easeInCirc;

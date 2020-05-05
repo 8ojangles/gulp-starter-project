@@ -16,6 +16,7 @@ const compileHtml = require( `${ dirGulp }/compileHtml` );
 const moveHtml = require( `${ dirGulp }/moveHtml` );
 const vendorJs = require( `${ dirGulp }/vendorJs` );
 const sass = require( `${ dirGulp }/sass` );
+const lightningCss = require( `${ dirGulp }/lightningCss` );
 const moveFonts = require( `${ dirGulp }/moveFonts` );
 const moveImages = require( `${ dirGulp }/moveImages` );
 const createScssVars = require( `${ dirGulp }/compileScssFromTokens` ).createScssVars;
@@ -40,6 +41,7 @@ function reload( done ) {
 
 function watchFiles() {
 
+    gulp.watch( './src/scss/lightning-test.scss' , lightningCss );
 	gulp.watch( dirs.src.scss , sass );
     gulp.watch( dirs.dist.css ).on('change', function ( e ) {
         return gulp.src( dirs.dist.css )
@@ -54,6 +56,7 @@ function watchFiles() {
 
 function watchFilesDev() {
 
+    gulp.watch( './src/scss/lightning-test.scss' , lightningCss );
     gulp.watch( dirs.src.scss , sass );
     gulp.watch( dirs.dist.css ).on('change', function ( e ) {
         return gulp.src( dirs.dist.css )
@@ -116,7 +119,8 @@ const build = gulp.series(
         moveFonts,
         moveImages,
         moveData,
-        sass
+        sass,
+        lightningCss
     ),
     gulp.series( tests, createDocs )
 );
@@ -133,7 +137,8 @@ const buildDev = gulp.series(
         moveFonts,
         moveImages,
         moveData,
-        sass
+        sass,
+        lightningCss
     )
 );
 

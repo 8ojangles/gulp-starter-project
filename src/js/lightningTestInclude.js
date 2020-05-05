@@ -1,43 +1,34 @@
-require( './rafPolyfill.js');
-require( './canvasApiAugmentation.js');
-let ligntningMgr = require( './lightningUtilities.js');
-
 let checkCanvasSupport = require( './checkCanvasSupport.js' );
-let easing = require( './easing.js' ).easingEquations;
+require( './utils/rafPolyfill.js');
+require( './utils/canvasApiAugmentation.js');
 
+let easing = require( './utils/easing.js' ).easingEquations;
 let easeFn = easing.easeOutSine;
 
-let trig = require( './trigonomicUtils.js' ).trigonomicUtils;
-// aliases
-// let findNewP = trig.findNewPoint;
+let trig = require( './utils/trigonomicUtils.js' ).trigonomicUtils;
 let pointOnPath = trig.getPointOnPath;
 let calcD = trig.dist;
 let calcA = trig.angle;
 
-let mathUtils = require( './mathUtils.js' );
-// aliases
+let mathUtils = require( './utils/mathUtils.js' );
 let rnd = mathUtils.random;
 let rndInt = mathUtils.randomInteger;
 
-// hpusekeeping
+let ligntningMgr = require( './lightning/lightningManager/lightningUtilities.js');
+
+
+// housekeeping
 let canvas = document.querySelector( '#lightningDrawingTest' );
 let cW = canvas.width = window.innerWidth;
 let cH = canvas.height = window.innerHeight;
 let c = canvas.getContext('2d');
+
+ligntningMgr.setCanvasCfg( '#lightningDrawingTest' );
+
 c.lineCap = 'round';
 let counter = 0;
 
 let showDebugInfo = false;
-
-$( '.js-show-debug-overlay' ).click( function( event ){
-	if ( $( this ).hasClass( 'active' ) ) {
-		$( this ).removeClass( 'active' );
-		showDebugInfo = false;
-	} else {
-		$( this ).addClass( 'active' );
-		showDebugInfo = true;
-	}
-} );
 
 // test Vector path
 let testVec = {
@@ -66,17 +57,19 @@ let baseTheme = {
 	startY: testVec.startY,
 	endX: testVec.endX,
 	endY: testVec.endY,
-	subdivisions: mathUtils.randomInteger( 3, 6 )
+	subdivisions: mathUtils.randomInteger( 3, 6 ),
+	speedModRate: 0.9,
+	willConnect: true
 }
 
 function createTheme( event ) {
 	return {
 		canvasW: cW,
 		canvasH: cH,
-		startX: testVec.startX,
-		startY: testVec.startY,
-		endX: event.clientX,
-		endY: event.clientY,
+		startX: event.clientX,
+		startY: event.clientY,
+		endX: testVec.endX,
+		endY: testVec.endY,
 		subdivisions: mathUtils.randomInteger( 3, 6 )
 	}
 }
@@ -84,16 +77,20 @@ function createTheme( event ) {
 
 ligntningMgr.createLightning( baseTheme );
 
+////////////////////////////////////////////////////////////////////////////////////////
+// Button handlers
+////////////////////////////////////////////////////////////////////////////////////////
+
 $( '.js-run' ).click( function( event ){
 	ligntningMgr.createLightning( baseTheme );
 } );
 
 $( '.js-clear-mgr' ).click( function( event ){
-	ligntningMgr.members.length = 0;
+	ligntningMgr.clearMemberArray();
 } );
 
 $( '.js-clear-mgr-run' ).click( function( event ){
-	ligntningMgr.members.length = 0;
+	ligntningMgr.clearMemberArray();
 	ligntningMgr.createLightning( baseTheme );
 } );
 
@@ -101,12 +98,37 @@ $( 'canvas' ).click( function( event ){
 	ligntningMgr.createLightning( createTheme( event ) );
 } );
 
+$( '.js-button-toggle' ).click( function( event ) {
+	let thisItem = $( this );
+	if ( thisItem.hasClass( 'js-isActive') ) {
+		thisItem.removeClass( 'js-isActive');
+	} else {
+		thisItem.addClass( 'js-isActive');
+	}
+
+	if ( typeof $( this ).attr( 'data-linked-toggle' ) !== "undefined" ) {
+		$( this ).parent().find( '.'+$( this ).attr( 'data-linked-toggle' ) ).removeClass( 'js-isActive' );
+	}
+
+} );
+
+$( '.js-show-debug-overlay' ).click( function( event ){
+	if ( $( this ).hasClass( 'active' ) ) {
+		$( this ).removeClass( 'active' );
+		showDebugInfo = false;
+	} else {
+		$( this ).addClass( 'active' );
+		showDebugInfo = true;
+	}
+} );
+
+/////////////////////////////////////////////////////////////////////////////////////
+// App start
+////////////////////////////////////////////////////////////////////////////////////////
 
 function drawTest() {
-	ligntningMgr.updateArr( c );
+	ligntningMgr.update( c );
 	drawLine( showDebugInfo );
-	ligntningMgr.updateRenderCfg();
-	// ligntningMgr.drawDebugRadialTest( c );
 }
 
 function clearScreen() {

@@ -6,7 +6,7 @@ let gulpDir = './gulp';
 // vendor libraries
 let vendorLibs = [
 	`${nodeModules}/jquery/dist/jquery.min.js`,
-	`src/js/rafPolyfill.js`
+	`src/js/utils/rafPolyfill.js`
 ];
 
 let ks = {

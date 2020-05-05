@@ -1,9 +1,11 @@
 
-let mathUtils = require( '../../mathUtils.js' );
-let easing = require( '../../easing.js' ).easingEquations;
-let trig = require( '../../trigonomicUtils.js' ).trigonomicUtils;
+let mathUtils = require( '../../utils/mathUtils.js' );
+let easing = require( '../../utils/easing.js' ).easingEquations;
+let trig = require( '../../utils/trigonomicUtils.js' ).trigonomicUtils;
 
 let plotPoints = require( './plotPathPoints.js' );
+let drawPaths = require( './drawPath.js' );
+let redrawPath = require( './redrawPaths.js' );
 let updatePath = require( './updatePath.js' );
 let renderPath = require( './renderPath.js' );
 
@@ -33,6 +35,8 @@ function createPathFromOptions( opts ) {
 		isChild: opts.isChild
 	});
 
+	// console.log( 'newPathLen: ', opts.isChild === false ? newPath.length : false );
+
 	let chosenSequence = opts.sequences || mainPathAnimSequence;
 	let thisSequences = setupSequences( chosenSequence );
 
@@ -44,7 +48,6 @@ function createPathFromOptions( opts ) {
 		willStrike: opts.willStrike || false,
 		// config
 		branchDepth: opts.branchDepth || 0,
-		renderOffset: opts.renderOffset || 0,
 		// computed config
 		baseAngle: trig.angle( opts.startX, opts.startY, opts.endX, opts.endY ),
 		baseDist: trig.dist( opts.startX, opts.startY, opts.endX, opts.endY ),
@@ -74,8 +77,12 @@ function createPathFromOptions( opts ) {
 		startSequence: startSequence,
 		updateSequence: updateSequence,
 		updateSequenceClock: updateSequenceClock,
+		drawPaths: drawPaths,
+		redrawPath: redrawPath,
 		update: updatePath,
 		render: renderPath,
+		// path rendering flags
+		renderOffset: opts.renderOffset || 0,
 		currHeadPoint: 0,
 		// the actual path
 		path: newPath,

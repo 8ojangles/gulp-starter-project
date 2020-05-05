@@ -1,0 +1,103 @@
+html, body, main {
+	width: 100vw;
+	height: 100vh;
+	padding: 0;
+	margin: 0;
+}
+
+#lightningDrawingTest {
+	background-color: #000;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+
+.panel-container {
+	position: fixed;
+	width: 100%;
+	bottom: 1rem;
+	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.panel {
+	display: flex;
+	align-items: center;
+	width: 50%;
+
+	&-left {
+		justify-content: flex-start;
+	}
+	&-right {
+		justify-content: flex-end;
+	}
+}
+
+.panel .button {
+	background: cornflowerblue;
+	color: white;
+	border: none;
+	padding: 0.5rem;
+	cursor: pointer;
+	outline: 0;
+	font-size: 0.8rem;
+	margin-right: 0.5rem;
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+}
+
+.panel .button-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-right: 1.5rem;
+	position: relative;
+
+	&.js-isActive {
+		background-color: darkorange;
+	}
+
+
+	&:after {
+		position: absolute;
+		right: 0.5rem;
+		top: 0.5rem;
+		content: '\2192';
+	}
+
+	span {
+		display: none;
+		position: absolute;
+
+		&.js-isActive {
+			position: relative;
+			display: block;
+		}
+	}
+}
+
+.panel .button {
+	&:hover {
+		&.js-isActive {
+			background-color: darkorange;
+		}
+	}
+}
+
+.panel .button:hover {
+	background: darkslateblue;
+}
+
+.panel .button.active {
+	background: darkslateblue;
+	color: blue;
+}
+
+.panel .button.active:hover {
+	background: white;
+	color: blue;
+}

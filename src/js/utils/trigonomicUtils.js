@@ -1,4 +1,4 @@
-require('./typeDefs');
+require('../typeDefs');
 
 /**
 * cached values

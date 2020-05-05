@@ -26,211 +26,59 @@ function renderPath( c, parent, globalConfig ) {
 	let currRenderTail = 0;
 	
 	const { isChild, isRendering, renderOffset, savedPaths, path: thisPath, lineWidth, colR, colG, colB, colA, glowColR, glowColG, glowColB, glowColA, currHeadPoint } = thisCfg;
-	let pathLen = thisPath.length;
+	let pathLen = thisPath.length - 1;
 
 	const computedPathColor = `rgba(${colR}, ${colG}, ${colB}, ${colA})`;
 	const pathGlowRGB = `${glowColR}, ${glowColG}, ${glowColB}`;
-	
+	const pathGlowComputedColor = `rgba( ${pathGlowRGB}, ${colA} )`;
+	const headGlowBlurArr = [ 20, 10 ];
+	const pathGlowOpts = { blurs: parent.glowBlurIterations, blurColor: pathGlowComputedColor };
+	const pathGlowShortOpts = { blurs: [120, 80, 60, 40, 30, 20, 15, 10, 5], blurColor: pathGlowComputedColor };
+	const headGlowOpts = { blurs: headGlowBlurArr, blurColor: pathGlowComputedColor };
 	// shadow render offset
-	let sRO = globalConfig.renderConfig.blurRenderOffset;
-	c.lineWidth = lineWidth;
+	const sRO = globalConfig.renderConfig.blurRenderOffset;
+	const origin = thisCfg.path[0];
+	const { x: oX, y: oY } = origin;
 
-	let cHP = 0; // current head point
-
-	let currPath = new Path2D();
-	let offsetPath = new Path2D();
-	let originGlowShort = new Path2D();
-	let originGlowLong = new Path2D();
-
-
-	// for( let l = this.renderOffset + this.currHeadPoint; l < renderCfg.currHead; l++ ) {
-	// 	let p = thisPath[ l ];
-	// 	if ( l === 0 ) {
-	// 		savedPaths.main.moveTo( p.x, p.y );
-	// 		savedPaths.offset.moveTo( p.x, p.y - sRO );
-	// 		originShort.moveTo( p.x, p.y - sRO );
-	// 		savedPaths.originLong.moveTo( p.x, p.y - sRO );
-	// 		continue;
-	// 	}
-
-	// 	currPath.lineTo( p.x, p.y );
-	// 	offsetPath.lineTo( p.x, p.y - sRO );
-
-	// 	if ( l < 20 ) {
-	// 		if ( l < 5 ) {
-	// 			originGlowShort.lineTo( p.x, p.y - sRO );
-	// 		}
-	// 		originGlowLong.lineTo( p.x, p.y - sRO );
-	// 	}
-	// 	cHP = l;
-	// 	this.currHeadPoint = l;
-
-	// }
-
-	// if ( renderCfg.currHead < thisPath.length ) {
-
-	// 	for ( let l = 0; l <= pathLen - 1; l++ ) {
-	// 		let p = thisPath[ l ];
-	// 		if ( renderOffset + l < renderCfg.currHead ) {
-	// 			if ( l === 0 ) {
-	// 				savedPaths.main.moveTo( p.x, p.y );
-	// 				savedPaths.offset.moveTo( p.x, p.y - sRO );
-	// 				savedPaths.originShort.moveTo( p.x, p.y - sRO );
-	// 				savedPaths.originLong.moveTo( p.x, p.y - sRO );
-	// 				continue;
-	// 			}
-	// 			savedPaths.main.lineTo( p.x, p.y );
-	// 			savedPaths.offset.lineTo( p.x, p.y - sRO );
-
-	// 			if ( l < 20 ) {
-	// 				if ( l < 5 ) {
-	// 					savedPaths.originShort.lineTo( p.x, p.y - sRO );
-	// 				}
-	// 				savedPaths.originLong.lineTo( p.x, p.y - sRO );
-	// 			}
-
-	// 			cHP = l;
-	// 			this.currHeadPoint = l;
-	// 		} else {
-	// 			break;
-	// 		}
-	// 		// after drawing path, set currently rendered head index
-	// 		currRenderPoint = this.renderOffset + l;
-
-	// 		if ( l === pathLen - 1 ) {
-	// 			this.sequenceIndex = 1;
-	// 		}
-	// 	}
-
-	// } else {
-	// 	console.log( 'savedPaths.main: ', savedPaths.main );
-	// }
+	if ( parent.isDrawn === false ) { this.drawPaths( renderCfg, parent ); }
 	
-
-	for ( let l = 0; l <= pathLen - 1; l++ ) {
-		let p = thisPath[ l + currRenderTail ];
-		if ( this.renderOffset + l < renderCfg.currHead ) {
-			if ( l === 0 ) {
-				currPath.moveTo( p.x, p.y );
-				offsetPath.moveTo( p.x, p.y - sRO );
-				originGlowShort.moveTo( p.x, p.y - sRO );
-				originGlowLong.moveTo( p.x, p.y - sRO );
-				continue;
-			}
-			currPath.lineTo( p.x, p.y );
-			offsetPath.lineTo( p.x, p.y - sRO );
-
-			if ( l < 20 ) {
-				if ( l < 5 ) {
-					originGlowShort.lineTo( p.x, p.y - sRO );
-				}
-				originGlowLong.lineTo( p.x, p.y - sRO );
-			}
-
-			cHP = l;
-			this.currHeadPoint = l;
-		} else {
-			break;
-		}
-		// after drawing path, set currently rendered head index
-		currRenderPoint = this.renderOffset + l;
-
-		if ( l === pathLen - 1 ) {
-			this.sequenceIndex = 1;
-		}
-	}
-
+	c.lineWidth = lineWidth;
 	c.strokeStyle = computedPathColor;
 	c.stroke( savedPaths.main );
-	c.stroke( currPath );
-
-	pathGlow(
-		c, thisCfg, offsetPath,
-		{
-			blurs: parent.glowBlurIterations,
-			blurColor: `rgba( ${pathGlowRGB}, ${colA} )`
-		}
-	);
+	pathGlow( c, thisCfg, savedPaths.offset, pathGlowOpts );
 
 	// if the main path has "connected" and is "discharging"
 	if (thisCfg.isChild === false) {
 
-		// sky flash
-		// c.fillStyle = `rgba( 255, 255, 255, ${thisCfg.colA / 10} )`;
-		// c.fillRect( 0, 0, globalConfig.canvasW, globalConfig.canvasH );
+		pathGlow( c, thisCfg, savedPaths.originLong, pathGlowOpts );
+		pathGlow( c, thisCfg, savedPaths.originShort, pathGlowShortOpts );
 
+		if ( parent.isDrawn === true ) {
+			// origin glow gradients
+			let origin = thisCfg.path[0];
+			let grd = c.createRadialGradient( oX, oY, 0, oX, oY, 1024 );
+			grd.addColorStop( 0, pathGlowComputedColor );
+			grd.addColorStop( 1, `rgba( ${pathGlowRGB}, 0 )` );
+
+			c.fillStyle = grd;
+			c.fillCircle( oX, oY, 1024 );
+		}
 		
-
-		pathGlow( 
-			c, thisCfg, originGlowLong,
-			{
-				blurColor: `rgba( ${pathGlowRGB}, ${thisCfg.colA / 2} )`
-			} 
-		);
-
-		// origin glow gradients
-		let origin = thisCfg.path[0];
-		let longGlowGradient = c.createRadialGradient(
-			origin.x, origin.y, 0,
-			origin.x, origin.y, 600
-		);
-		longGlowGradient.addColorStop( 0, `rgba( 255, 150, 255, ${colA / 4} )` );
-		longGlowGradient.addColorStop( 1, 'rgba( 255, 150, 255, 0 )' );
-
-		c.fillStyle = longGlowGradient;
-		c.fillCircle( origin.x, origin.y, 600 );
-
-		let originGradient = c.createRadialGradient(
-			origin.x, origin.y, 0,
-			origin.x, origin.y, 100
-		);
-		originGradient.addColorStop( 0, `rgba( ${pathGlowRGB}, ${colA / 2} )` );
-		originGradient.addColorStop( 1, `rgba( ${pathGlowRGB}, 0 )` );
-
-		c.fillStyle = originGradient;
-		c.fillCircle( origin.x, origin.y, 100 );
-		
-		// pathGlow( 
-		// 	c, thisCfg, originGlowShort,
-		// 	{
-		// 		blurs: [ 100, 70, 50, 40, 30, 20, 10 ],
-		// 		blurShapeOffset: sRO,
-		// 		blurColor: `rgba( 150, 150, 255, ${thisCfg.glowColApha} )`
-		// 	} 
-		// );
-
 	}
 
-
-	if ( cHP > 0 ) {
-		if ( cHP >= pathLen - 1 ) {
-			c.strokeStyle = computedPathColor;
-		} else {
-			c.strokeStyle = 'white';
-		}
-		c.lineWidth = 3;
-		c.shadowColor = computedPathColor;
+	if ( pathLen > 4 ) {
 		let glowHeadPathL = new Path2D();
 		let glowHeadPathS = new Path2D();
-		if ( cHP > 2 ) {
-			glowHeadPathL.moveTo( thisPath[ cHP - 2 ].x, thisPath[ cHP - 2 ].y - sRO );
-			glowHeadPathL.lineTo( thisPath[ cHP - 1 ].x, thisPath[ cHP - 1 ].y - sRO );
-			glowHeadPathL.lineTo( thisPath[ cHP ].x, thisPath[ cHP ].y - sRO );
-			
-			c.shadowBlur = 20;
-			c.stroke( glowHeadPathL );
-			c.shadowBlur = 10;
-			c.stroke( glowHeadPathL );
-		}
+
+		glowHeadPathL.moveTo( thisPath[ pathLen - 2 ].x, thisPath[ pathLen - 2 ].y - sRO );
+		glowHeadPathL.lineTo( thisPath[ pathLen - 1 ].x, thisPath[ pathLen - 1 ].y - sRO );
+		glowHeadPathL.lineTo( thisPath[ pathLen ].x, thisPath[ pathLen ].y - sRO );
+		pathGlow( c, thisCfg, glowHeadPathL, headGlowOpts );
 		
-		glowHeadPathS.moveTo( thisPath[ cHP - 1 ].x, thisPath[ cHP - 1 ].y - sRO );
-		glowHeadPathS.lineTo( thisPath[ cHP ].x, thisPath[ cHP ].y - sRO );
-		
-		c.shadowBlur = 10;
-		c.stroke( glowHeadPathS );
-		c.shadowBlur = 5;
-		c.stroke( glowHeadPathS );
-		c.shadowBlur = 0;
+		glowHeadPathS.moveTo( thisPath[ pathLen - 1 ].x, thisPath[ pathLen - 1 ].y - sRO );
+		glowHeadPathS.lineTo( thisPath[ pathLen ].x, thisPath[ pathLen ].y - sRO );
+		pathGlow( c, thisCfg, glowHeadPathS, headGlowOpts );
+
 	}
 
 	return this;

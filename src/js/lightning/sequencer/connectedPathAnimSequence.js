@@ -1,11 +1,15 @@
 const fadeToRedAndFadeOut = require( './sequenceItems/fadeToRedAndFadeOut.js' );
 const lineWidthTo10 = require( './sequenceItems/lineWidthTo10.js' );
 
-let mainPathAnimSequence = [
+let connectedPathAnimSequence = [
 	{
 		name: 'lPathFire',
 		time: 1,
-		linkedSeq: '1',
+		linkedSeq: '',
+		trigger: {
+			actionType: 'setState',
+			actionValue: 'isConnected'
+		},
 		loop: false,
 		loopBack: false,
 		items: lineWidthTo10
@@ -21,4 +25,4 @@ let mainPathAnimSequence = [
 	}
 ];
 
-module.exports = mainPathAnimSequence;
+module.exports = connectedPathAnimSequence;
