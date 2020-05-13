@@ -19,16 +19,16 @@ function redrawPath( renderCfg, parent, globalConfig ) {
 		let y = p.y * fieldModVal;
 
 		if ( i === 0 ) {
-			newMainPath.moveTo( p.x, p.y );
-			newOffsetPath.moveTo( p.x, p.y - 10000 );
-			newOriginLongPath.moveTo( p.x, p.y - 10000 );
+			newMainPath.moveTo( x, y );
+			newOffsetPath.moveTo( x, y - 10000 );
+			newOriginLongPath.moveTo( x, y - 10000 );
 			continue;
 		}
-		newMainPath.lineTo( p.x, p.y );
-		newOffsetPath.lineTo( p.x, p.y - 10000 );
+		newMainPath.lineTo( x, y );
+		newOffsetPath.lineTo( x, y - 10000 );
 
 		if ( i < 20 ) {
-			newOriginLongPath.lineTo( p.x, p.y - 10000 );
+			newOriginLongPath.lineTo( x, y - 10000 );
 		}
 	}
 

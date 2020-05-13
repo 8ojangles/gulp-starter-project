@@ -32,7 +32,7 @@ const moveCodeExamples = require( `${ dirGulp }/moveCodeExamples` );
 
 // GH Specific
 const createGHPages = require( `${ dirGulp }/createGHPages` );
-
+exports.createGHPages = createGHPages;
 
 exports.createColorScssMap = createColorScssMap;
 exports.createScssVars = createScssVars;

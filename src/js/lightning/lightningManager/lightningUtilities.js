@@ -18,6 +18,7 @@ let ligntningMgr = {
 	debugMembers: [],
 	canvasCfg: {},
 	noiseField: new SimplexNoise(),
+	noiseClock: 0,
 	setCanvasCfg: setCanvasDetails,
 	globalConfig:globalConfig,
 	creationConfig: creationConfig,
