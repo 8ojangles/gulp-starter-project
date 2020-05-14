@@ -3,15 +3,18 @@ require('../typeDefs');
 /**
 * cached values
 */
-const piByHalf = Math.Pi / 180;
+const piByHalf = Math.PI / 180;
 const halfByPi = 180 / Math.PI;
 
 /**
 * provides trigonomic utility methods and helpers.
 * @module
+* @typedef {import("../typeDefs").Point} Point
+* @typedef {import("../typeDefs").Dimensions} Dimensions
+* @typedef {import("../typeDefs").VelocityVector} VelocityVector
+* @typedef {import("../typeDefs").vectorCalculation} vectorCalculation
 */
 let trigonomicUtils = {
-
 	/**
 	* @name angle
 	 * @description calculate angle in radians between to vector points.
@@ -22,9 +25,9 @@ let trigonomicUtils = {
 	 * @param {number} y2 - Y coordinate of vector 2.
 	 * @returns {number} the angle in radians.
 	 */
-	angle: function(originX, originY, targetX, targetY) {
-        var dx = originX - targetX;
-        var dy = originY - targetY;
+	angle: function(x1, y1, x2, y2) {
+        var dx = x1 - x2;
+        var dy = y1 - y2;
         var theta = Math.atan2(-dy, -dx);
         return theta;
     },
@@ -58,7 +61,6 @@ let trigonomicUtils = {
 		return degrees * piByHalf;
 	},
 
-	d2R: this.degreesToRadians,
 	/**
 	* @name radiansToDegrees
 	* @description convert radians to degrees.
@@ -70,7 +72,6 @@ let trigonomicUtils = {
 		return radians * halfByPi;
 	},
 
-	r2D: this.radiansToDegrees,
 	/**
 	* @name getAngleAndDistance
  	* @description calculate trigomomic values between 2 vector coordinates.
@@ -218,7 +219,7 @@ let trigonomicUtils = {
 	* @param {number} x2 - the coordinate X value of the path end.
 	* @param {number} y2 - the coordinate Y value of the path end.
 	* @param {number} bias - offset of the subdivision between the sbdivision: i.e. 0 - the start vector, 0.5 - midpoint between the 2 vectors, 1 - the end vector.
-	* @returns {point} - The coordinates of the subdivision point
+	* @returns {Point} - The coordinates of the subdivision point
 	*/
 	subdivide: function( x1, y1, x2, y2, bias ) {
 		return this.getPointOnPath( x1, y1, x2, y2, bias );
@@ -230,11 +231,11 @@ let trigonomicUtils = {
 	* @name getPointAt
 	* @description given 3 vector {point}s of a quadratic curve, return the point on the curve at t
 	* @memberof trigonomicUtils
-	* @param {point} p1 - {x,y} of the curve's start point.
-	* @param {point} pc - {x,y} of the curve's control point.
-	* @param {point} p2 - {x,y} of the curve's end point.
+	* @param {Point} p1 - {x,y} of the curve's start point.
+	* @param {Point} pc - {x,y} of the curve's control point.
+	* @param {Point} p2 - {x,y} of the curve's end point.
 	* @param {number} bias - the point along the curve's path as a ratio (0-1).
-	* @returns {point} - {x,y} of the point on the curve at {bias}
+	* @returns {Point} - {x,y} of the point on the curve at {bias}
 	*/
 	getPointAt: function( p1, pc, p2, bias ) {
 	    const x = (1 - bias) * (1 - bias) * p1.x + 2 * (1 - bias) * bias * pc.x + bias * bias * p2.x
@@ -247,11 +248,11 @@ let trigonomicUtils = {
 	* @description Given 3 vector {point}s of a quadratic curve, returns the derivative (tanget) of the curve at point of bias.
 	(The derivative measures the steepness of the curve of a function at some particular point on the curve (slope or ratio of change in the value of the function to change in the independent variable).
 	* @memberof trigonomicUtils
-	* @param {point} p1 - {x,y} of the curve's start point.
-	* @param {point} pc - {x,y} of the curve's control point.
-	* @param {point} p2 - {x,y} of the curve's end point.
+	* @param {Point} p1 - {x,y} of the curve's start point.
+	* @param {Point} pc - {x,y} of the curve's control point.
+	* @param {Point} p2 - {x,y} of the curve's end point.
 	* @param {number} bias - the point along the curve's path as a ratio (0-1).
-	* @returns {point} - {x,y} of the point on the curve at {bias}
+	* @returns {Point} - {x,y} of the point on the curve at {bias}
 	*/
 	getDerivativeAt: function(p1, pc, p2, bias) {
 	    const d1 = { x: 2 * (pc.x - p1.x), y: 2 * (pc.y - p1.y) };
@@ -265,11 +266,11 @@ let trigonomicUtils = {
 	* @name getNormalAt
 	* @description given 3 vector {point}s of a quadratic curve returns the normal vector of the curve at the ratio point along the curve {bias}.
 	* @memberof trigonomicUtils
-	* @param {point} p1 - {x,y} of the curve's start point.
-	* @param {point} pc - {x,y} of the curve's control point.
-	* @param {point} p2 - {x,y} of the curve's end point.
+	* @param {Point} p1 - {x,y} of the curve's start point.
+	* @param {Point} pc - {x,y} of the curve's control point.
+	* @param {Point} p2 - {x,y} of the curve's end point.
 	* @param {number} bias - the point along the curve's path as a ratio (0-1).
-	* @returns {point} - {x,y} of the point on the curve at {bias}
+	* @returns {Point} - {x,y} of the point on the curve at {bias}
 	*/
 	getNormalAt: function(p1, pc, p2, bias) {
 	    const d = this.getDerivativeAt( p1, pc, p2, bias );
@@ -283,12 +284,12 @@ let trigonomicUtils = {
 	* @name projectNormalAtDistance
 	* @description given 3 vector {point}s of a quadratic curve returns the normal vector of the curve at the ratio point along the curve {bias} at the required {distance}.
 	* @memberof trigonomicUtils
-	* @param {point} p1 - {x,y} of the curve's start point.
-	* @param {point} pc - {x,y} of the curve's control point.
-	* @param {point} p2 - {x,y} of the curve's end point.
+	* @param {Point} p1 - {x,y} of the curve's start point.
+	* @param {Point} pc - {x,y} of the curve's control point.
+	* @param {Point} p2 - {x,y} of the curve's end point.
 	* @param {number} bias - the point along the curve's path as a ratio (0-1).
 	* @param {number} distance - the distance to project the normal.
-	* @returns {point} - {x,y} of the point projected from the normal on the curve at {bias}
+	* @returns {Point} - {x,y} of the point projected from the normal on the curve at {bias}
 	*/
 	projectNormalAtDistance: function(p1, pc, p2, bias, distance) {
 		const p = this.getPointAt(p1, pc, p2, bias);
@@ -302,9 +303,9 @@ let trigonomicUtils = {
 	* @name getAngleOfNormal
 	* @description given 3 vector {point}s of a quadratic curve returns the angle of the normal vector of the curve at the ratio point along the curve {bias}.
 	* @memberof trigonomicUtils
-	* @param {point} p1 - {x,y} of the curve's start point.
-	* @param {point} pc - {x,y} of the curve's control point.
-	* @param {point} p2 - {x,y} of the curve's end point.
+	* @param {Point} p1 - {x,y} of the curve's start point.
+	* @param {Point} pc - {x,y} of the curve's control point.
+	* @param {Point} p2 - {x,y} of the curve's end point.
 	* @param {number} bias - the point along the curve's path as a ratio (0-1).
 	* @returns {number} - the angle of the normal of the curve at {bias}
 	*/
@@ -316,5 +317,8 @@ let trigonomicUtils = {
 
 
 };
+
+trigonomicUtils.d2R = trigonomicUtils.degreesToRadians;
+trigonomicUtils.r2D = trigonomicUtils.radiansToDegrees;
 
 module.exports.trigonomicUtils = trigonomicUtils;

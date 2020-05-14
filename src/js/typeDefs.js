@@ -27,3 +27,5 @@
 * @property {number} distance The distance between vectors
 * @property {number} angle The angle between vectors
 */
+
+export {};
