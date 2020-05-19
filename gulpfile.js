@@ -22,7 +22,13 @@ const moveImages = require( `${ dirGulp }/moveImages` );
 const createScssVars = require( `${ dirGulp }/compileScssFromTokens` ).createScssVars;
 const createColorScssMap = require( `${ dirGulp }/compileScssFromTokens` ).createColorScssMap;
 const moveData = require( `${ dirGulp }/moveData` );
+
 const createDocs = require( `${ dirGulp }/createDocs` );
+exports.createDocs = createDocs;
+
+const watchDocs = require( `${ dirGulp }/watchDocs` );
+exports.watchDocs = watchDocs;
+
 const tests = require( `${ dirGulp }/tests` );
 
 // Kitchensink specific

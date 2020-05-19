@@ -9,7 +9,7 @@ let trig = require( '../../utils/trigonomicUtils.js' ).trigonomicUtils;
 
 /**
 * @name plotPathPoints
-* @description given an origin plot a path, randomised and subdivided, to a target.
+* @description Given an origin plot a path, randomised and subdivided, to a target. Used, primarily, by the {@link createPathFromOptions|createPathFromOptions} function 
 * @param {object} options - the constructor configuration object.
 * @param {number} options.startX - the X coordinate of the path start point.
 * @param {number} options.startY - the XYcoordinate of the path start point.

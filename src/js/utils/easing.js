@@ -1,389 +1,308 @@
-/*
- * This is a near-direct port of Robert Penner's easing equations. Please shower Robert with
- * praise and all of your admiration. His license is provided below.
- *
- * For information on how to use these functions in your animations, check out my following tutorial: 
- * http://bit.ly/18iHHKq
- *
- * -Kirupa
- */
+const linearEase = require( './easing/linearEase.js' );
+const easeInQuad = require( './easing/easeInQuad.js' );
+const easeOutQuad = require( './easing/easeOutQuad.js' );
+const easeInOutQuad = require( './easing/easeInOutQuad.js' );
+const easeInCubic = require( './easing/easeInCubic.js' );
+// requires definition in-file to take advantage of "@callback" reusability
+// bit of a hack but useful in this specific example where multiple functions have the same signature
+
+/**
+* Base function signature for easing methods.
+{currentIteration} - the current clock or iteration cycle
+{startValue} - The value to EASE from
+{changeInValue} - The change value relative to the start value
+{totalIterations} -The total cycles or iterations of the easing curve to calculate
+{returns} - The calculated (absolute) value along the easing curve from the {startValue}
+* @callback easingFn
+* @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
+* @param {number} startValue - The starting value
+* @param {number} changeInValue - The change value relative to the start value.
+* @param {number} totalIterations - The total iterations of the easing curve to calculate.
+* @returns {number} - The calculated (absolute) value along the easing curve
+*/
+
+/**
+* Base function signature for easing methods.
+{currentIteration} - the current clock or iteration cycle
+{startValue} - The value to EASE from
+{changeInValue} - The change value relative to the start value
+{totalIterations} -The total cycles or iterations of the easing curve to calculate
+{overshoot} - a ratio of the {startValue} and {changeInValue} to give the effect of "overshooting" the initial {startValue} (easeIn*), "overshooting" final value {startValue + changeInValue} (easeOut*) or both (easeInOut*).
+{returns} - The calculated (absolute) value along the easing curve from the {startValue}
+* @callback easingFnExtended
+* @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
+* @param {number} startValue - The starting value
+* @param {number} changeInValue - The change value relative to the start value.
+* @param {number} totalIterations - The total iterations of the easing curve to calculate.
+* @param {number} [overshoot=1.70158] - a ratio of the {startValue} and {changeInValue} to give the effect of "overshooting" the initial {startValue} (easeIn*), "overshooting" final value {startValue + changeInValue} (easeOut*) or both (easeInOut*).
+* @returns {number} - The calculated (absolute) value along the easing curve
+*/
 
 /*
- * @author Robert Penner
- * @license 
- * TERMS OF USE - EASING EQUATIONS
- * 
- * Open source under the BSD License. 
- * 
- * Copyright © 2001 Robert Penner
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, 
- * are permitted provided that the following conditions are met:
- * 
- * Redistributions of source code must retain the above copyright notice, this list of 
- * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list 
- * of conditions and the following disclaimer in the documentation and/or other materials 
- * provided with the distribution.
- * 
- * Neither the name of the author nor the names of contributors may be used to endorse 
- * or promote products derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
- * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
- * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
- * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
- *
- */
+	* This is a near-direct port of Robert Penner's easing equations. Please shower Robert with
+	* praise and all of your admiration. His license is provided below.
+	*
+	* For information on how to use these functions in your animations, check out my following tutorial: 
+	* http://bit.ly/18iHHKq
+	*
+	* -Kirupa
+	*/
+
+	/*
+	* @author Robert Penner
+	* @license 
+	* TERMS OF USE - EASING EQUATIONS
+	* 
+	* Open source under the BSD License. 
+	* 
+	* Copyright © 2001 Robert Penner
+	* All rights reserved.
+	* 
+	* Redistribution and use in source and binary forms, with or without modification, 
+	* are permitted provided that the following conditions are met:
+	* 
+	* Redistributions of source code must retain the above copyright notice, this list of 
+	* conditions and the following disclaimer.
+	* Redistributions in binary form must reproduce the above copyright notice, this list 
+	* of conditions and the following disclaimer in the documentation and/or other materials 
+	* provided with the distribution.
+	* 
+	* Neither the name of the author nor the names of contributors may be used to endorse 
+	* or promote products derived from this software without specific prior written permission.
+	* 
+	* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+	* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+	* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+	* COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+	* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+	* GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+	* AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+	* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+	* OF THE POSSIBILITY OF SUCH DAMAGE. 
+	*
+*/
 
 /**
 * Provides easing calculation methods.
 * @name easingEquations
-*
-* @see {@link "http://robertpenner.com/easing/"}
-* @see {@link https://easings.net/en|Easing cheat sheet}
+* @description {@link https://easings.net/en|See the Easing cheat sheet} for a visual representation for each curve formula. Originally developed by {@link http://robertpenner.com/easing/|Robert Penner}
 */
 var easingEquations = {
+	linearEase: linearEase,
+	easeInQuad: easeInQuad,
+	easeOutQuad: easeOutQuad,
+	easeInOutQuad: easeInOutQuad,
+	easeInCubic: easeInCubic,
+	
 	/**
-	 * @function
-	 * @description Interface for easing functions.
-	 * @memberof easingEquations
-	 * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
-	 * @param {number} startValue - The starting value
-	 * @param {number} changeInValue - The change value relative to the start value.
-	 * @param {number} totalIterations - The total iterations of the easing curve to calculate.
-	 * @returns {number} - The calculated (absolute) value along the easing curve
-	 */
-	linearEase: function linearEase(currentIteration, startValue, changeInValue, totalIterations) {
-		return changeInValue * currentIteration / totalIterations + startValue;
-	},
-	/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInQuad: function easeInQuad(currentIteration, startValue, changeInValue, totalIterations) {
-		return changeInValue * (currentIteration /= totalIterations) * currentIteration + startValue;
-	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutQuad: function easeOutQuad(currentIteration, startValue, changeInValue, totalIterations) {
-		return -changeInValue * (currentIteration /= totalIterations) * (currentIteration - 2) + startValue;
-	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInOutQuad: function easeInOutQuad(currentIteration, startValue, changeInValue, totalIterations) {
-		if ((currentIteration /= totalIterations / 2) < 1) {
-			return changeInValue / 2 * currentIteration * currentIteration + startValue;
-		}
-		return -changeInValue / 2 * (--currentIteration * (currentIteration - 2) - 1) + startValue;
-	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-
-	easeInCubic: function easeInCubic(currentIteration, startValue, changeInValue, totalIterations) {
-		return changeInValue * Math.pow(currentIteration / totalIterations, 3) + startValue;
-	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutCubic: function easeOutCubic(currentIteration, startValue, changeInValue, totalIterations) {
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutCubic' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeOutCubic: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * (Math.pow(currentIteration / totalIterations - 1, 3) + 1) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInOutCubic: function easeInOutCubic(currentIteration, startValue, changeInValue, totalIterations) {
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInOutCubic' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInOutCubic: function(currentIteration, startValue, changeInValue, totalIterations) {
 		if ((currentIteration /= totalIterations / 2) < 1) {
 			return changeInValue / 2 * Math.pow(currentIteration, 3) + startValue;
 		}
 		return changeInValue / 2 * (Math.pow(currentIteration - 2, 3) + 2) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInQuart: function easeInQuart(currentIteration, startValue, changeInValue, totalIterations) {
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInQuart' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInQuart: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * Math.pow(currentIteration / totalIterations, 4) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutQuart: function easeOutQuart(currentIteration, startValue, changeInValue, totalIterations) {
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutQuart' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeOutQuart: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return -changeInValue * (Math.pow(currentIteration / totalIterations - 1, 4) - 1) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInOutQuart: function easeInOutQuart(currentIteration, startValue, changeInValue, totalIterations) {
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInOutQuart' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInOutQuart: function(currentIteration, startValue, changeInValue, totalIterations) {
 		if ((currentIteration /= totalIterations / 2) < 1) {
 			return changeInValue / 2 * Math.pow(currentIteration, 4) + startValue;
 		}
 		return -changeInValue / 2 * (Math.pow(currentIteration - 2, 4) - 2) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInQuint: function easeInQuint(currentIteration, startValue, changeInValue, totalIterations) {
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInQuint' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInQuint: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * Math.pow(currentIteration / totalIterations, 5) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutQuint: function easeOutQuint(currentIteration, startValue, changeInValue, totalIterations) {
+
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutQuint' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeOutQuint: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * (Math.pow(currentIteration / totalIterations - 1, 5) + 1) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInOutQuint: function easeInOutQuint(currentIteration, startValue, changeInValue, totalIterations) {
+	
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInOutQuint' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInOutQuint: function(currentIteration, startValue, changeInValue, totalIterations) {
 		if ((currentIteration /= totalIterations / 2) < 1) {
 			return changeInValue / 2 * Math.pow(currentIteration, 5) + startValue;
 		}
 		return changeInValue / 2 * (Math.pow(currentIteration - 2, 5) + 2) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInSine: function easeInSine(currentIteration, startValue, changeInValue, totalIterations) {
+	
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInSine' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInSine: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * (1 - Math.cos(currentIteration / totalIterations * (Math.PI / 2))) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutSine: function easeOutSine(currentIteration, startValue, changeInValue, totalIterations) {
+	
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutSine' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeOutSine: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * Math.sin(currentIteration / totalIterations * (Math.PI / 2)) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInOutSine: function easeInOutSine(currentIteration, startValue, changeInValue, totalIterations) {
+	
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInOutSine' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInOutSine: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue / 2 * (1 - Math.cos(Math.PI * currentIteration / totalIterations)) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInExpo: function easeInExpo(currentIteration, startValue, changeInValue, totalIterations) {
+	
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInExpo' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInExpo: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * Math.pow(2, 10 * (currentIteration / totalIterations - 1)) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutExpo: function easeOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
+	
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutExpo' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeOutExpo: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * (-Math.pow(2, -10 * currentIteration / totalIterations) + 1) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInOutExpo: function easeInOutExpo(currentIteration, startValue, changeInValue, totalIterations) {
+
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInOutExpo' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInOutExpo: function(currentIteration, startValue, changeInValue, totalIterations) {
 		if ((currentIteration /= totalIterations / 2) < 1) {
 			return changeInValue / 2 * Math.pow(2, 10 * (currentIteration - 1)) + startValue;
 		}
 		return changeInValue / 2 * (-Math.pow(2, -10 * --currentIteration) + 2) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInCirc: function easeInCirc(currentIteration, startValue, changeInValue, totalIterations) {
+
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInCirc' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInCirc: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * (1 - Math.sqrt(1 - (currentIteration /= totalIterations) * currentIteration)) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutCirc: function easeOutCirc(currentIteration, startValue, changeInValue, totalIterations) {
+
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutCirc' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeOutCirc: function(currentIteration, startValue, changeInValue, totalIterations) {
 		return changeInValue * Math.sqrt(1 - (currentIteration = currentIteration / totalIterations - 1) * currentIteration) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInOutCirc: function easeInOutCirc(currentIteration, startValue, changeInValue, totalIterations) {
+
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInOutCirc' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInOutCirc: function(currentIteration, startValue, changeInValue, totalIterations) {
 		if ((currentIteration /= totalIterations / 2) < 1) {
 			return changeInValue / 2 * (1 - Math.sqrt(1 - currentIteration * currentIteration)) + startValue;
 		}
 		return changeInValue / 2 * (Math.sqrt(1 - (currentIteration -= 2) * currentIteration) + 1) + startValue;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInElastic: function easeInElastic(t, b, c, d) {
-		var s = 1.70158;var p = 0;var a = c;
-		if (t == 0) return b;if ((t /= d) == 1) return b + c;if (!p) p = d * .3;
-		if (a < Math.abs(c)) {
-			a = c;var s = p / 4;
-		} else var s = p / (2 * Math.PI) * Math.asin(c / a);
-		return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
-	},
+
 	/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutElastic: function easeOutElastic(t, b, c, d) {
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInElastic' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInElastic: function(currentIteration, startValue, changeInValue, totalIterations) {
+		var s = 1.70158;
+		var p = 0;
+		var a = changeInValue;
+		if (currentIteration == 0) return startValue;
+		if ((currentIteration /= totalIterations) == 1) return startValue + changeInValue;
+		if (!p) p = totalIterations * .3;
+		if (a < Math.abs(changeInValue)) {
+			a = changeInValue;
+			var s = p / 4;
+		} else {
+			var s = p / (2 * Math.PI) * Math.asin(changeInValue / a)
+		};
+		return -(a * Math.pow(2, 10 * (currentIteration -= 1)) * Math.sin((currentIteration * totalIterations - s) * (2 * Math.PI) / p)) + startValue;
+	},
+
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutElastic' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeOutElastic: function(t, b, c, d) {
 		var s = 1.70158;var p = 0;var a = c;
 		if (t == 0) return b;if ((t /= d) == 1) return b + c;if (!p) p = d * .3;
 		if (a < Math.abs(c)) {
@@ -391,17 +310,14 @@ var easingEquations = {
 		} else var s = p / (2 * Math.PI) * Math.asin(c / a);
 		return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInOutElastic: function easeInOutElastic(t, b, c, d) {
+
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeInOutElastic' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeInOutElastic: function(t, b, c, d) {
 		var s = 1.70158;var p = 0;var a = c;
 		if (t == 0) return b;if ((t /= d / 2) == 2) return b + c;if (!p) p = d * (.3 * 1.5);
 		if (a < Math.abs(c)) {
@@ -410,30 +326,24 @@ var easingEquations = {
 		if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
 		return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeInBack: function easeInBack(t, b, c, d, s) {
+
+	/**
+	* @method
+	* @type {easingFnExtended}
+ 	* @description easing method for the 'easeInBack' curve
+	* @memberof easingEquations
+ 	*/
+	easeInBack: function(t, b, c, d, s) {
 		if (s == undefined) s = 1.70158;
 		return c * (t /= d) * t * ((s + 1) * t - s) + b;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
+
+	/**
+	* @method
+ 	* @type {easingFnExtended}
+ 	* @description easing method for the 'easeOutQuint' curve
+ 	* @memberof easingEquations
+ 	*/
 	easeOutBack: function easeOutBack(t, b, c, d, s) {
 		if (s == undefined) s = 1.70158;
 		return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
@@ -444,17 +354,14 @@ var easingEquations = {
 		if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= 1.525) + 1) * t - s)) + b;
 		return c / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2) + b;
 	},
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-	easeOutBounce: function easeOutBounce(t, b, c, d) {
+
+	/**
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutBounce' curve
+ 	* @memberof easingEquations
+ 	*/
+	easeOutBounce: function(t, b, c, d) {
 		if ((t /= d) < 1 / 2.75) {
 			return c * (7.5625 * t * t) + b;
 		} else if (t < 2 / 2.75) {
@@ -464,37 +371,41 @@ var easingEquations = {
 		} else {
 			return c * (7.5625 * (t -= 2.625 / 2.75) * t + .984375) + b;
 		}
+	},
+
+	/**
+	* @method
+	* @type {easingFn}
+	* @description easing method for the 'easeInBounce' curve
+	* @memberof easingEquations
+	*/
+	easeInBounce: function(currentIteration, startValue, changeInValue, totalIterations) {
+		let self = this;
+		return changeInValue - self.easeOutBounce(totalIterations - currentIteration, 0, changeInValue, totalIterations) + startValue;
 	}
+	
 
 };
 
-/**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-easingEquations.easeInBounce = function (t, b, c, d) {
-	return c - easingEquations.easeOutBounce(d - t, 0, c, d) + b;
-};
+// /**
+// * @method
+// * @type {easingFn}
+// * @description easing method for the 'easeInBounce' curve
+// * @memberof easingEquations
+// */
+// easingEquations.easeInBounce = function (currentIteration, startValue, changeInValue, totalIterations) {
+// 	return changeInValue - easingEquations.easeOutBounce(totalIterations - currentIteration, 0, changeInValue, totalIterations) + startValue;
+// };
 
 /**
- * @function
- * @description Interface for easing functions.
- * @memberof easingEquations
- * @param {number} currentIteration - The current iteration as a proportion of the totalIteration parameter.
- * @param {number} startValue - The starting value
- * @param {number} changeInValue - The change value relative to the start value.
- * @param {number} totalIterations - The total iterations of the easing curve to calculate.
- * @returns {number} - The calculated (absolute) value along the easing curve
- */
-easingEquations.easeInOutBounce = function (t, b, c, d) {
-	if (t < d / 2) return easingEquations.easeInBounce(t * 2, 0, c, d) * .5 + b;
-	return easingEquations.easeOutBounce(t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+	* @method
+ 	* @type {easingFn}
+ 	* @description easing method for the 'easeOutQuint' curve
+ 	* @memberof easingEquations
+ 	*/
+easingEquations.easeInOutBounce = function (currentIteration, startValue, changeInValue, totalIterations) {
+	if (currentIteration < totalIterations / 2) return easingEquations.easeInBounce(currentIteration * 2, 0, changeInValue, totalIterations) * .5 + startValue;
+	return easingEquations.easeOutBounce(currentIteration * 2 - totalIterations, 0, changeInValue, totalIterations) * .5 + changeInValue * .5 + startValue;
 };
 
 module.exports.easingEquations = easingEquations;

@@ -315,10 +315,7 @@ let trigonomicUtils = {
       	return this.getRadianAngleBetween2Vectors( p.x, p.y, n.x, n.y );
 	}
 
-
 };
 
-trigonomicUtils.d2R = trigonomicUtils.degreesToRadians;
-trigonomicUtils.r2D = trigonomicUtils.radiansToDegrees;
 
 module.exports.trigonomicUtils = trigonomicUtils;

@@ -20,12 +20,7 @@ function updatePath( parentConfig, globalConfig ) {
 				pathCfg.playSequence = true; 
 				pathCfg.startSequence( {index: 0} );
 			}
-		} else {
-
-			
-			
 		}
-
 	}
 
 	if ( pathLen + rndOffset < p.renderConfig.currHead) {

@@ -1,45 +1,37 @@
-let mathUtils = require( '../../utils/mathUtils.js' );
-let easing = require( '../../utils/easing.js' ).easingEquations;
-let trig = require( '../../utils/trigonomicUtils.js' ).trigonomicUtils;
-
-let lmgrUtils = require( './lightningManagerUtilities.js' );
-let createLightningParent = lmgrUtils.createLightningParent;
-
-let renderConfig = require( './renderConfig.js' );
-
-let mainPathAnimSequence = require( `../sequencer/mainPathAnimSequence.js` );
-let childPathAnimSequence = require( `../sequencer/childPathAnimSequence.js` );
-
-let createPathFromOptions = require( '../path/createPathFromOptions.js' );
-let createPathConfig = require( '../path/createPathConfig.js' );
-let calculateSubDRate = require( '../path/calculateSubDRate.js' );
+const mathUtils = require( '../../utils/mathUtils.js' );
+const trig = require( '../../utils/trigonomicUtils.js' ).trigonomicUtils;
+const lmgrUtils = require( './lightningManagerUtilities.js' );
+const createLightningParent = lmgrUtils.createLightningParent;
+const mainPathAnimSequence = require( `../sequencer/mainPathAnimSequence.js` );
+const childPathAnimSequence = require( `../sequencer/childPathAnimSequence.js` );
+const createPathFromOptions = require( '../path/createPathFromOptions.js' );
+const createPathConfig = require( '../path/createPathConfig.js' );
+const calculateSubDRate = require( '../path/calculateSubDRate.js' );
 
 // store subdivision level segment count as a look up table/array
-let subDSegmentCountLookUp = [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 ];
+const subDSegmentCountLookUp = [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 ];
 
 function createLightning( options ) {
 
-	let lMgr = this;
-	let opts = options;
-	let creationConfig = this.creationConfig;
-	let branchCfg = creationConfig.branches;
+	const lMgr = this;
+	const opts = options;
+	const creationConfig = this.creationConfig;
+	const branchCfg = creationConfig.branches;
 	lMgr.canvasW = opts.canvasW;
 	lMgr.canvasH = opts.canvasH;
-	let maxCanvasDist = trig.dist( 0, 0, opts.canvasW, opts.canvasH );
+	const maxCanvasDist = trig.dist( 0, 0, opts.canvasW, opts.canvasH );
 	
 	branchCfg.depth.curr = 1;
 
-	// let maxSubD = 8;
-	let subD = 6;
-	let subDivs = opts.subdivisions || mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max);
+	const subD = 6;
+	// let subDivs = opts.subdivisions || mathUtils.randomInteger( branchCfg.subD.min, branchCfg.subD.max);
 	
-	let d = trig.dist( opts.startX, opts.startY, opts.endX, opts.endY );
-	let subDRate = calculateSubDRate( d, maxCanvasDist, subD );
-	let parentPathDist = d;
+	const d = trig.dist( opts.startX, opts.startY, opts.endX, opts.endY );
+	const subDRate = calculateSubDRate( d, maxCanvasDist, subD );
 	
-	let speed =  ( d / subDSegmentCountLookUp[ subDRate ] );
-	let speedModRate = opts.speedModRate || 0.6;
-	let speedMod = speed * speedModRate;
+	const speed = ( d / subDSegmentCountLookUp[ subDRate ] );
+	const speedModRate = opts.speedModRate || 0.6;
+	const speedMod = speed * speedModRate;
 	// calculate draw speed based on bolt length / 
 
 	let tempPaths = [];
@@ -65,7 +57,6 @@ function createLightning( options ) {
 				glowColG: 150,
 				glowColB: 255,
 				glowColA: 1,
-				parentPathDist: 0,
 				lineWidth: 1,
 				subDRate: subDRate,
 				subdivisions: subD,
@@ -123,11 +114,9 @@ function createLightning( options ) {
 							startY: pCfg.startY,
 							endX: pCfg.endX,
 							endY: pCfg.endY,
-							parentPathDist: d,
 							lineWidth: 1,
 							subdivisions: calculateSubDRate( pCfg.dVar, maxCanvasDist, subD ),
-							dRange: pCfg.dVar,
-							sequenceStartIndex: 1
+							dRange: pCfg.dVar
 						}
 					)
 				);

@@ -1,41 +1,49 @@
+require('../../typeDefs');
+/**
+@typedef {import("../../typeDefs").pathObject} pathObject
+@typedef {import("../../typeDefs").createPathOptions} createPathOptions
+@typedef {import("../../typeDefs").Point} Point
+*/
 
-let mathUtils = require( '../../utils/mathUtils.js' );
-let easing = require( '../../utils/easing.js' ).easingEquations;
-let trig = require( '../../utils/trigonomicUtils.js' ).trigonomicUtils;
+const trig = require( '../../utils/trigonomicUtils.js' ).trigonomicUtils;
+const plotPathPoints = require( './plotPathPoints.js' );
+const drawPaths = require( './drawPath.js' );
+const redrawPath = require( './redrawPaths.js' );
+const updatePath = require( './updatePath.js' );
+const renderPath = require( './renderPath.js' );
+const mainPathAnimSequence = require( `../sequencer/mainPathAnimSequence.js` );
+const startSequence = require( `../sequencer/startSequence.js` );
+const updateSequenceClock = require( `../sequencer/updateSequenceClock.js` );
+const updateSequence = require( `../sequencer/updateSequence.js` );
+const setupSequences = require( `../sequencer/setupSequences.js` );
 
-let plotPoints = require( './plotPathPoints.js' );
-let drawPaths = require( './drawPath.js' );
-let redrawPath = require( './redrawPaths.js' );
-let updatePath = require( './updatePath.js' );
-let renderPath = require( './renderPath.js' );
-
-let childPathAnimSequence = require( `../sequencer/childPathAnimSequence.js` );
-let mainPathAnimSequence = require( `../sequencer/mainPathAnimSequence.js` );
-let startSequence = require( `../sequencer/startSequence.js` );
-let updateSequenceClock = require( `../sequencer/updateSequenceClock.js` );
-let updateSequence = require( `../sequencer/updateSequence.js` );
-let setupSequences = require( `../sequencer/setupSequences.js` );
-
-// lightning path constructor
-
-// let drawPathSequence = {
-// 	isActive: false,
-// 	time: 100
-// }
+/**
+* createPathFromOptions
+* @description create path object from provide options {opts}.
+* @see {@link createPathOptions} for constructor options
+* @see {@link pathObject} for function return object members
+* @param {...createPathOptions} opts - the constructor options and paremeters for the path.
+* @returns {pathObject} - the calculated path object containing parameters, flags, path coordinate arrays and constructed path2d() primitives.
+*/
 
 function createPathFromOptions( opts ) {
 
-	let newPath = plotPoints({
+	/**
+	 * @name newPath
+	 * @memberof createPathFromOptions
+	 * @type {Array<Point>}
+	 * @static
+	 * @description Array of {@link Point|Points} created by the {@link plotPathPoints} function from options supplied in the parent function's {opts} parameters
+	*/
+
+	let _newPath = plotPathPoints({
 		startX: opts.startX,
 		startY: opts.startY,
 		endX: opts.endX,
 		endY: opts.endY,
-		subdivisions: opts.subdivisions,
-		dRange: opts.dRange, 
+		subdivisions: opts.subdivisions, 
 		isChild: opts.isChild
 	});
-
-	// console.log( 'newPathLen: ', opts.isChild === false ? newPath.length : false );
 
 	let chosenSequence = opts.sequences || mainPathAnimSequence;
 	let thisSequences = setupSequences( chosenSequence );
@@ -85,7 +93,7 @@ function createPathFromOptions( opts ) {
 		renderOffset: opts.renderOffset || 0,
 		currHeadPoint: 0,
 		// the actual path
-		path: newPath,
+		path: _newPath,
 		// saved paths
 		savedPaths: {
 			main: new Path2D(),
