@@ -225,6 +225,64 @@
               
                 
                 <li><a
+                  href='#createblurarray'
+                  class="">
+                  createBlurArray
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#calculatesubdrate'
+                  class="">
+                  calculateSubDRate
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#trig'
+                  class="">
+                  trig
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#createpathfromoptions'
+                  class=" toggle-sibling">
+                  createPathFromOptions
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Static members</span></li>
+                    
+                      <li><a
+                        href='#createpathfromoptionsnewpath'
+                        class='regular pre-open'>
+                        .newPath
+                      </a></li>
+                    
+                    </ul>
+                  
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
                   href='#plotpathpoints'
                   class="">
                   plotPathPoints
@@ -255,9 +313,9 @@
               
                 
                 <li><a
-                  href='#dimensions'
+                  href='#jquery'
                   class="">
-                  Dimensions
+                  jQuery
                   
                 </a>
                 
@@ -265,9 +323,29 @@
               
                 
                 <li><a
-                  href='#jquery'
+                  href='#createpathoptions'
                   class="">
-                  jQuery
+                  createPathOptions
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#pathobject'
+                  class="">
+                  pathObject
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#vectorcalculation'
+                  class="">
+                  vectorCalculation
                   
                 </a>
                 
@@ -285,9 +363,9 @@
               
                 
                 <li><a
-                  href='#vectorcalculation'
+                  href='#dimensions'
                   class="">
-                  vectorCalculation
+                  Dimensions
                   
                 </a>
                 
@@ -381,36 +459,6 @@
                   
                   <ul class='list-reset py1-ul pl1'>
                     <li class='h5'><span>Static members</span></li>
-                    
-                      <li><a
-                        href='#easingequationslinearease'
-                        class='regular pre-open'>
-                        .linearEase
-                      </a></li>
-                    
-                      <li><a
-                        href='#easingequationseaseinquad'
-                        class='regular pre-open'>
-                        .easeInQuad
-                      </a></li>
-                    
-                      <li><a
-                        href='#easingequationseaseoutquad'
-                        class='regular pre-open'>
-                        .easeOutQuad
-                      </a></li>
-                    
-                      <li><a
-                        href='#easingequationseaseinoutquad'
-                        class='regular pre-open'>
-                        .easeInOutQuad
-                      </a></li>
-                    
-                      <li><a
-                        href='#easingequationseaseincubic'
-                        class='regular pre-open'>
-                        .easeInCubic
-                      </a></li>
                     
                       <li><a
                         href='#easingequationseaseoutcubic'
@@ -568,6 +616,76 @@
                   
                   
                 </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#easingfn'
+                  class="">
+                  easingFn
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#easingfnextended'
+                  class="">
+                  easingFnExtended
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#easeincubic'
+                  class="">
+                  easeInCubic
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#easeinoutquad'
+                  class="">
+                  easeInOutQuad
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#easeinquad'
+                  class="">
+                  easeInQuad
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#easeoutquad'
+                  class="">
+                  easeOutQuad
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#linearease'
+                  class="">
+                  linearEase
+                  
+                </a>
                 
                 </li>
               
@@ -1678,7 +1796,8 @@ Using Point class</p>
   </div>
   
 
-  
+  <p>A point in a 2d (cartesean) space plane, as an x/y coordinate pair</p>
+
     <div class='pre p1 fill-light mt0'>Point</div>
   
     <p>
@@ -1994,6 +2113,366 @@ styling and adds the "transitioner" class.</p>
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='createblurarray'>
+      createBlurArray
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Given a count, minimum and maximum blur distances, return an array of numbers intopolating from the minimum to maxaximum biased according to the specified ease function</p>
+
+    <div class='pre p1 fill-light mt0'>createBlurArray</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>blurCount</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    the number of required blurs.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>minBlurDist</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    the minimum blur size distance.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>maxBlurDist</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    the maxaximum blur size distance.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>ease</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Name of the easing function to intopolate between the minimum and maximum
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>></code>:
+        the calculated array of blur distances.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='calculatesubdrate'>
+      calculateSubDRate
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Given a {length} distance of a path, a maximum allowed distance {targetLength} and a maximum subdivision level {subDRate} return a subdivision level for the distance length of the path.</p>
+
+    <div class='pre p1 fill-light mt0'>calculateSubDRate</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>length</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    the length of the path.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>targetLength</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    the maximum (clamped) value a path can be.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>subDRate</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    the maximum subdivion levels at the targetLength.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        the calculated subdivision levels for the path.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='trig'>
+      trig
+    </h3>
+    
+    
+  </div>
+  
+
+  
+    <div class='pre p1 fill-light mt0'>trig</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='createpathfromoptions'>
+      createPathFromOptions
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>create path object from provide options {opts}.</p>
+
+    <div class='pre p1 fill-light mt0'>createPathFromOptions(opts: ...<a href="#createpathoptions">createPathOptions</a>): <a href="#pathobject">pathObject</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(...<a href="#createpathoptions">createPathOptions</a>)</code>
+	    the constructor options and paremeters for the path.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#pathobject">pathObject</a></code>:
+        the calculated path object containing parameters, flags, path coordinate arrays and constructed path2d() primitives.
+
+      
+    
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Static Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='createpathfromoptionsnewpath'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>newPath</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Array of <a href="#point">Points</a> created by the <a href="#plotpathpoints">plotPathPoints</a> function from options supplied in the parent function's {opts} parameters</p>
+
+    <div class='pre p1 fill-light mt0'>newPath</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#point">Point</a>>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='plotpathpoints'>
       plotPathPoints
     </h3>
@@ -2002,7 +2481,7 @@ styling and adds the "transitioner" class.</p>
   </div>
   
 
-  <p>given an origin plot a path, randomised and subdivided, to a target.</p>
+  <p>Given an origin plot a path, randomised and subdivided, to a target. Used, primarily, by the <a href="#createpathfromoptions">createPathFromOptions</a> function</p>
 
     <div class='pre p1 fill-light mt0'>plotPathPoints</div>
   
@@ -2296,20 +2775,69 @@ representing width and height for setting default or minimum values if not met b
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='dimensions'>
-      Dimensions
+    <h3 class='fl m0' id='jquery'>
+      jQuery
     </h3>
     
     
   </div>
   
 
+  <p>jQuery object</p>
+
+    <div class='pre p1 fill-light mt0'>jQuery</div>
   
-    <div class='pre p1 fill-light mt0'>Dimensions</div>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='createpathoptions'>
+      createPathOptions
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The options available when creating a new path from the <a href="#createpathfromoptions">createPathFromOptions</a> constructor function</p>
+
+    <div class='pre p1 fill-light mt0'>createPathOptions</div>
   
     <p>
       Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
     </p>
   
   
@@ -2328,15 +2856,183 @@ representing width and height for setting default or minimum values if not met b
     <div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>w</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-          : width
+          <span class='code bold'>isChild</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          : is the path spawned from the original seed path or the main path?.
 
           
         </div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>h</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-          : height
+          <span class='code bold'>isActive</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          : is the path active?.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>isRendering</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          : is the path rendering.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>willStrike</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          : will the path connect with a target.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>startX</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : x value for the path start.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>startY</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : y value for the path start.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>endX</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : x value for the path end.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>endY</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : y value for the path end.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>subdivisions</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : number of subdivion passes made when plotting the path points from start to end.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sequences</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+          : object containing an animation sequence information.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>pathColR</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : path stroke color RED (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>pathColG</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : path stroke color GREEN (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>pathColB</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : path stroke color BLUE (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>pathColA</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : path stroke color ALPHA (transparency) (0-1).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>glowColR</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : path glow color RED (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>glowColG</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : path glow color GREEN (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>glowColB</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : path glow color BLUE (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>glowColA</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : path glow color ALPHA (transparency) (0-1).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>lineWidth</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : line width of the path at creation (default: 1).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>renderOffset</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : if isChild is true, this reperesents the array index on the main path point array which this path will regard as it's start point. During rendering where the paths are drawn along their length, this is used as the offset before starting the child paths rendering.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>branchDepth</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : the branch level that this path has been spawned at (main path is level 0).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>clock</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : clock incrementer for the path.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>totalClock</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : total time before event.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sequenceClock</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : total length of sequence.sequenceStartIndex
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sequenceStartIndex</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : given the path may have more than one sequence attached this will be the array index of the sequence to start with.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sequenceIndex</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?)</code>
+          : the array index of the current active sequence.
 
           
         </div>
@@ -2367,29 +3063,386 @@ representing width and height for setting default or minimum values if not met b
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='jquery'>
-      jQuery
+    <h3 class='fl m0' id='pathobject'>
+      pathObject
     </h3>
     
     
   </div>
   
 
-  <p>jQuery object</p>
+  <p>The return object created by the <a href="#createpathfromoptions">createPathFromOptions</a> function</p>
 
-    <div class='pre p1 fill-light mt0'>jQuery</div>
+    <div class='pre p1 fill-light mt0'>pathObject</div>
   
-  
-
-  
-  
-  
-  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+    </p>
   
   
 
   
+  
+  
+  
+  
+  
 
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>isChild</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
+          : is this the main path or a sub(child) path?
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>isActive</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
+          : is this path active?
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>isRendering</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
+          : is the path to be rendered onscreen?
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>willStrike</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
+          : will the path connect to a target?
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>branchDepth</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : what level of the recursive path creation function is this path? Main path = branchDepth = 0.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>baseAngle</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : the angle in radians between the path start and end points.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>baseDist</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : the distance between the path start and end points.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>colR</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : path stroke color RED (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>colG</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : path stroke color GREEN (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>colB</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : path stroke color BLUE (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>colA</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : path stroke color ALPHA (transparency) (0-1).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>glowColR</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : path glow color RED (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>glowColG</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : path glow color GREEN (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>glowColB</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : path glow color BLUE (0-255).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>glowColA</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : path glow color ALPHA (transparency) (0-1).
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>lineWidth</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : line width of the path at creation (default: 1)
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>clock</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : the main clock timer for the path
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sequenceClock</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : the sequence clock for current active sequence
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>totalClock</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : total clock timing for the path
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>drawPathSequence</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
+          : is the path in drawing mode
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sequences</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>)</code>
+          : array of sequence definition objects
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sequenceStartIndex</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : array index of the first sequence to run when active
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sequenceIndex</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : array index of the currently active sequence
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>playSequence</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
+          : are the sequences playing
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>currSequence</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+          : the current active sequence
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>startSequence</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : utility method to start a sequence
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>updateSequence</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : utility method to update active sequence
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>updateSequenceClock</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : utility method to update the sequence clock
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>drawPaths</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : utility method to draw the path
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>redrawPath</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : utility method to re-draw the path with possible variances
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>update</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : utility method to update the path
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>render</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code>
+          : utility method to render the path
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>renderOffset</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : if isChild = true the array index on the main path coordinate list where this child path starts.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>currHeadPoint</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : when rendering the current array index of path to render.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>&#x3C;<a href="#point">Point</a>>)</code>
+          : the created path as an array of x/y coordinate pair objects
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>savedPaths</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+          : object containing named saved paths stored after plotting the path points
+
+          
+            <ul>
+              
+                <li><code>savedPaths.main</code> Path2D
+                  
+                  <p>Path2D primitive containing the main path</p>
+</li>
+              
+                <li><code>savedPaths.offset</code> Path2D
+                  
+                  <p>Path2D primitive containing the main path duplicate for outer glow rendering</p>
+</li>
+              
+                <li><code>savedPaths.originShort</code> Path2D
+                  
+                  <p>Path2D primitive containing path for rendering the glow at path start (main path, i.e. isChild = false)</p>
+</li>
+              
+                <li><code>savedPaths.originLong</code> Path2D
+                  
+                  <p>Path2D primitive containing path for rendering the additional glow at path start (main path, i.e. isChild = false)</p>
+</li>
+              
+            </ul>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='vectorcalculation'>
+      vectorCalculation
+    </h3>
+    
+    
+  </div>
+  
+
+  
+    <div class='pre p1 fill-light mt0'>vectorCalculation</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>distance</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : The distance between vectors
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>angle</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : The angle between vectors
+
+          
+        </div>
+      
+    </div>
   
 
   
@@ -2486,16 +3539,17 @@ representing width and height for setting default or minimum values if not met b
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='vectorcalculation'>
-      vectorCalculation
+    <h3 class='fl m0' id='dimensions'>
+      Dimensions
     </h3>
     
     
   </div>
   
 
-  
-    <div class='pre p1 fill-light mt0'>vectorCalculation</div>
+  <p>values describing the length of sides X (horizontal) and Y (vertical) in 2d (cartesean) space</p>
+
+    <div class='pre p1 fill-light mt0'>Dimensions</div>
   
     <p>
       Type:
@@ -2518,15 +3572,15 @@ representing width and height for setting default or minimum values if not met b
     <div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>distance</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-          : The distance between vectors
+          <span class='code bold'>w</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : width
 
           
         </div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>angle</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-          : The angle between vectors
+          <span class='code bold'>h</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+          : height
 
           
         </div>
@@ -3455,7 +4509,7 @@ representing width and height for setting default or minimum values if not met b
   </div>
   
 
-  <p>Provides easing calculation methods.</p>
+  <p><a href="https://easings.net/en">See the Easing cheat sheet</a> for a visual representation for each curve formula. Originally developed by <a href="http://robertpenner.com/easing/">Robert Penner</a></p>
 
     <div class='pre p1 fill-light mt0'>easingEquations</div>
   
@@ -3482,486 +4536,6 @@ representing width and height for setting default or minimum values if not met b
     <div class='py1 quiet mt1 prose-big'>Static Members</div>
     <div class="clearfix">
   
-    <div class='border-bottom' id='easingequationslinearease'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>linearEase(currentIteration, startValue, changeInValue, totalIterations)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Interface for easing functions.</p>
-
-    <div class='pre p1 fill-light mt0'>linearEase(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='easingequationseaseinquad'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeInQuad(currentIteration, startValue, changeInValue, totalIterations)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Interface for easing functions.</p>
-
-    <div class='pre p1 fill-light mt0'>easeInQuad(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='easingequationseaseoutquad'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeOutQuad(currentIteration, startValue, changeInValue, totalIterations)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Interface for easing functions.</p>
-
-    <div class='pre p1 fill-light mt0'>easeOutQuad(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='easingequationseaseinoutquad'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeInOutQuad(currentIteration, startValue, changeInValue, totalIterations)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Interface for easing functions.</p>
-
-    <div class='pre p1 fill-light mt0'>easeInOutQuad(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='easingequationseaseincubic'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeInCubic(currentIteration, startValue, changeInValue, totalIterations)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Interface for easing functions.</p>
-
-    <div class='pre p1 fill-light mt0'>easeInCubic(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
     <div class='border-bottom' id='easingequationseaseoutcubic'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -3974,9 +4548,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutCubic' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutCubic(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutCubic(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -3993,36 +4572,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4032,14 +4607,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4070,9 +4637,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInOutCubic' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInOutCubic(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInOutCubic(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4089,36 +4661,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4128,14 +4696,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4166,9 +4726,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInQuart' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInQuart(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInQuart(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4185,36 +4750,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4224,14 +4785,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4262,9 +4815,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutQuart' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutQuart(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutQuart(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4281,36 +4839,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4320,14 +4874,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4358,9 +4904,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInOutQuart' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInOutQuart(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInOutQuart(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4377,36 +4928,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4416,14 +4963,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4454,9 +4993,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInQuint' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInQuint(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInQuint(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4473,36 +5017,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4512,14 +5052,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4550,9 +5082,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutQuint' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutQuint(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutQuint(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4569,36 +5106,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4608,14 +5141,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4646,9 +5171,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInOutQuint' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInOutQuint(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInOutQuint(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4665,36 +5195,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4704,14 +5230,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4742,9 +5260,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInSine' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInSine(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInSine(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4761,36 +5284,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4800,14 +5319,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4838,9 +5349,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutSine' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutSine(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutSine(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4857,36 +5373,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4896,14 +5408,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -4934,9 +5438,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInOutSine' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInOutSine(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInOutSine(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -4953,36 +5462,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -4992,14 +5497,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5030,9 +5527,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInExpo' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInExpo(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInExpo(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5049,36 +5551,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -5088,14 +5586,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5126,9 +5616,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutExpo' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutExpo(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutExpo(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5145,36 +5640,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -5184,14 +5675,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5222,9 +5705,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInOutExpo' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInOutExpo(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInOutExpo(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5241,36 +5729,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -5280,14 +5764,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5318,9 +5794,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInCirc' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInCirc(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInCirc(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5337,36 +5818,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -5376,14 +5853,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5414,9 +5883,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutCirc' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutCirc(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutCirc(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5433,36 +5907,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -5472,14 +5942,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5510,9 +5972,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInOutCirc' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInOutCirc(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInOutCirc(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5529,36 +5996,32 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -5568,14 +6031,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5598,7 +6053,7 @@ representing width and height for setting default or minimum values if not met b
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeInElastic(t, b, c, d, currentIteration, startValue, changeInValue, totalIterations)</span>
+            <span class='code strong strong truncate'>easeInElastic(currentIteration, startValue, changeInValue, totalIterations)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -5606,9 +6061,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInElastic' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInElastic(t: any, b: any, c: any, d: any, currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInElastic(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5625,7 +6085,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>t</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -5633,7 +6093,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>b</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -5641,7 +6101,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>c</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -5649,44 +6109,8 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>d</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
 	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
           </div>
           
         </div>
@@ -5696,14 +6120,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5726,7 +6142,7 @@ representing width and height for setting default or minimum values if not met b
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeOutElastic(t, b, c, d, currentIteration, startValue, changeInValue, totalIterations)</span>
+            <span class='code strong strong truncate'>easeOutElastic(t, b, c, d)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -5734,9 +6150,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutElastic' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutElastic(t: any, b: any, c: any, d: any, currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutElastic(t: any, b: any, c: any, d: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5783,55 +6204,11 @@ representing width and height for setting default or minimum values if not met b
           
         </div>
       
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
     </div>
   
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5854,7 +6231,7 @@ representing width and height for setting default or minimum values if not met b
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeInOutElastic(t, b, c, d, currentIteration, startValue, changeInValue, totalIterations)</span>
+            <span class='code strong strong truncate'>easeInOutElastic(t, b, c, d)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -5862,9 +6239,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInOutElastic' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInOutElastic(t: any, b: any, c: any, d: any, currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInOutElastic(t: any, b: any, c: any, d: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -5911,55 +6293,11 @@ representing width and height for setting default or minimum values if not met b
           
         </div>
       
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
     </div>
   
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -5982,7 +6320,7 @@ representing width and height for setting default or minimum values if not met b
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeInBack(t, b, c, d, s, currentIteration, startValue, changeInValue, totalIterations)</span>
+            <span class='code strong strong truncate'>easeInBack(t, b, c, d, s)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -5990,9 +6328,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInBack' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInBack(t: any, b: any, c: any, d: any, s: any, currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInBack(t: any, b: any, c: any, d: any, s: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfnextended">easingFnExtended</a>
+    </p>
   
   
 
@@ -6047,55 +6390,11 @@ representing width and height for setting default or minimum values if not met b
           
         </div>
       
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
     </div>
   
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -6118,7 +6417,7 @@ representing width and height for setting default or minimum values if not met b
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeOutBack(t, b, c, d, s, currentIteration, startValue, changeInValue, totalIterations)</span>
+            <span class='code strong strong truncate'>easeOutBack(t, b, c, d, s)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -6126,9 +6425,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutQuint' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutBack(t: any, b: any, c: any, d: any, s: any, currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutBack(t: any, b: any, c: any, d: any, s: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfnextended">easingFnExtended</a>
+    </p>
   
   
 
@@ -6183,55 +6487,11 @@ representing width and height for setting default or minimum values if not met b
           
         </div>
       
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
     </div>
   
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -6254,7 +6514,7 @@ representing width and height for setting default or minimum values if not met b
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeOutBounce(t, b, c, d, currentIteration, startValue, changeInValue, totalIterations)</span>
+            <span class='code strong strong truncate'>easeOutBounce(t, b, c, d)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -6262,9 +6522,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutBounce' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeOutBounce(t: any, b: any, c: any, d: any, currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeOutBounce(t: any, b: any, c: any, d: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -6311,55 +6576,11 @@ representing width and height for setting default or minimum values if not met b
           
         </div>
       
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
-          </div>
-          
-        </div>
-      
     </div>
   
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -6382,7 +6603,7 @@ representing width and height for setting default or minimum values if not met b
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeInBounce(t, b, c, d, currentIteration, startValue, changeInValue, totalIterations)</span>
+            <span class='code strong strong truncate'>easeInBounce(currentIteration, startValue, changeInValue, totalIterations)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -6390,9 +6611,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeInBounce' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInBounce(t: any, b: any, c: any, d: any, currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInBounce(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -6409,7 +6635,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>t</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -6417,7 +6643,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>b</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -6425,7 +6651,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>c</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -6433,44 +6659,8 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>d</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
 	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The current iteration as a proportion of the totalIteration parameter.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The starting value
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The change value relative to the start value.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    The total iterations of the easing curve to calculate.
-
           </div>
           
         </div>
@@ -6480,14 +6670,6 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        The calculated (absolute) value along the easing curve
-
-      
-    
   
 
   
@@ -6510,7 +6692,7 @@ representing width and height for setting default or minimum values if not met b
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>easeInOutBounce(t, b, c, d, currentIteration, startValue, changeInValue, totalIterations)</span>
+            <span class='code strong strong truncate'>easeInOutBounce(currentIteration, startValue, changeInValue, totalIterations)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -6518,9 +6700,14 @@ representing width and height for setting default or minimum values if not met b
 
   
 
-  <p>Interface for easing functions.</p>
+  <p>easing method for the 'easeOutQuint' curve</p>
 
-    <div class='pre p1 fill-light mt0'>easeInOutBounce(t: any, b: any, c: any, d: any, currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+    <div class='pre p1 fill-light mt0'>easeInOutBounce(currentIteration: any, startValue: any, changeInValue: any, totalIterations: any)</div>
+  
+    <p>
+      Type:
+      <a href="#easingfn">easingFn</a>
+    </p>
   
   
 
@@ -6537,7 +6724,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>t</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -6545,7 +6732,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>b</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>startValue</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -6553,7 +6740,7 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>c</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -6561,11 +6748,88 @@ representing width and height for setting default or minimum values if not met b
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>d</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
         </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='easingfn'>
+      easingFn
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Base function signature for easing methods.
+{currentIteration} - the current clock or iteration cycle
+{startValue} - The value to EASE from
+{changeInValue} - The change value relative to the start value
+{totalIterations} -The total cycles or iterations of the easing curve to calculate
+{returns} - The calculated (absolute) value along the easing curve from the {startValue}</p>
+
+    <div class='pre p1 fill-light mt0'>easingFn(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
       
         <div class='space-bottom0'>
           <div>
@@ -6631,10 +6895,597 @@ representing width and height for setting default or minimum values if not met b
   
 </section>
 
-      </div>
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='easingfnextended'>
+      easingFnExtended
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Base function signature for easing methods.
+{currentIteration} - the current clock or iteration cycle
+{startValue} - The value to EASE from
+{changeInValue} - The change value relative to the start value
+{totalIterations} -The total cycles or iterations of the easing curve to calculate
+{overshoot} - a ratio of the {startValue} and {changeInValue} to give the effect of "overshooting" the initial {startValue} (easeIn<em>), "overshooting" final value {startValue + changeInValue} (easeOut</em>) or both (easeInOut*).
+{returns} - The calculated (absolute) value along the easing curve from the {startValue}</p>
+
+    <div class='pre p1 fill-light mt0'>easingFnExtended(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, overshoot: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The current iteration as a proportion of the totalIteration parameter.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The starting value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The change value relative to the start value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The total iterations of the easing curve to calculate.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>overshoot</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>1.70158</code>)</code>
+	    a ratio of the {startValue} and {changeInValue} to give the effect of "overshooting" the initial {startValue} (easeIn
+<em>), "overshooting" final value {startValue + changeInValue} (easeOut</em>
+) or both (easeInOut*).
+
+          </div>
+          
+        </div>
+      
     </div>
   
-</div>
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        The calculated (absolute) value along the easing curve
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='easeincubic'>
+      easeInCubic
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>function signature for easeInCubic. Note the {startValue} should not change for the function lifecycle (until {currentIteration} equals {totaliterations}) otherwise the return value will be multiplied exponentially</p>
+
+    <div class='pre p1 fill-light mt0'>easeInCubic(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The current iteration/cycle as a proportion of the totalIteration parameter.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The starting value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The change value relative to the start value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The total iterations of the easing curve to calculate.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        The value along the easing curve calculated from the {startValue} to the final value ({startValue} + {changeInValue}).
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='easeinoutquad'>
+      easeInOutQuad
+    </h3>
+    
+    
+  </div>
+  
+
+  
+    <div class='pre p1 fill-light mt0'>easeInOutQuad(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The current iteration/cycle as a proportion of the totalIteration parameter.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The starting value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The change value relative to the start value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The total iterations of the easing curve to calculate.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        The value along the easing curve calculated from the {startValue} to the final value ({startValue} + {changeInValue}).
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='easeinquad'>
+      easeInQuad
+    </h3>
+    
+    
+  </div>
+  
+
+  
+    <div class='pre p1 fill-light mt0'>easeInQuad(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The current iteration/cycle as a proportion of the totalIteration parameter.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The starting value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The change value relative to the start value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The total iterations of the easing curve to calculate.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        The value along the easing curve calculated from the {startValue} to the final value ({startValue} + {changeInValue}).
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='easeoutquad'>
+      easeOutQuad
+    </h3>
+    
+    
+  </div>
+  
+
+  
+    <div class='pre p1 fill-light mt0'>easeOutQuad(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The current iteration/cycle as a proportion of the totalIteration parameter.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The starting value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The change value relative to the start value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The total iterations of the easing curve to calculate.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        The value along the easing curve calculated from the {startValue} to the final value ({startValue} + {changeInValue}).
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='linearease'>
+      linearEase
+    </h3>
+    
+    
+  </div>
+  
+
+  
+    <div class='pre p1 fill-light mt0'>linearEase(currentIteration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, startValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, changeInValue: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, totalIterations: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>currentIteration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The current iteration/cycle as a proportion of the totalIteration parameter.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>startValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The starting value
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>changeInValue</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The change value relative to the start value.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>totalIterations</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
+	    The total iterations of the easing curve to calculate.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        The value along the easing curve calculated from the {startValue} to the final value ({startValue} + {changeInValue}).
+
+      
+    
+  
+
+  
+
+  
 
   
 
@@ -8294,7 +9145,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>point</code>:
+      <code><a href="#point">Point</a></code>:
         The coordinates of the subdivision point
 
       
@@ -8348,7 +9199,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p1</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p1</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's start point.
 
           </div>
@@ -8357,7 +9208,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>pc</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>pc</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's control point.
 
           </div>
@@ -8366,7 +9217,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p2</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p2</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's end point.
 
           </div>
@@ -8390,7 +9241,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>point</code>:
+      <code><a href="#point">Point</a></code>:
         {x,y} of the point on the curve at {bias}
 
       
@@ -8445,7 +9296,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p1</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p1</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's start point.
 
           </div>
@@ -8454,7 +9305,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>pc</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>pc</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's control point.
 
           </div>
@@ -8463,7 +9314,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p2</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p2</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's end point.
 
           </div>
@@ -8487,7 +9338,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>point</code>:
+      <code><a href="#point">Point</a></code>:
         {x,y} of the point on the curve at {bias}
 
       
@@ -8541,7 +9392,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p1</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p1</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's start point.
 
           </div>
@@ -8550,7 +9401,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>pc</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>pc</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's control point.
 
           </div>
@@ -8559,7 +9410,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p2</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p2</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's end point.
 
           </div>
@@ -8583,7 +9434,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>point</code>:
+      <code><a href="#point">Point</a></code>:
         {x,y} of the point on the curve at {bias}
 
       
@@ -8637,7 +9488,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p1</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p1</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's start point.
 
           </div>
@@ -8646,7 +9497,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>pc</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>pc</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's control point.
 
           </div>
@@ -8655,7 +9506,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p2</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p2</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's end point.
 
           </div>
@@ -8688,7 +9539,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>point</code>:
+      <code><a href="#point">Point</a></code>:
         {x,y} of the point projected from the normal on the curve at {bias}
 
       
@@ -8742,7 +9593,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p1</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p1</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's start point.
 
           </div>
@@ -8751,7 +9602,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>pc</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>pc</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's control point.
 
           </div>
@@ -8760,7 +9611,7 @@ if we define dx=x2-x1 and dy=y2-y1</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>p2</span> <code class='quiet'>(point)</code>
+            <span class='code bold'>p2</span> <code class='quiet'>(<a href="#point">Point</a>)</code>
 	    {x,y} of the curve's end point.
 
           </div>
