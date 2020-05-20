@@ -1,5 +1,5 @@
 /**
-* @summary function signature for easeInQuad. Note the {startValue} should not change for the function lifecycle (where {currentIteration equals {totaliterations}) otherwise the return value will be multiplied exponentially. See {@link https://easings.net/#easeInQuad easeInQuad} for a visual representation of the curve and further information.
+* @description function signature for easeInOutQuint. Note the {startValue} should not change for the function lifecycle (until {currentIteration} equals {totaliterations}) otherwise the return value will be multiplied exponentially
 * @memberof easingEquations
 * @param {number} currentIteration - The current iteration/cycle as a proportion of the totalIteration parameter.
 * @param {number} startValue - The starting value
@@ -8,13 +8,16 @@
 * @returns {number} - The value along the easing curve calculated from the {startValue} to the final value ({startValue} + {changeInValue}).
 */
 
-function easeInQuad(
+function easeInOutQuint(
     currentIteration,
     startValue,
     changeInValue,
     totalIterations
 ) {
-    return changeInValue * (currentIteration /= totalIterations) * currentIteration + startValue;
+    if ((currentIteration /= totalIterations / 2) < 1) {
+        return changeInValue / 2 * Math.pow(currentIteration, 5) + startValue;
+    }
+    return changeInValue / 2 * (Math.pow(currentIteration - 2, 5) + 2) + startValue;
 }
 
-module.exports = easeInQuad;
+module.exports = easeInOutQuint;

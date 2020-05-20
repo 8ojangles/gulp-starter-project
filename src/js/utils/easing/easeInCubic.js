@@ -1,5 +1,6 @@
 /**
-* @description function signature for easeInCubic. Note the {startValue} should not change for the function lifecycle (until {currentIteration} equals {totaliterations}) otherwise the return value will be multiplied exponentially  
+* @description function signature for easeInCubic. Note the {startValue} should not change for the function lifecycle (until {currentIteration} equals {totaliterations}) otherwise the return value will be multiplied exponentially
+* @memberof easingEquations
 * @param {number} currentIteration - The current iteration/cycle as a proportion of the totalIteration parameter.
 * @param {number} startValue - The starting value
 * @param {number} changeInValue - The change value relative to the start value.
